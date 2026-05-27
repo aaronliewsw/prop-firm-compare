@@ -1,0 +1,14 @@
+node_modules
+.next
+out
+.env*.local
+.vercel
+.DS_Store
+*.log
+
+# build artifacts / scratch
+*.tsbuildinfo
+data/*.backup-*.json
+
+# research scaffolding (scrapers, raw captures, patch scripts, handover) — kept local
+research/
