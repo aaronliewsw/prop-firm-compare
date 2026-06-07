@@ -35,6 +35,10 @@ const rows: Row[] = [
   { label: "Payout Speed", render: (f) => f.payoutSpeed ?? "—" },
   { label: "Leverage", render: (f) => formatLeverage(f.cryptoLeverage) },
   { label: "Crypto Assets", render: (f) => f.cryptoAssets, truncate: true },
+  { label: "Platform", render: (f) => f.automation?.platform ?? "—", truncate: true },
+  { label: "EA / bots", render: (f) => f.automation?.ea ?? "—" },
+  { label: "API keys", render: (f) => f.automation?.apiKeys ?? "—" },
+  { label: "MiraSurge fit", render: (f) => f.automation?.feasibility ?? "—" },
   { label: "Confidence", render: (f) => f.confidence },
 ];
 

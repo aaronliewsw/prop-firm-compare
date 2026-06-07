@@ -2,8 +2,10 @@
 
 import { Fragment, useMemo, useState } from "react";
 import Link from "next/link";
-import type { AssetClass, DrawdownType, Firm } from "@/lib/firms";
+import type { AssetClass, Automation, DrawdownType, Firm } from "@/lib/firms";
 import {
+  automationLabel,
+  feasibilityRank,
   formatDays,
   formatLeverage,
   formatMoney,
@@ -23,7 +25,8 @@ type SortKey =
   | "maxFundedTotal"
   | "payoutDays"
   | "payoutSpeedHours"
-  | "cryptoLeverage";
+  | "cryptoLeverage"
+  | "feasibility";
 
 type SortDir = "asc" | "desc";
 
@@ -50,6 +53,31 @@ function nullLast(a: number | null, b: number | null, dir: SortDir): number {
 function cmpStr(a: string, b: string, dir: SortDir): number {
   const r = a.localeCompare(b);
   return dir === "asc" ? r : -r;
+}
+
+function automationCell(a?: Automation) {
+  const f = a?.feasibility;
+  const tone =
+    f === "high"
+      ? "border-accent/40 text-accent"
+      : f === "medium"
+      ? "border-warn/40 text-warn"
+      : f === "low"
+      ? "border-warn/30 text-warn/80"
+      : f === "none"
+      ? "border-danger/40 text-danger"
+      : "border-muted/40 text-muted";
+  const title = a
+    ? `${a.platform} — EA/bots: ${a.ea}, API keys: ${a.apiKeys}. ${a.copy}. MiraSurge fit: ${a.feasibility}. ${a.note}`
+    : "No automation data";
+  return (
+    <span
+      className={`text-xs px-2 py-0.5 rounded border whitespace-nowrap ${tone}`}
+      title={title}
+    >
+      {automationLabel(a)}
+    </span>
+  );
 }
 
 function confidenceDot(c: Firm["confidence"]) {
@@ -172,6 +200,11 @@ export default function FirmTable({
           return nullLast(a.payoutSpeedHours, b.payoutSpeedHours, sortDir);
         case "cryptoLeverage":
           return nullLast(numOrNull(a.cryptoLeverage), numOrNull(b.cryptoLeverage), sortDir);
+        case "feasibility": {
+          const ra = feasibilityRank(a.automation?.feasibility);
+          const rb = feasibilityRank(b.automation?.feasibility);
+          return sortDir === "asc" ? ra - rb : rb - ra;
+        }
       }
     });
     return arr;
@@ -182,7 +215,11 @@ export default function FirmTable({
       setSortDir((d) => (d === "asc" ? "desc" : "asc"));
     } else {
       setSortKey(k);
-      setSortDir(k === "name" || k === "fundingModel" || k === "drawdownType" ? "asc" : "desc");
+      setSortDir(
+        k === "name" || k === "fundingModel" || k === "drawdownType" || k === "feasibility"
+          ? "asc"
+          : "desc",
+      );
     }
   }
 
@@ -249,6 +286,11 @@ export default function FirmTable({
                 title="Typical processing time after requesting a withdrawal, in hours, sorted by max hours (0h = instant). NOT the eligibility wait."
               />
               <Th k="cryptoLeverage" label="Lev" align="right" />
+              <Th
+                k="feasibility"
+                label="Bots / API"
+                title="Can you connect a 3rd-party execution/copy bot to your OWN account — via real trade-scope API keys or an allowed EA? Cell colour = overall MiraSurge feasibility (green high · amber medium/low · red none). Sort puts the best fits first."
+              />
               <th scope="col" className="px-3 py-2 text-left font-medium text-muted whitespace-nowrap">Crypto Assets</th>
               <th scope="col" className="px-3 py-2 text-left font-medium text-muted whitespace-nowrap">Verified</th>
             </tr>
@@ -338,6 +380,7 @@ export default function FirmTable({
                     <td className="px-3 py-2 text-right font-mono">{formatDays(f.payoutDays)}</td>
                     <td className="px-3 py-2 text-right font-mono text-xs whitespace-nowrap">{f.payoutSpeed ?? "—"}</td>
                     <td className="px-3 py-2 text-right font-mono">{formatLeverage(f.cryptoLeverage)}</td>
+                    <td className="px-3 py-2">{automationCell(f.automation)}</td>
                     <td className="px-3 py-2">
                       <div className="truncate max-w-[200px] text-muted text-xs" title={f.cryptoAssets}>{f.cryptoAssets}</div>
                     </td>
@@ -345,9 +388,21 @@ export default function FirmTable({
                   </tr>
                   {isOpen && (
                     <tr className="border-b border-border bg-bg/20">
-                      <td colSpan={16} className="px-4 pt-1 pb-4">
+                      <td colSpan={17} className="px-4 pt-1 pb-4">
                         <div className="max-w-[1100px] space-y-2 text-xs leading-relaxed">
                           <p className="text-text/90">{f.notes}</p>
+                          {f.automation && (
+                            <div className="rounded border border-border/60 bg-bg/30 p-2 space-y-1">
+                              <div className="flex flex-wrap gap-x-6 gap-y-1 text-muted font-mono">
+                                <span><span className="text-muted/60">Platform:</span> {f.automation.platform}</span>
+                                <span><span className="text-muted/60">EA / bots:</span> {f.automation.ea}</span>
+                                <span><span className="text-muted/60">API keys:</span> {f.automation.apiKeys}</span>
+                                <span><span className="text-muted/60">MiraSurge fit:</span> {f.automation.feasibility}</span>
+                              </div>
+                              <p className="text-text/80">{f.automation.note}</p>
+                              <p className="text-muted">Copy / 3rd-party: {f.automation.copy}</p>
+                            </div>
+                          )}
                           <div className="flex flex-wrap gap-x-6 gap-y-1 text-muted font-mono">
                             <span><span className="text-muted/60">Trades:</span> {f.assetClasses.join(", ")}</span>
                             <span><span className="text-muted/60">Programs:</span> {f.programs.join(", ")}</span>
@@ -386,7 +441,7 @@ export default function FirmTable({
             })}
             {sorted.length === 0 && (
               <tr>
-                <td colSpan={16} className="px-3 py-8 text-center text-muted">
+                <td colSpan={17} className="px-3 py-8 text-center text-muted">
                   No firms match the current filters.
                 </td>
               </tr>

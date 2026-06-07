@@ -1,6 +1,6 @@
 {
   "$schema": "../lib/firms.ts#Firm[]",
-  "generatedAt": "2026-05-27",
+  "generatedAt": "2026-06-07",
   "disclaimer": "Prop firm terms change frequently. All values reflect publicly stated terms at lastVerified date. Firms marked status=closed are retained for reference only — they no longer operate. Always confirm on the firm's site before purchasing.",
   "firms": [
     {
@@ -35,9 +35,9 @@
       "payoutSpeedHours": 48,
       "cryptoLeverage": 100,
       "cryptoAssets": "715+ Bybit USDT perps; 556 cryptos on MT5/Match-Trader; up to 1:100 (Bybit/Advanced), 1:5 student",
-      "notes": "Zug, Switzerland (Swiss RLCrates AG; educational/evaluation firm, MT5 via RLCrates SL). Current products: Instant, 1-Phase, 2-Phase (the funded account is the post-eval stage, not a separate purchase). Challenge profit split DEFAULT 80% (90% via paid add-on, +20% of eval price). 1-Phase: 4% daily / 6% trailing, 10% target. 2-Phase: 5% daily / 10% static, 8% P1 + 5% P2. Instant: 4% daily / 6% overall (static), 10% target to 'double up' to the next level, split scales 50%->90% by level, 0 min days, up to 1:100, scales to $1.28M. Max allocation $300K/user (Instant exempt). 715+ Bybit USDT perps; 556 cryptos on MT5/Match-Trader; up to 1:100. Challenge first payout ~15 days; reward paid within 48 business hrs (received <24h).",
+      "notes": "Zug, Switzerland (Swiss RLCrates AG; educational/evaluation firm, MT5 via RLCrates SL). Current products: Instant, 1-Phase, 2-Phase (the funded account is the post-eval stage, not a separate purchase). Challenge profit split DEFAULT 80% (90% via paid add-on, +20% of eval price). 1-Phase: 4% daily / 6% trailing, 10% target. 2-Phase: 5% daily / 10% static, 8% P1 + 5% P2. Instant: 4% daily / 6% overall (static), 10% target to 'double up' to the next level, split scales 50%->90% by level, 0 min days, up to 1:100, scales to $1.28M. Max allocation $300K/user (Instant exempt). 715+ Bybit USDT perps; 556 cryptos on MT5/Match-Trader; up to 1:100. Challenge first payout ~15 days; reward paid within 48 business hrs (received <24h). | [2026-06-07] funded traders generate their OWN Bybit trade-scope API key.",
       "source": "https://cryptofundtrader.com/faq/",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -77,7 +77,15 @@
           "payoutDays": 15,
           "note": "8% P1 + 5% P2 targets; phase 2 leads into the live funded account"
         }
-      ]
+      ],
+      "automation": {
+        "platform": "Bybit (+ MT5, Match-Trader)",
+        "ea": "restricted",
+        "apiKeys": "trade",
+        "copy": "Own Bybit key (trade scope); key locked once connected; copy banned between Ascend accounts",
+        "feasibility": "medium",
+        "note": "Own-Bybit-key model fits MiraSurge, but bans HFT/scalp/arbitrage bots and locks the key once connected."
+      }
     },
     {
       "id": "hyrotrader",
@@ -110,9 +118,9 @@
       "payoutSpeedHours": 48,
       "cryptoLeverage": 5,
       "cryptoAssets": "700+ Bybit USDT perps (BTC, ETH, SOL, BNB, XRP +alts)",
-      "notes": "Crypto-native, EU (Hyro Finance j.s.a., Bratislava). 1-Step (10 minimum trading days, 4% daily / 6% max static, 10% target) + 2-Step. Funded acct: no min days. MANDATORY stop-loss on every trade. PROHIBITED: trading EUR/USD or USDC pairs, Martingale, cross-account hedging, low-cap altcoins above 5% of balance, news-only trading, combining spot + margin in one account. Swing add-on relaxes the daily drawdown. Split starts 80%, scales time-based to 90% (~16 months). First funded payout 1 day after first trade; processed 12-48h in USDT/USDC; challenge fee refunded on first payout. Trades on Bybit feed (700+ USDT perps); OKX integration slated Q4 2026.",
+      "notes": "Crypto-native, EU (Hyro Finance j.s.a., Bratislava). 1-Step (10 minimum trading days, 4% daily / 6% max static, 10% target) + 2-Step. Funded acct: no min days. MANDATORY stop-loss on every trade. PROHIBITED: trading EUR/USD or USDC pairs, Martingale, cross-account hedging, low-cap altcoins above 5% of balance, news-only trading, combining spot + margin in one account. Swing add-on relaxes the daily drawdown. Split starts 80%, scales time-based to 90% (~16 months). First funded payout 1 day after first trade; processed 12-48h in USDT/USDC; challenge fee refunded on first payout. Trades on Bybit feed (700+ USDT perps); OKX integration slated Q4 2026. | [2026-06-07] bots/EAs allowed on funded via own Bybit subaccount API key (banned during challenge).",
       "source": "https://www.hyrotrader.com/",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -140,7 +148,15 @@
           "payoutDays": 1,
           "note": "2-Step listed in programs but specific DD/target not detailed in notes; fields inherited from 1-Step are firm-level defaults only"
         }
-      ]
+      ],
+      "automation": {
+        "platform": "Bybit (OKX soon)",
+        "ea": "allowed",
+        "apiKeys": "trade",
+        "copy": "Bots/EAs allowed on funded (banned during challenge); may be a Bybit copy master; bans Martingale + cross-account hedging",
+        "feasibility": "high",
+        "note": "Best fit: own Bybit subaccount + self-generated trade-scope key; bots explicitly allowed on funded accounts."
+      }
     },
     {
       "id": "breakout-prop",
@@ -169,13 +185,13 @@
       "profitTargetPct": 10,
       "profitSplitPct": 80,
       "payoutDays": 0,
-      "payoutSpeed": "12-24h",
+      "payoutSpeed": "~12-24h (on-demand 24/7)",
       "payoutSpeedHours": 24,
       "cryptoLeverage": 5,
       "cryptoAssets": "62 tradeable pairs; BTC/ETH up to 5x, alts up to 2x (Kraken/OKX liquidity)",
-      "notes": "Owned by KRAKEN via Payward Oceanic Ltd (POL). 1-Step plans: Classic (10% target, 3% daily / 6% max), Pro (12% target, 3%/5%), Turbo (9% target, 3%/3%); 2-step also offered. $5K-$200K. Split 80% base, 90% paid upgrade. On-demand 24/7 USDC (ERC-20) payouts, ~24h, no min days / consistency / profit cap / time limit. 62 pairs, 5x BTC/ETH, 2x alts. IMPORTANT funded-account reality: funded traders do NOT own the account or positions; POL may record a trade idea as an internal book entry OR route it to market at its sole discretion, and may earn third-party incentives not shared with the trader (conflicts of interest disclosed). 20,000+ funded accounts since 2023, 0 reported payout delays.",
+      "notes": "Owned by KRAKEN via Payward Oceanic Ltd (POL). 1-Step plans: Classic (10% target, 3% daily / 6% max), Pro (12% target, 3%/5%), Turbo (9% target, 3%/3%); 2-step also offered. $5K-$200K. Split 80% base, 90% paid upgrade. On-demand 24/7 USDC (ERC-20) payouts, ~24h, no min days / consistency / profit cap / time limit. 62 pairs, 5x BTC/ETH, 2x alts. IMPORTANT funded-account reality: funded traders do NOT own the account or positions; POL may record a trade idea as an internal book entry OR route it to market at its sole discretion, and may earn third-party incentives not shared with the trader (conflicts of interest disclosed). 20,000+ funded accounts since 2023, 0 reported payout delays. | [2026-06-07] on-demand 24/7 USDC payouts (~12-24h), no min days; funded traders don't own positions.",
       "source": "https://www.breakoutprop.com/",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -227,7 +243,15 @@
           "payoutDays": 0,
           "note": "2-Step listed in programs; specific DD/target figures not stated in notes"
         }
-      ]
+      ],
+      "automation": {
+        "platform": "Proprietary Breakout Terminal",
+        "ea": "banned",
+        "apiKeys": "none",
+        "copy": "Copy banned; no API; funded traders don't own the account/positions (POL principal book)",
+        "feasibility": "none",
+        "note": "No trader API, proprietary terminal only, no ownership — nothing for a SaaS to connect to."
+      }
     },
     {
       "id": "fundednext",
@@ -263,9 +287,9 @@
       "payoutSpeedHours": 24,
       "cryptoLeverage": 1,
       "cryptoAssets": "9 crypto pairs at 1:1 (BTC, ETH, SOL, ADA, XRP +majors)",
-      "notes": "Stellar brand: 1-Step (3%/6% DD), 2-Step (5%/10% static), Lite (4%/8%), Instant ($2k-$20k, 6% trailing). Up to 95% split on scaling; 15% earnable during challenge. Crypto leverage 1:1, commission-free, 24/7. First payout: 1-Step ~5d, 2-Step ~21d, Lite ~14d, Instant on-demand. CAUTION: post-funding 'Disciplined Trader Program' can cap margin to 30% and risk to 1%/trade.",
+      "notes": "Stellar brand: 1-Step (3%/6% DD), 2-Step (5%/10% static), Lite (4%/8%), Instant ($2k-$20k, 6% trailing). Up to 95% split on scaling; 15% earnable during challenge. Crypto leverage 1:1, commission-free, 24/7. First payout: 1-Step ~5d, 2-Step ~21d, Lite ~14d, Instant on-demand. CAUTION: post-funding 'Disciplined Trader Program' can cap margin to 30% and risk to 1%/trade. | [2026-06-07] added FundedNext Futures line.",
       "source": "https://fundednext.com/stellar-model",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -347,7 +371,15 @@
           "payoutDays": 0,
           "note": "$2k-$20k; 6% trailing max DD; daily DD not specified; on-demand payouts"
         }
-      ]
+      ],
+      "automation": {
+        "platform": "MT4-MT5 / cTrader / Match-Trader",
+        "ea": "restricted",
+        "apiKeys": "none",
+        "copy": "EAs MT4/MT5 only (cTrader/Match manual); bans external cloud copiers + 3rd-party management",
+        "feasibility": "medium",
+        "note": "Personal EA OK (MT4/MT5); hosted/multi-tenant copier or external cloud copy is banned."
+      }
     },
     {
       "id": "the-funded-trader",
@@ -382,9 +414,9 @@
       "payoutSpeedHours": 120,
       "cryptoLeverage": 1,
       "cryptoAssets": "BTC, ETH, LTC, XRP",
-      "notes": "Active (recovered from 2024 turmoil). Lineup revamped: pick a phase (1/2/3-Step) and an account tier (Knight / Knight Pro / Classic). Flagship Knight 1-Step: 10% target, 3% daily DD, 8% max DD (balance-based). Up to 95% split (Knight Pro VIP); challenge scales to $1.2M, max $600k live funded. Weekend crypto force-closed (Fri 4pm EST) on most plans. First payout eligible ~7 days; bi-weekly. (2-Step/Classic DD + crypto leverage not re-confirmed on homepage.) [verify 2026-05-27] Crypto leverage 1:2->1:1 per TFT's own Knight Pro guide (FX 1:30, gold 1:10, indices 1:5, crypto 1:1; weekend crypto force-close Fri 4pm EST). Default split 80% (90-99% ceilings via scaling/VIP). Help-center articles bot-block direct fetch (read via search snippets) and exact crypto-asset list unconfirmed => stays medium.",
+      "notes": "Active (recovered from 2024 turmoil). Lineup revamped: pick a phase (1/2/3-Step) and an account tier (Knight / Knight Pro / Classic). Flagship Knight 1-Step: 10% target, 3% daily DD, 8% max DD (balance-based). Up to 95% split (Knight Pro VIP); challenge scales to $1.2M, max $600k live funded. Weekend crypto force-closed (Fri 4pm EST) on most plans. First payout eligible ~7 days; bi-weekly. (2-Step/Classic DD + crypto leverage not re-confirmed on homepage.) [verify 2026-05-27] Crypto leverage 1:2->1:1 per TFT's own Knight Pro guide (FX 1:30, gold 1:10, indices 1:5, crypto 1:1; weekend crypto force-close Fri 4pm EST). Default split 80% (90-99% ceilings via scaling/VIP). Help-center articles bot-block direct fetch (read via search snippets) and exact crypto-asset list unconfirmed => stays medium. | [2026-06-07] lineup rebranded Knight/Royal/Dragon (+Pro VIP); EAs allowed on Royal & Dragon.",
       "source": "https://help.thefundedtraderprogram.com/en/articles/9930524-a-comprehensive-guide-to-the-funded-trader-knight-pro-challenge",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "medium",
       "status": "active",
       "programDetails": [
@@ -424,7 +456,15 @@
           "payoutDays": 7,
           "note": "3-Step listed in programs but specific DD/target not re-confirmed on homepage per notes"
         }
-      ]
+      ],
+      "automation": {
+        "platform": "Match-Trader / DXtrade / cTrader / MT5 (non-US)",
+        "ea": "restricted",
+        "apiKeys": "none",
+        "copy": "EAs/cBots/copy on Royal & Dragon demos (Standard needs paid add-on); platform-native only",
+        "feasibility": "low",
+        "note": "Platform EAs on specific challenges only; no real keys."
+      }
     },
     {
       "id": "goat-funded-trader",
@@ -455,8 +495,8 @@
         400000
       ],
       "maxFundedTotal": 400000,
-      "dailyDrawdownPct": 5,
-      "maxDrawdownPct": 10,
+      "dailyDrawdownPct": 4,
+      "maxDrawdownPct": 6,
       "drawdownType": "static",
       "profitTargetPct": 10,
       "profitSplitPct": 80,
@@ -467,7 +507,7 @@
       "cryptoAssets": "BTC, ETH +majors",
       "notes": "Both challenge and instant (1/2/3-Step + Instant Funding). 2-Step Standard (confirmed on help page): 5% daily / 10% static max DD, 10% Phase-1 / 5% Phase-2 targets, crypto 1:2. Base split 80%, up to 100% via paid add-on. First payout needs 3 valid trading days (>=0.5%/day); payout cycle bi-weekly (14d), or On-Demand First Reward add-on (40% split after 3 days). Funded daily profit cap $3k; first two payouts capped 6%/$10k. Account sizes $5K-$400K. Scaling to $2M.",
       "source": "https://www.goatfundedtrader.com",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -519,7 +559,15 @@
           "payoutDays": 14,
           "note": "Instant Funding listed in programs; specific DD not detailed in notes"
         }
-      ]
+      ],
+      "automation": {
+        "platform": "MT5 / MT4 / cTrader / TradeLocker",
+        "ea": "restricted",
+        "apiKeys": "none",
+        "copy": "Owned-code EAs only; cross-account copy effectively banned; HFT/arbitrage banned",
+        "feasibility": "medium",
+        "note": "Self-owned EA on a single account; strict copy ban."
+      }
     },
     {
       "id": "ftmo",
@@ -554,7 +602,7 @@
       "cryptoAssets": "BTC, ETH, LTC, XRP +majors (~10 coins, CFDs)",
       "notes": "Industry incumbent. NEW 1-Step Challenge added Feb 2026 (no time limit, no verification phase). Base split 80%, up to 90% via Scaling Plan. Funded-account max loss is EOD trailing (moves up, not down); challenge max loss 10% of initial. Crypto leverage ~1:3.3 on Standard (1:1 on Swing). First payout from 14 days, then bi-weekly.",
       "source": "https://ftmo.com/en/faq/what-are-the-account-specifications/",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -582,7 +630,15 @@
           "payoutDays": 14,
           "note": "Added Feb 2026; no time limit, no verification phase; specific DD/target figures not stated in notes"
         }
-      ]
+      ],
+      "automation": {
+        "platform": "MT4 / MT5 / cTrader",
+        "ea": "allowed",
+        "apiKeys": "none",
+        "copy": "EAs/algo allowed challenge+funded; no 3rd-party account management; copy own accounts OK; HFT banned",
+        "feasibility": "high",
+        "note": "EAs explicitly allowed; self-run bot in-policy. No real exchange keys (simulated)."
+      }
     },
     {
       "id": "the-5ers",
@@ -607,19 +663,19 @@
         100000
       ],
       "maxFundedTotal": 4000000,
-      "dailyDrawdownPct": 5,
-      "maxDrawdownPct": 10,
+      "dailyDrawdownPct": 3,
+      "maxDrawdownPct": 6,
       "drawdownType": "mixed",
       "profitTargetPct": 10,
       "profitSplitPct": 100,
       "payoutDays": 14,
       "payoutSpeed": "24-72h",
       "payoutSpeedHours": 72,
-      "cryptoLeverage": 2,
+      "cryptoLeverage": 30,
       "cryptoAssets": "BTC, ETH +majors (BTCUSD, ETHUSD)",
-      "notes": "Scales to $4M. Up to 100% split. Programs: Hyper Growth (1-step, 3%/6% DD, 1:30 lev), High Stakes (2-step flagship: 5% daily / 10% absolute max, 10% target), Bootcamp (3-step). Account sizes $2.5K-$100K (per rules page). Bi-weekly payouts (every 14d). Crypto leverage max ~1:2; crypto deposits/payouts supported (2% fee).",
+      "notes": "Scales to $4M. Up to 100% split. Programs: Hyper Growth (1-step, 3%/6% DD, 1:30 lev), High Stakes (2-step flagship: 5% daily / 10% absolute max, 10% target), Bootcamp (3-step). Account sizes $2.5K-$100K (per rules page). Bi-weekly payouts (every 14d). Crypto leverage max ~1:2; crypto deposits/payouts supported (2% fee). | [2026-06-07] added Pro Growth (1-step); Hyper Growth flagship 10% target / 3% daily / 6% max.",
       "source": "https://the5ers.com/",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -659,7 +715,15 @@
           "payoutDays": 14,
           "note": "3-step program; specific DD/target not detailed in notes"
         }
-      ]
+      ],
+      "automation": {
+        "platform": "MT5 (Hedge) / cTrader",
+        "ea": "restricted",
+        "apiKeys": "none",
+        "copy": "EAs OK if you own the source code; copy own accounts only; account management/sharing banned",
+        "feasibility": "medium",
+        "note": "Self-owned EA only; no hosted/credential-shared service."
+      }
     },
     {
       "id": "funded-trading-plus",
@@ -696,7 +760,7 @@
       "cryptoAssets": "BTC, ETH +majors",
       "notes": "UK-based. Programs: 1-Step Express (10% target, 6% relative-trailing max DD, 4% daily, payout from day 1 every 7 days), 2-Step Classic (7% target both phases, 8% static max, 4% daily, first payout day 10), Instant Funding. Fields reflect 2-Step Classic. 80% split confirmed on all program pages (no higher tier shown). 35% consistency + 3% symbol-loss limit on Classic. Scaling to $2.5M; 30-day activity rule. Crypto leverage (1:2) not stated on program pages — pending. [verify 2026-05-27] Crypto leverage 1:2 confirmed on FTP's own leverage page (ft-leverage); 2-Step Classic 4%/8% static, 7% target, 80% split, first payout day 10 all confirmed on help center. Promoted to high.",
       "source": "https://help.fundedtradingplus.com/ft-leverage/",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -736,7 +800,15 @@
           "payoutDays": null,
           "note": "Instant Funding listed in programs; specific DD/target/payout not detailed in notes"
         }
-      ]
+      ],
+      "automation": {
+        "platform": "MT4-MT5 / cTrader / DXtrade / Match-Trader",
+        "ea": "restricted",
+        "apiKeys": "none",
+        "copy": "No copy trading of any kind across accounts; no 3rd-party account access; EA ~cTrader only",
+        "feasibility": "low",
+        "note": "Blanket cross-account copy ban; cTrader-only EA."
+      }
     },
     {
       "id": "fxify",
@@ -778,7 +850,7 @@
       "cryptoAssets": "BTC, ETH +alts (80+ cryptos on Crypto/Instant plans)",
       "notes": "Programs: 1-Phase, 2-Phase, 3-Phase, Instant, Lightning, Crypto Standard, Crypto Instant. 2-Phase Classic (confirmed): Phase-1 5%, 4% daily, 10% static max, up to 90% split; first payout on-demand after 5 min trading days, then monthly/bi-weekly. Crypto accounts carry a 25% consistency rule. Fields reflect the 1-Phase flagship (10% target / 5% daily / 10% max) — NOT re-confirmed on captures; crypto leverage (1:5) pending. Labuan-licensed (Malaysia). [verify 2026-05-27] 1-Phase flagship corrected to 3% daily / 6% trailing (was 5/10 mixed = the 2-Phase figures) per fxify.com one-phase + max-trailing FAQ. Crypto leverage 1:5->1:2 (consistent across fxify.com pages). Max allocation $800k->$795k for joiners after 2024-11-25. 80+ coins on Crypto Standard/Instant plans. Promoted to high.",
       "source": "https://fxify.com/faqs/all-faqs/how-do-you-calculate-the-max-trailing-drawdown/",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -866,7 +938,15 @@
           "payoutDays": null,
           "note": "Crypto-specific instant account; specific DD not detailed in notes"
         }
-      ]
+      ],
+      "automation": {
+        "platform": "MT4-MT5 / DXtrade / TradingView",
+        "ea": "restricted",
+        "apiKeys": "none",
+        "copy": "EAs on multi-phase funded w/ pre-approval; Instant/Lightning ban EAs; copy from 3rd party = violation",
+        "feasibility": "low",
+        "note": "EA only on multi-phase with approval; no exchange keys."
+      }
     },
     {
       "id": "e8-funding",
@@ -902,9 +982,9 @@
       "payoutSpeedHours": 48,
       "cryptoLeverage": 5,
       "cryptoAssets": "BTC, ETH (1:5), other alts (1:2)",
-      "notes": "E8 One (1-step FX/Crypto flagship): 6% target, 3% daily, ~6% dynamic/trailing max DD (default; customizable 4-14%). E8 Signature (1-step, FX or Crypto): 6% target, EOD dynamic DD fixed by account size; Signature Crypto BTC/ETH 1:5, other crypto 1:2 (confirmed on help page) — Lev column reflects this. 2% daily pause on funded (non-breach); 5 profitable days between payouts (not the first). Split 80/90/100%. Max allocation $400k. E8 One default max-DD figure remains slightly fuzzy (customizable). [verify 2026-05-27] E8 One default max-DD corrected 6%->4% (4% Dynamic preset, customizable 4-14%; the 6% was the profit target). Default split 80%. Crypto leverage: E8 One = 1:1, E8 Signature Crypto = BTC/ETH 1:5 / alts 1:2 (stored cryptoLeverage 5 reflects Signature). All from help.e8markets.com but pages bot-block direct fetch (search-snippet only) => stays medium.",
+      "notes": "E8 One (1-step FX/Crypto flagship): 6% target, 3% daily, ~6% dynamic/trailing max DD (default; customizable 4-14%). E8 Signature (1-step, FX or Crypto): 6% target, EOD dynamic DD fixed by account size; Signature Crypto BTC/ETH 1:5, other crypto 1:2 (confirmed on help page) — Lev column reflects this. 2% daily pause on funded (non-breach); 5 profitable days between payouts (not the first). Split 80/90/100%. Max allocation $400k. E8 One default max-DD figure remains slightly fuzzy (customizable). [verify 2026-05-27] E8 One default max-DD corrected 6%->4% (4% Dynamic preset, customizable 4-14%; the 6% was the profit target). Default split 80%. Crypto leverage: E8 One = 1:1, E8 Signature Crypto = BTC/ETH 1:5 / alts 1:2 (stored cryptoLeverage 5 reflects Signature). All from help.e8markets.com but pages bot-block direct fetch (search-snippet only) => stays medium. | [2026-06-07] consolidated to 1-step E8 One + E8 Signature.",
       "source": "https://help.e8markets.com/en/articles/11775980-e8-one",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "medium",
       "status": "active",
       "programDetails": [
@@ -932,7 +1012,15 @@
           "payoutDays": 14,
           "note": "1-step FX or Crypto; EOD dynamic DD fixed by account size — exact % not stated in notes; Crypto BTC/ETH 1:5, other crypto 1:2"
         }
-      ]
+      ],
+      "automation": {
+        "platform": "MT5 / cTrader / TradeLocker / Match-Trader",
+        "ea": "allowed",
+        "apiKeys": "none",
+        "copy": "EAs allowed (1 strategy/user); 3rd-party signal services + team trading banned",
+        "feasibility": "low",
+        "note": "EA-friendly but bans 3rd-party signal SaaS and multiple users on the same strategy."
+      }
     },
     {
       "id": "alpha-capital-group",
@@ -940,6 +1028,7 @@
       "website": "https://alphacapitalgroup.uk",
       "fundingModel": "challenge",
       "assetClasses": [
+        "crypto",
         "forex"
       ],
       "programs": [
@@ -960,16 +1049,16 @@
       "dailyDrawdownPct": 4,
       "maxDrawdownPct": 6,
       "drawdownType": "trailing",
-      "profitTargetPct": 10,
+      "profitTargetPct": 8,
       "profitSplitPct": 80,
       "payoutDays": 5,
       "payoutSpeed": "~48h",
       "payoutSpeedHours": 48,
-      "cryptoLeverage": "N/A",
+      "cryptoLeverage": 30,
       "cryptoAssets": "None — crypto no longer offered",
-      "notes": "Crypto DROPPED — forex (~29 pairs), indices, metals, commodities only. Fields reflect Alpha One (1-Step, confirmed on help pages): 10% target, 6% trailing max DD (per high-water-mark, locks at initial once +6%), 4% daily (balance or equity, whichever greater). Other programs: Alpha Pro (2-Step, 8% target), Alpha Three (3-Step), Alpha Swing. 80% split. Max allocation $400k shared across all four plans. Leverage up to 1:30 FX. On-demand payouts (min-days unstated). Review sites flag payout-reliability concerns.",
+      "notes": "Crypto DROPPED — forex (~29 pairs), indices, metals, commodities only. Fields reflect Alpha One (1-Step, confirmed on help pages): 10% target, 6% trailing max DD (per high-water-mark, locks at initial once +6%), 4% daily (balance or equity, whichever greater). Other programs: Alpha Pro (2-Step, 8% target), Alpha Three (3-Step), Alpha Swing. 80% split. Max allocation $400k shared across all four plans. Leverage up to 1:30 FX. On-demand payouts (min-days unstated). Review sites flag payout-reliability concerns. | [2026-06-07] crypto re-added (1:30); EAs MT5-only trade-management with pre-approval.",
       "source": "https://alphacapitalgroup.uk/",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -1021,7 +1110,15 @@
           "payoutDays": null,
           "note": "Swing program listed; no separate rule breakdown in verified sources. Likely no daily DD limit."
         }
-      ]
+      ],
+      "automation": {
+        "platform": "MT5 / cTrader / DXtrade / TradeLocker (+ Alpha Trader)",
+        "ea": "restricted",
+        "apiKeys": "unknown",
+        "copy": "EAs MT5-only for trade-management with pre-approval; full-auto/3rd-party bots/HFT banned; no group trading",
+        "feasibility": "low",
+        "note": "EAs tightly leashed (MT5 management-only, pre-approval); crypto re-added at 1:30."
+      }
     },
     {
       "id": "maven-trading",
@@ -1058,9 +1155,9 @@
       "payoutSpeedHours": 24,
       "cryptoLeverage": null,
       "cryptoAssets": "BTCUSD, BTCEUR, ETHUSD, ETHBTC",
-      "notes": "Pricing page confirms: 1-Step (5% trailing-from-peak, 3% daily), 2-Step flagship (8% static max, 4% daily, 8%/5% targets), 3-Step (3% static, 2% daily), Instant, + new OMO. 80% base split; payout cycle every 10 business days. Pricing page shows Forex only — crypto leverage (field 1:20) and crypto asset list NOT confirmed on own pages; treat crypto support as unverified. UAE-registered (Maven Edu-FZCO). [verify 2026-05-27] Crypto IS offered (BTCEUR/BTCUSD/ETHBTC/ETHUSD) - confirmed on maventrading.com/faqs. OMO corrected to 4% daily / 8% static, target 6%/8%, 80% split. 80% base split, payouts every 10 business days. OPEN: Maven publishes NO crypto leverage; stored 1:20 is the metals/indices figure and likely doesn't apply to crypto => stays medium. [user 2026-05-27] cryptoLeverage set to null (renders '—') — Maven publishes no crypto-specific leverage; the prior 1:20 was the metals/indices figure and should not be presented as crypto leverage.",
+      "notes": "Pricing page confirms: 1-Step (5% trailing-from-peak, 3% daily), 2-Step flagship (8% static max, 4% daily, 8%/5% targets), 3-Step (3% static, 2% daily), Instant, + new OMO. 80% base split; payout cycle every 10 business days. Pricing page shows Forex only — crypto leverage (field 1:20) and crypto asset list NOT confirmed on own pages; treat crypto support as unverified. UAE-registered (Maven Edu-FZCO). [verify 2026-05-27] Crypto IS offered (BTCEUR/BTCUSD/ETHBTC/ETHUSD) - confirmed on maventrading.com/faqs. OMO corrected to 4% daily / 8% static, target 6%/8%, 80% split. 80% base split, payouts every 10 business days. OPEN: Maven publishes NO crypto leverage; stored 1:20 is the metals/indices figure and likely doesn't apply to crypto => stays medium. [user 2026-05-27] cryptoLeverage set to null (renders '—') — Maven publishes no crypto-specific leverage; the prior 1:20 was the metals/indices figure and should not be presented as crypto leverage. | [2026-06-07] added OMO 2-Step challenge; EAs banned across all platforms.",
       "source": "https://maventrading.com/faqs",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "medium",
       "status": "active",
       "programDetails": [
@@ -1124,7 +1221,15 @@
           "payoutDays": null,
           "note": "Two-step challenge; 10% max trailing DD confirmed in capture. Phase targets, daily DD, and split not confirmed in available captures — FAQ page is accordion-only (no numbers visible)."
         }
-      ]
+      ],
+      "automation": {
+        "platform": "MT5 / Match-Trader",
+        "ea": "banned",
+        "apiKeys": "none",
+        "copy": "EAs not permitted under any circumstances; copy from another = breach",
+        "feasibility": "none",
+        "note": "Blanket EA ban + copy ban — no compliant path."
+      }
     },
     {
       "id": "instant-funding",
@@ -1164,9 +1269,9 @@
       "payoutSpeedHours": 48,
       "cryptoLeverage": 5,
       "cryptoAssets": "BTC, ETH (1:5); other alts (1:2)",
-      "notes": "Now both instant + 1/2-phase challenges (was pure instant). Launched dedicated crypto accounts (One-Phase Crypto, IF Micro Crypto) after adding a CFD brokerage arm. Smart Drawdown: starts 10% static, tightens to 5% after 5% gain. Crypto accounts use 3-4% daily / 6% max DD, payout every 7 days after 7 trading days (1.5% net). Base split 80%, up to 90% after 10% gain + 90 days. UK-based since 2021.",
+      "notes": "Now both instant + 1/2-phase challenges (was pure instant). Launched dedicated crypto accounts (One-Phase Crypto, IF Micro Crypto) after adding a CFD brokerage arm. Smart Drawdown: starts 10% static, tightens to 5% after 5% gain. Crypto accounts use 3-4% daily / 6% max DD, payout every 7 days after 7 trading days (1.5% net). Base split 80%, up to 90% after 10% gain + 90 days. UK-based since 2021. | [2026-06-07] added IF1 24h live-account product.",
       "source": "https://instantfunding.com/trading-rules/",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -1242,7 +1347,15 @@
           "payoutDays": 14,
           "note": "Two-phase challenge. DD parameters from firm-level fields; specific two-phase targets not broken out separately in notes."
         }
-      ]
+      ],
+      "automation": {
+        "platform": "MT5 / cTrader / Match-Trader",
+        "ea": "restricted",
+        "apiKeys": "none",
+        "copy": "Private EA may pass; public 3rd-party EAs restricted; copy/group + 3rd-party management banned",
+        "feasibility": "low",
+        "note": "Single-trader private EA only; multi-user copy SaaS = breach."
+      }
     },
     {
       "id": "blue-guardian",
@@ -1283,9 +1396,9 @@
       "payoutSpeedHours": 24,
       "cryptoLeverage": 4,
       "cryptoAssets": "BTC, ETH +majors",
-      "notes": "Domain/name changed blueguardiancapital.com -> blueguardian.com (dropped 'Capital'). Crypto Challenge is a 1-step eval: 10% target, 3% daily / 6% overall loss limit, min 3 trading days at 0.5% daily profit. Up to 90% split, weekly payouts (first ~7 days). Crypto leverage up to 1:4. Added futures program. Active.",
+      "notes": "Domain/name changed blueguardiancapital.com -> blueguardian.com (dropped 'Capital'). Crypto Challenge is a 1-step eval: 10% target, 3% daily / 6% overall loss limit, min 3 trading days at 0.5% daily profit. Up to 90% split, weekly payouts (first ~7 days). Crypto leverage up to 1:4. Added futures program. Active. | [2026-06-07] added Futures line; VPS + Trade-Copier EAs banned (Mar 2025).",
       "source": "https://www.blueguardian.com/",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -1349,7 +1462,15 @@
           "payoutDays": null,
           "note": "Instant program listed. DD parameters not confirmed separately in available captures."
         }
-      ]
+      ],
+      "automation": {
+        "platform": "MT4-MT5 (+ futures stack)",
+        "ea": "restricted",
+        "apiKeys": "none",
+        "copy": "Standard EAs OK; VPS + Trade-Copier EAs BANNED (Mar 2025); HFT banned",
+        "feasibility": "low",
+        "note": "VPS/trade-copier ban kills an external copier; only a local non-copier EA qualifies."
+      }
     },
     {
       "id": "sabiotrade",
@@ -1387,7 +1508,7 @@
       "cryptoAssets": "BTC, ETH, LTC +majors",
       "notes": "Single-step Pro Trader eval: 10% target, 5% daily / 6% trailing max DD (was 8% static). 80% split on $20k/$50k, 90% on $100k+. Sizes restructured to 20k/50k/100k/200k/650k (top raised to $650k). Crypto leverage now 1:3; forex 1:30, indices 1:100. Weekly payouts processed ~24h; consistency rule (no single trade >40% of profit). Active.",
       "source": "https://sabiotrade.com",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -1466,7 +1587,15 @@
           "payoutDays": null,
           "note": "Top tier raised to $650k. 90% split. Same rules apply."
         }
-      ]
+      ],
+      "automation": {
+        "platform": "Proprietary (QuadCode)",
+        "ea": "banned",
+        "apiKeys": "none",
+        "copy": "Bots/algorithms/scripts/APIs/copiers/EAs banned without written approval",
+        "feasibility": "none",
+        "note": "Closed QuadCode platform; APIs + EAs + copiers explicitly banned."
+      }
     },
     {
       "id": "lark-funding",
@@ -1502,7 +1631,7 @@
       "cryptoAssets": "BTC, ETH, LTC, XRP, ADA, SOL, DOT",
       "notes": "2-Step DISCONTINUED early 2026; now 1-Step Career Evaluation (confirmed on help page: 10% target, 5% daily, 7% static max DD, 80% split, crypto 1:2, 3 profitable days to unlock), 3-Step, Instant Funding. Account sizes $10K-$200K. Payouts via Riseworks (~6h avg claimed), requestable every 14 days. HFT/martingale banned; some payout denials reported.",
       "source": "https://larkfunding.com/",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -1542,7 +1671,15 @@
           "payoutDays": 14,
           "note": "Instant program listed. Specific DD parameters not confirmed in verified sources."
         }
-      ]
+      ],
+      "automation": {
+        "platform": "DXtrade / cTrader / Match-Trader",
+        "ea": "restricted",
+        "apiKeys": "none",
+        "copy": "EAs NOT prohibited (HFT/arb excepted); NO public API released; copy banned on eval",
+        "feasibility": "low",
+        "note": "Self-hosted EA OK but no official API — any connection is unsanctioned."
+      }
     },
     {
       "id": "fundingpips",
@@ -1578,9 +1715,9 @@
       "payoutSpeedHours": 24,
       "cryptoLeverage": 2,
       "cryptoAssets": "BTC, ETH, XRP +majors",
-      "notes": "Active 2026, $255M+ paid. 4 programs incl. instant 'Zero' (95% split) and standard challenges (up to 100% monthly cycle, 90% on-demand). Standard challenges static DD (2-Step: 5% daily/10% max; 1-Step & 2-Step Pro: 3% daily/6% max); Zero uses 5% trailing. Payouts ~24h; on-demand cycle as fast as a few days. Crypto leverage 1:2.",
+      "notes": "Active 2026, $255M+ paid. 4 programs incl. instant 'Zero' (95% split) and standard challenges (up to 100% monthly cycle, 90% on-demand). Standard challenges static DD (2-Step: 5% daily/10% max; 1-Step & 2-Step Pro: 3% daily/6% max); Zero uses 5% trailing. Payouts ~24h; on-demand cycle as fast as a few days. Crypto leverage 1:2. | [2026-06-07] own-EA full automation allowed with proof of ownership.",
       "source": "https://fundingpips.com/trading-objectives",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -1632,7 +1769,15 @@
           "payoutDays": null,
           "note": "5% trailing DD. 95% split. No profit target. Max trailing DD limit not confirmed separately."
         }
-      ]
+      ],
+      "automation": {
+        "platform": "MT5 / cTrader / Match-Trader",
+        "ea": "restricted",
+        "apiKeys": "none",
+        "copy": "Own-EA full automation allowed (proof of ownership); 3rd-party-vendor copier banned",
+        "feasibility": "high",
+        "note": "Own-EA full automation explicitly allowed; no 3rd-party-managed copier."
+      }
     },
     {
       "id": "pipfarm",
@@ -1669,7 +1814,7 @@
       "cryptoAssets": "BTC, ETH, XRP, BCH, DASH",
       "notes": "cTrader platform. Own accounts page confirms: programs Standard (Classic/Consistency modes) + Instant (EOD/Payout/Equity trailing modes); account sizes $2.5K-$150K; profit share up to 99% base (109% with loyalty XP). First payout from ~7 days, then every 7 days; progressive payout caps. Scaling to $1.75M over 8 steps; 2% Pip Protector max open risk. Standard challenge daily/max DD (field 3%/9%) and crypto leverage (1:5) NOT confirmed on captured pages — pending. [verify 2026-05-27] DEFAULT split corrected 99%->70% (Rank 0 base; 99% is the Rank-6 ceiling) per help.pipfarm.com/how-payouts-work. One-stage Standard: 12% target, 6% static max (prior 9/9 were two-stage figures). Crypto 1:5->1:2; +DASH. Sourced from PipFarm's own help center via reader proxy (site Cloudflare-blocks direct fetch) => stays medium.",
       "source": "https://help.pipfarm.com/articles/9367703-how-payouts-work",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "medium",
       "status": "active",
       "programDetails": [
@@ -1733,7 +1878,15 @@
           "payoutDays": 7,
           "note": "Equity-based trailing. First payout cap applies. DD % limit not confirmed in captures."
         }
-      ]
+      ],
+      "automation": {
+        "platform": "cTrader (exclusive)",
+        "ea": "allowed",
+        "apiKeys": "none",
+        "copy": "cBots (cTrader Automate) allowed; copy own accounts only; copy NOT via cBots/Open API/FIX",
+        "feasibility": "medium",
+        "note": "cTrader Automate cBots allowed on own account; API-based copy is restricted."
+      }
     },
     {
       "id": "apex-trader-funding",
@@ -1764,9 +1917,9 @@
       "payoutSpeedHours": 48,
       "cryptoLeverage": "N/A",
       "cryptoAssets": "MBT, MET (CME micro crypto futures)",
-      "notes": "Futures only. Program rebuilt Mar 2026 ('Apex 4.0'): now two DD flavors — EOD trailing (new default) and Intraday trailing (cheaper). Lineup TRIMMED to $25k/$50k/$100k/$150k ($75k/$250k/$300k retired). $-based trailing DD ($1.5k-$4k+). Split: 100% first $25k then 90%. First payout after 5 qualifying days; 6-payout ladder with caps; 50% consistency rule on payouts (none on eval). Trailing drawdown by size: $25k->$1k, $50k->$2k, $100k->$3k, $150k->$4k (locks at start+$100). Intraday accounts have no daily limit; EOD accounts add a $0.5-2k daily loss limit. No crypto-CFD leverage (trades CME micro-crypto futures).",
+      "notes": "Futures only. Program rebuilt Mar 2026 ('Apex 4.0'): now two DD flavors — EOD trailing (new default) and Intraday trailing (cheaper). Lineup TRIMMED to $25k/$50k/$100k/$150k ($75k/$250k/$300k retired). $-based trailing DD ($1.5k-$4k+). Split: 100% first $25k then 90%. First payout after 5 qualifying days; 6-payout ladder with caps; 50% consistency rule on payouts (none on eval). Trailing drawdown by size: $25k->$1k, $50k->$2k, $100k->$3k, $150k->$4k (locks at start+$100). Intraday accounts have no daily limit; EOD accounts add a $0.5-2k daily loss limit. No crypto-CFD leverage (trades CME micro-crypto futures). | [2026-06-07] Apex 4.0 — one-time eval fee + lifetime activation; 50% consistency on payout.",
       "source": "https://apextraderfunding.com/",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -1806,7 +1959,15 @@
           "payoutDays": 8,
           "note": "Intraday trailing variant (cheaper); no daily loss limit. Same max trailing DD as EOD plan. 50% consistency rule on payouts."
         }
-      ]
+      ],
+      "automation": {
+        "platform": "Rithmic / Tradovate / WealthCharts",
+        "ea": "restricted",
+        "apiKeys": "trade",
+        "copy": "Semi-auto OK; full algo/HFT/set-and-forget banned; copy own PAs only",
+        "feasibility": "low",
+        "note": "Tradovate API exists but full automation is banned; CME futures, no crypto."
+      }
     },
     {
       "id": "topstep",
@@ -1837,7 +1998,7 @@
       "cryptoAssets": "MBT, MET (CME micro crypto futures)",
       "notes": "Futures only. Profit split now 90/10 for accounts opened in 2026 (legacy '100% first $10k then 90%' grandfathered only for pre-12-Jan-2026 joiners). Trailing max-loss-limit ($2k/$3k/$4.5k on 50k/100k/150k) locks once you hit starting balance. First payout = 5 winning days ($150+ net each); per-payout caps apply. Fast processing (Wise/Aeropay, no fee). By size ($50k/$100k/$150k): daily loss $1k/$2k/$3k, trailing max-loss $2k/$3k/$4.5k (EOD-trailing, enforced intraday).",
       "source": "https://help.topstep.com/en/articles/8284233-topstep-payout-policy",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -1858,7 +2019,15 @@
           "payoutDays": 5,
           "note": "EOD trailing; locks once you hit starting balance. Daily loss $1k/$2k/$3k on $50k/$100k/$150k (all 2%). Max trailing $2k/$3k/$4.5k = 4%/3%/3%. 90% split for accounts opened 2026+ (legacy 100% first $10k grandfathered). First payout: 5 winning days ($150+ net each)."
         }
-      ]
+      ],
+      "automation": {
+        "platform": "TopstepX (ProjectX) / Rithmic front-ends / TradingView",
+        "ea": "restricted",
+        "apiKeys": "trade",
+        "copy": "Bots OK if replicable; LOCAL execution only (no VPS/cloud/HFT); copy own accounts",
+        "feasibility": "low",
+        "note": "TopstepX API (Apr 2026) but no-cloud/VPS rule; futures only."
+      }
     },
     {
       "id": "myfundedfutures",
@@ -1891,9 +2060,9 @@
       "payoutSpeedHours": 12,
       "cryptoLeverage": "N/A",
       "cryptoAssets": "MBT, MET (CME micro crypto futures)",
-      "notes": "Futures only (CME Group). Plans (confirmed on site): Builder (1-day eval, EOD trailing, 80/20, payout every 48h), Flex (2-day eval, EOD trailing, 80/20, weekly, no consistency rule), Rapid (2-day eval, intraday trailing, 90/10, daily payout, no consistency rule), Pro (2-day eval, EOD trailing, 80/20, bi-weekly). 'Core' plan retired. Dollar-denominated DD only (e.g. $2k on $50k). Crypto = CME Micro Bitcoin (MBT) / Micro Ether (MET) futures; spot/perp crypto prohibited per site legal. Payouts via Rise Works, as fast as ~minutes. Eval target ~6%. Trailing max drawdown $1-4.5k by plan/size; only Builder funded carries a $1k daily limit (Rapid/Pro/Flex: none).",
+      "notes": "Futures only (CME Group). Plans (confirmed on site): Builder (1-day eval, EOD trailing, 80/20, payout every 48h), Flex (2-day eval, EOD trailing, 80/20, weekly, no consistency rule), Rapid (2-day eval, intraday trailing, 90/10, daily payout, no consistency rule), Pro (2-day eval, EOD trailing, 80/20, bi-weekly). 'Core' plan retired. Dollar-denominated DD only (e.g. $2k on $50k). Crypto = CME Micro Bitcoin (MBT) / Micro Ether (MET) futures; spot/perp crypto prohibited per site legal. Payouts via Rise Works, as fast as ~minutes. Eval target ~6%. Trailing max drawdown $1-4.5k by plan/size; only Builder funded carries a $1k daily limit (Rapid/Pro/Flex: none). | [2026-06-07] active lineup Core / Rapid / Pro / Flex / Builder.",
       "source": "https://myfundedfutures.com",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -1969,7 +2138,15 @@
           "payoutDays": 14,
           "note": "2-day eval. EOD trailing. 80/20 split. No daily loss limit. No consistency rule. Bi-weekly payouts."
         }
-      ]
+      ],
+      "automation": {
+        "platform": "Tradovate / NinjaTrader / Quantower / TradingView",
+        "ea": "restricted",
+        "apiKeys": "trade",
+        "copy": "Automated strategies allowed w/ human oversight; no AI bots; <200 trades/day; cross-trader copy banned",
+        "feasibility": "low",
+        "note": "Algo allowed with oversight; futures only."
+      }
     },
     {
       "id": "tradeify",
@@ -2003,7 +2180,7 @@
       "cryptoAssets": "MBT, MET (CME micro crypto futures)",
       "notes": "Futures only. Now both challenge (Growth/Select) and instant (Lightning Funded). EOD trailing drawdown (locks once balance exceeds start + DD + $100); separate soft Daily Loss Limit pauses but doesn't fail account. One-time pricing, no monthly billing. ~4-5 day first payout. 90% on funded sim; Elite Live 80%. By size ($25k-$150k): trailing max $1-4.5k (EOD); Growth daily loss $0.6-3k, Select eval/flex has no daily limit.",
       "source": "https://tradeify.co",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -2061,7 +2238,15 @@
           "payoutDays": null,
           "note": "Instant funded (no eval). Elite Live account: 80% split. Exact DD % not confirmed in notes — refer to Tradeify site for current Lightning Funded terms."
         }
-      ]
+      ],
+      "automation": {
+        "platform": "Tradovate / Rithmic / WealthCharts / TradeSea",
+        "ea": "restricted",
+        "apiKeys": "trade",
+        "copy": "Own-account copy generally OK; cross-trader restricted (unconfirmed)",
+        "feasibility": "low",
+        "note": "Futures only; specific algo policy not firm-confirmed."
+      }
     },
     {
       "id": "take-profit-trader",
@@ -2096,7 +2281,7 @@
       "cryptoAssets": "MBT, MET (CME micro crypto futures)",
       "notes": "Futures only (CME/CBOT/COMEX/NYMEX). Eval uses EOD trailing DD; PRO switches to intraday trailing; PRO+ uses EOD and 90% split with no buffer/payout wait (PRO standard is 80%). Min 5 trading days to pass. Withdrawals from day one on PRO+ with buffer rules on PRO. Trailing max drawdown by size: $25k->$1.5k ... $150k->$5k (EOD on Test/PRO+, intraday on PRO). No daily loss limit (removed Jan 2025).",
       "source": "https://takeprofittrader.com",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -2138,7 +2323,15 @@
           "payoutDays": 0,
           "note": "Intraday trailing on funded (vs EOD on Eval/PRO+). 80% split (lower than PRO+). Same DD range. Standard buffer rules on withdrawal vs PRO+'s immediate access."
         }
-      ]
+      ],
+      "automation": {
+        "platform": "Rithmic / Tradovate / TradingView",
+        "ea": "restricted",
+        "apiKeys": "trade",
+        "copy": "Copiers allowed; PRO-to-PRO auto-copy banned; PRO+ copy up to 5 accounts; Tradecopia approved",
+        "feasibility": "low",
+        "note": "Futures only; copy restricted by tier."
+      }
     },
     {
       "id": "oneup-trader",
@@ -2171,7 +2364,7 @@
       "cryptoAssets": "MBT, MET (CME micro crypto futures)",
       "notes": "Futures only (CME via Rithmic). 1-step eval: 6% target, 3.5% trailing DD that stops at initial balance, min 15 trading days, no daily DD. 100% of first $10k then 90%. Weekly payouts, $1k min, processed 1-2 business days; BTC/USDT or wire. Intraday trailing max drawdown by size: $25k->$1.5k, $50k->$2.5k, $100k->$3.5k, $150k->$5k, $250k->$5.5k (locks at starting balance). No daily loss limit.",
       "source": "https://oneuptrader.com",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -2194,7 +2387,15 @@
           "payoutDays": 15,
           "note": "Intraday trailing; stops at initial balance. No daily loss limit. Max trailing by size: $25k→$1.5k(6%), $50k→$2.5k(5%), $100k→$3.5k(3.5%), $150k→$5k(3.3%), $250k→$5.5k(2.2%). 100% first $10k then 90%. Min 15 trading days. Weekly payouts, $1k min."
         }
-      ]
+      ],
+      "automation": {
+        "platform": "NinjaTrader / Rithmic ecosystem",
+        "ea": "unknown",
+        "apiKeys": "unknown",
+        "copy": "Not stated on own site",
+        "feasibility": "none",
+        "note": "Futures only; automation policy not published."
+      }
     },
     {
       "id": "earn2trade",
@@ -2227,7 +2428,7 @@
       "cryptoAssets": "None on funded accounts - Bitcoin/Ether (incl. micro) futures disallowed on live accounts since 2019-12-05",
       "notes": "Futures only. Gauntlet Mini: 10-day minimum, 6% target, EOD TRAILING drawdown (dollar-denominated limits, vary by size). 80/20 split, monthly payouts, $100 min. LiveSim until first $5k then live account; $139 one-time activation. Education-heavy. By size: daily loss $0.55-4.4k, trailing max $1.5-6k ($200k stage is a static floor). [verify 2026-05-27] Per earn2trade.com assets help page, BTC/ETH futures are NOT tradable on live/funded accounts (and don't count toward completion) - crypto exposure is effectively nil on funded capital. Payouts weekly (Wed, ~168h), 80% split; GAU50 6% target / 2.2% daily / 4% trailing-max and GAU100 max 3.5% confirmed; larger sizes' DD tables are images (unverified) => stays medium.",
       "source": "https://www.earn2trade.com/gauntlet-mini",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "medium",
       "status": "active",
       "programDetails": [
@@ -2267,7 +2468,15 @@
           "payoutDays": 0,
           "note": "EOD trailing. Min 10 trading days. Daily loss ~2.2% by size ($50k→$1.1k, $150k→$3.3k, $200k→$4.4k). Max trailing $2k-$6k ($50k=4%, $200k=3%). 80% split. Monthly payouts. $139 one-time activation after passing. Education-heavy; LiveSim model."
         }
-      ]
+      ],
+      "automation": {
+        "platform": "Tradovate / NinjaTrader / Rithmic / TradingView / Finamark",
+        "ea": "restricted",
+        "apiKeys": "unknown",
+        "copy": "EA restricted during eval; not detailed for funded",
+        "feasibility": "none",
+        "note": "Futures only; crypto banned on live accounts."
+      }
     },
     {
       "id": "leeloo-trading",
@@ -2301,9 +2510,9 @@
       "payoutSpeedHours": 72,
       "cryptoLeverage": "N/A",
       "cryptoAssets": "MBT (CME micro bitcoin futures)",
-      "notes": "Futures only. Live site: leelootrading.com (leeloo.com dead). Performance Account tiers: Standard (LE/LB/LL), Turbo (WK), Elite (Flexible/Intermediate). Dollar-denominated trailing DD; no daily DD. 100% of first $12.5k then 90%. First-payout eligibility: standard LE/LB/LL = 30 traded days (request only last Saturday of month); Turbo = 5 winning days. Processing 1-3 business days via Rise Works. WATCH: official support page (Apr 2026) flags this 'legacy' program as being phased out; scattered payout-denial reviews. Tiers up to $300k. [verify 2026-05-27] Account sizes corrected: dropped $75k, added $50k + $250k -> [25/50/100/150/250/300]k per leelootrading.com/le-trading-products. Split 90%, 6% target, trailing DD (2.5-6%), first payout 30d, processing 24-72h confirmed. PHASE-OUT: Bundle + Investor PA Foundation + Elite ALL flagged 'being phased out' (support page mod 2026-04-14); WK first-payout in flux => stays medium (firm-admitted volatility).",
+      "notes": "Futures only. Live site: leelootrading.com (leeloo.com dead). Performance Account tiers: Standard (LE/LB/LL), Turbo (WK), Elite (Flexible/Intermediate). Dollar-denominated trailing DD; no daily DD. 100% of first $12.5k then 90%. First-payout eligibility: standard LE/LB/LL = 30 traded days (request only last Saturday of month); Turbo = 5 winning days. Processing 1-3 business days via Rise Works. WATCH: official support page (Apr 2026) flags this 'legacy' program as being phased out; scattered payout-denial reviews. Tiers up to $300k. [verify 2026-05-27] Account sizes corrected: dropped $75k, added $50k + $250k -> [25/50/100/150/250/300]k per leelootrading.com/le-trading-products. Split 90%, 6% target, trailing DD (2.5-6%), first payout 30d, processing 24-72h confirmed. PHASE-OUT: Bundle + Investor PA Foundation + Elite ALL flagged 'being phased out' (support page mod 2026-04-14); WK first-payout in flux => stays medium (firm-admitted volatility). | [2026-06-07] NOT closing — Performance-Account restructuring for new purchases; firm active.",
       "source": "https://www.leelootrading.com/le-trading-products",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "medium",
       "status": "active",
       "programDetails": [
@@ -2373,7 +2582,15 @@
           "payoutDays": null,
           "note": "7 profitable days of $250+/day within 10-day window. Up to 3 payouts ($500-$2k each); reviewed at $5k total. Requests any day. Exact account sizes and DD % not confirmed in captured data."
         }
-      ]
+      ],
+      "automation": {
+        "platform": "NinjaTrader / Rithmic ecosystem",
+        "ea": "banned",
+        "apiKeys": "unknown",
+        "copy": "'No BOTS or automatic trading'; copy trading banned",
+        "feasibility": "none",
+        "note": "Futures only; bots and copy trading both banned."
+      }
     },
     {
       "id": "tradeday",
@@ -2402,9 +2619,9 @@
       "payoutSpeedHours": 24,
       "cryptoLeverage": "N/A",
       "cryptoAssets": "MBT (CME micro bitcoin futures)",
-      "notes": "Futures only. Each size selectable with Intraday trailing, EOD trailing, or Static DD (hence mixed). Tiered split by lifetime withdrawals: 80% first $50k, 90% next $50k, 95% above $100k. Payouts within 24h; daily withdrawals allowed once buffer cleared. Buyer picks drawdown type: intraday/EOD trailing $2-4k, or static $0.5-1k ($50k-$150k). No daily loss limit.",
+      "notes": "Futures only. Each size selectable with Intraday trailing, EOD trailing, or Static DD (hence mixed). Tiered split by lifetime withdrawals: 80% first $50k, 90% next $50k, 95% above $100k. Payouts within 24h; daily withdrawals allowed once buffer cleared. Buyer picks drawdown type: intraday/EOD trailing $2-4k, or static $0.5-1k ($50k-$150k). No daily loss limit. | [2026-06-07] rebranded TradeDay 2.0 (Quick Pay / Fast Pass tracks).",
       "source": "https://tradeday.com",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -2459,7 +2676,15 @@
           "payoutDays": 0,
           "note": "Static DD variant. $0.5k/$0.75k/$1k on $50k/$100k/$150k = 1%/0.75%/0.67%. Very tight DD — smallest of the three options. No daily loss limit. Same tiered split structure."
         }
-      ]
+      ],
+      "automation": {
+        "platform": "NinjaTrader / Tradovate / TradingView / Jigsaw / Quantower",
+        "ea": "restricted",
+        "apiKeys": "none",
+        "copy": "3rd-party-purchased bots forbidden; copy/coordinated trading banned; >200 trades/day banned",
+        "feasibility": "none",
+        "note": "Futures only; 3rd-party bots forbidden, copy banned."
+      }
     },
     {
       "id": "city-traders-imperium",
@@ -2496,7 +2721,7 @@
       "cryptoAssets": "BTC, ETH, XRP, LTC, ADA",
       "notes": "Forex/CFD firm with limited crypto (BTC, ETH, XRP, LTC, ADA). Fields reflect 1-Step Challenge (confirmed on funding page): 8% target ($8k/$100k), 5% max DD ($5k), NO daily DD, balance-based static drawdown, first payout after 10 days (min 3 profitable days at 0.5%/day). 2-Step is 5% daily / 10% max (per prior notes). Split 80%->100% by VIP tier. Crypto leverage 1:2 (not re-confirmed on capture). Scales to $4M. Any-time payouts from Silver VIP. [verify 2026-05-27] 2-Step target confirmed P1 10%/P2 5% (10% static max, 5% daily) and 1-Step 'no daily DD' verified TRUE, on CTI's own pages (via reader proxy; site Cloudflare-blocks direct fetch). Crypto leverage 1:2 NOT on any CTI-rendered page (aggregator-only) => stays medium.",
       "source": "https://citytradersimperium.com/2-step-drawdown-mechanics/",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "medium",
       "status": "active",
       "programDetails": [
@@ -2536,7 +2761,15 @@
           "payoutDays": null,
           "note": "Instant program listed on funding page. DD parameters not confirmed separately in captures. Any-time payouts from Silver VIP."
         }
-      ]
+      ],
+      "automation": {
+        "platform": "MT4-MT5 (Match-Trader US)",
+        "ea": "allowed",
+        "apiKeys": "none",
+        "copy": "EAs + copy from your OWN personal account allowed (matching statements); cross-party copy banned",
+        "feasibility": "medium",
+        "note": "EA + own-account copy allowed — closest MT5 fit; needs matching statements."
+      }
     },
     {
       "id": "hypernova",
@@ -2568,7 +2801,7 @@
       "cryptoAssets": "100+ crypto perps on Hyperliquid (+50+ TradFi perps; 150+ all-markets); max 5x all pairs",
       "notes": "On-chain prop on Hyperliquid (rulebook v1.0, versioned on-chain). 1-step, 3 risk tiers ($5K-$200K, all 10% target): Low 3% daily / 6% max, Medium 4%/7%, High 5%/8% (High = restricted users). Drawdown is STATIC from starting balance (never trails) and EQUITY-based incl. floating P&L — any momentary touch = permanent breach, no resets/appeals/grace. 80% split. Payouts on-demand, instant via smart contract (<0.02s), USDC on-chain, no minimum, unlimited requests. Funded acct: no target/time limit/min days/consistency rule; news, weekend holds, EAs, all styles allowed. $200K aggregate funded cap/trader; one active assessment per asset class. PROHIBITED: cross-account hedging, copy-trading/signals/pass-designed strategies, account sharing, latency exploits, and STRATEGY-SWITCHING (funded trading must match the approach used to pass). Early-stage: closed alpha (public alpha ~early June 2026), temporary $10K/day profit cap. You do not own the account or positions.",
       "source": "https://hypernova.xyz/docs/introduction",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -2632,7 +2865,15 @@
           "payoutDays": 0,
           "note": "Restricted to eligible users only. 5% daily / 8% max static. Same permanent-breach, equity-based enforcement. Fees TBD."
         }
-      ]
+      ],
+      "automation": {
+        "platform": "Hyperliquid (on-chain)",
+        "ea": "allowed",
+        "apiKeys": "unknown",
+        "copy": "Own-account automation OK; 3rd-party signals/copy = permanent ban; trader does not own account/positions",
+        "feasibility": "low",
+        "note": "Self-built bot allowed but no position ownership and any 3rd-party copy SaaS is a permaban offense."
+      }
     },
     {
       "id": "dna-funded",
@@ -2670,7 +2911,7 @@
       "cryptoAssets": "BTC, ETH, SOL, XRP +more crypto CFDs (1:2 across eval & funded; full pair count unpublished)",
       "notes": "Broker-backed by DNA Markets (ASIC-linked group), but the prop entity is registered in Saint Lucia and itself unregulated. TradeLocker (TradingView) + DXtrade. DD varies by plan (1-Phase 4%/6%, 2-Phase 5%/8%, Rapid 3%/5%, Instant 4% trailing); challenges static, Instant trailing. Headline split 80% default, 90% with add-on. Payout every 14d (7 with add-on); first 3 payouts capped at 5% profit. 30-40% single-day profit-distribution limit. Founded 2024 — young. maxFundedTotal $600k combined. [verify 2026-05-27] Confirmed via canonical Rules & Conditions V2.1 PDF (2026-04-30) + curl of homepage/FAQ. Crypto flat 1:2 across eval+funded (prior '2:1 eval/3:1 funded' was wrong). Default split 80% (90% paid add-on). Payout waiting 14d default (7d add-on); processing 24-48h. 2-Phase (Double Helix) target 8%/5%. Promoted to high.",
       "source": "https://dnafunded.com/wp-content/uploads/2026/04/DNA-Funded-Ltd-Rules-and-Conditions-V2.1.pdf",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -2754,7 +2995,15 @@
           "payoutDays": 14,
           "note": "Instant funding (no eval). 4% trailing DD. Max trailing % not specified in captured data — null. Same split and payout cadence as challenge programs."
         }
-      ]
+      ],
+      "automation": {
+        "platform": "TradeLocker / DXtrade / MT4-MT5",
+        "ea": "restricted",
+        "apiKeys": "trade",
+        "copy": "EAs OK (funded needs pre-approval); copy only between own DNA accounts; TradeLocker public API",
+        "feasibility": "high",
+        "note": "TradeLocker public trade API + MT5 EAs on own account; funded-stage EA needs DNA approval."
+      }
     },
     {
       "id": "brightfunded",
@@ -2789,7 +3038,7 @@
       "cryptoAssets": "35+ crypto CFDs (BTC, ETH +more) of 100-150+ instruments; crypto leverage 1:5",
       "notes": "Single path: 2-Step challenge only (no 1-step/instant). P1 target 8%, P2 5%. Static 10% max DD (no trail), 5% daily; no consistency rule. 80% base split, scalable to 100% (90% paid add-on). Scaling +30% every ~4 months; max total funded allocation across accounts $400k. Official site: first payout 7d after first funded trade, weekly thereafter, 24h processing (one secondary source claims 30d). Bright Global FZCO (Dubai) + BrightFunded Ltd (St Lucia); offices Amsterdam/Warsaw. Unregulated. Founded Sept 2023 — young.",
       "source": "https://brightfunded.com/",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -2827,7 +3076,15 @@
           "payoutDays": 7,
           "note": "Same rules as Pluto but $200K account size only. Max total funded allocation $400K across accounts."
         }
-      ]
+      ],
+      "automation": {
+        "platform": "cTrader / MT5 / DXtrade",
+        "ea": "allowed",
+        "apiKeys": "trade",
+        "copy": "EAs allowed challenge+funded (NOT on DXtrade); copy only same-owner",
+        "feasibility": "high",
+        "note": "EAs explicitly allowed on cTrader/MT5 (avoid DXtrade — no API there); own-account only."
+      }
     },
     {
       "id": "hola-prime",
@@ -2864,9 +3121,9 @@
       "payoutSpeedHours": 1,
       "cryptoLeverage": 30,
       "cryptoAssets": "~9 crypto pairs (BTCUSD, ETHUSD +more) of 150+ instruments; crypto leverage up to ~1:30",
-      "notes": "Regulated: Hola Prime Markets, FSC Mauritius Investment Dealer. Both challenge and Direct/instant. Fields reflect flagship 1-Step Prime: 3% daily / 6% max (static, balance-based), 10% target. Two-Step has higher DD. Splits 80% bi-weekly/on-demand, 95% monthly (field = max). Max combined allocation ~$500k initial; single account scales to $4M. Fastest-payout firm — avg ~33min, within ~1h; first payout after 14d. Crypto leverage ~1:30 (Prime accounts).",
+      "notes": "Regulated: Hola Prime Markets, FSC Mauritius Investment Dealer. Both challenge and Direct/instant. Fields reflect flagship 1-Step Prime: 3% daily / 6% max (static, balance-based), 10% target. Two-Step has higher DD. Splits 80% bi-weekly/on-demand, 95% monthly (field = max). Max combined allocation ~$500k initial; single account scales to $4M. Fastest-payout firm — avg ~33min, within ~1h; first payout after 14d. Crypto leverage ~1:30 (Prime accounts). | [2026-06-07] lineup renamed Pro/Prime/One/Direct + Futures; split tiered up to 95% (monthly).",
       "source": "https://holaprime.com/",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -2906,7 +3163,15 @@
           "payoutDays": null,
           "note": "Direct Account listed on site. 90% split bi-weekly per capture. No profit target. Specific DD rules not confirmed in captures."
         }
-      ]
+      ],
+      "automation": {
+        "platform": "MT4-MT5 / cTrader / DXtrade / Match-Trader",
+        "ea": "restricted",
+        "apiKeys": "none",
+        "copy": "EAs OK (must customize; Direct model bans EAs); copy own accounts only; sharing = breach",
+        "feasibility": "low",
+        "note": "Trader-run customized EA only; a multi-tenant SaaS reads as prohibited 3rd-party management."
+      }
     },
     {
       "id": "the-trading-pit",
@@ -2943,9 +3208,9 @@
       "payoutSpeedHours": 24,
       "cryptoLeverage": 2,
       "cryptoAssets": "11 crypto instruments: ADA, BCH, BTC, DOGE, DOT, EOS, ETH, LINK, LTC, XLM, XRP (USD); leverage 1:2",
-      "notes": "Vaduz, Liechtenstein; simulated funds, no regulator. Challenge-only. Classic DISCONTINUED. Fields reflect CFD Prime 1-phase (crypto-relevant): 10% target, 3% daily DD (balance-based), 6% static max DD. Also 2-phase CFD + Futures Prime ($50k/$100k/$150k, 6% target, ~2% daily pause, $-based max DD, 80% split, first payout after 5 profitable days >=$200/day). 11 crypto CFDs (ADA,BCH,BTC,DOGE,DOT,EOS,ETH,LINK,LTC,XLM,XRP) at 1:2. Trade2Earn loyalty up to 100% split. CFD-Prime payout eligibility not re-confirmed. maxFundedTotal unpublished. Max funded: CFD side capped at $400k combined (shown); Futures side up to ~$750k (5 x $150k earning accounts). No single combined figure is published. [verify 2026-05-27] Payout eligibility confirmed on support.thetradingpit.com: post-2026-03-06 accounts need 3 profitable days (>=0.5% each), first request ~14d; 80% base split, crypto 1:2 + 11 instruments confirmed on cfds-prop-trading. BUT CFD-Prime DD conflicts across TTP's own pages (6% static vs 7% trailing; daily 3% vs 4%) and renders JS-empty => stays medium pending one authoritative DD figure.",
+      "notes": "Vaduz, Liechtenstein; simulated funds, no regulator. Challenge-only. Classic DISCONTINUED. Fields reflect CFD Prime 1-phase (crypto-relevant): 10% target, 3% daily DD (balance-based), 6% static max DD. Also 2-phase CFD + Futures Prime ($50k/$100k/$150k, 6% target, ~2% daily pause, $-based max DD, 80% split, first payout after 5 profitable days >=$200/day). 11 crypto CFDs (ADA,BCH,BTC,DOGE,DOT,EOS,ETH,LINK,LTC,XLM,XRP) at 1:2. Trade2Earn loyalty up to 100% split. CFD-Prime payout eligibility not re-confirmed. maxFundedTotal unpublished. Max funded: CFD side capped at $400k combined (shown); Futures side up to ~$750k (5 x $150k earning accounts). No single combined figure is published. [verify 2026-05-27] Payout eligibility confirmed on support.thetradingpit.com: post-2026-03-06 accounts need 3 profitable days (>=0.5% each), first request ~14d; 80% base split, crypto 1:2 + 11 instruments confirmed on cfds-prop-trading. BUT CFD-Prime DD conflicts across TTP's own pages (6% static vs 7% trailing; daily 3% vs 4%) and renders JS-empty => stays medium pending one authoritative DD figure. | [2026-06-07] Classic discontinued; Prime lineup (CFDs / Futures / Stocks Prime); cTrader added.",
       "source": "https://www.thetradingpit.com/cfds-prop-trading",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "medium",
       "status": "active",
       "programDetails": [
@@ -2990,7 +3255,15 @@
           "payoutDays": 5,
           "note": "Sizes $50k/$100k/$150k. 6% profit target. ~2% daily pause (not a hard loss — trading pause). Max DD is $-based trailing EOD balance (% equivalent unstated without account size). First payout: lower of $5k or 50% of profit, after 5 profitable days ≥$200/day. Subsequent: every 7 days with profit >$0 + 5 profitable days ≥$200."
         }
-      ]
+      ],
+      "automation": {
+        "platform": "cTrader (CFD) / NinjaTrader-Tradovate-Rithmic (futures)",
+        "ea": "restricted",
+        "apiKeys": "none",
+        "copy": "cBots/algos on cTrader OK; no hedge/Martingale/news; copy specifics unconfirmed",
+        "feasibility": "low",
+        "note": "Platform-native cBots only; eval/sim accounts."
+      }
     },
     {
       "id": "fintokei",
@@ -3025,9 +3298,9 @@
       "payoutSpeedHours": 24,
       "cryptoLeverage": 2,
       "cryptoAssets": "14 crypto CFDs across 11 coins (BTC, ETH, ADA, DOGE, LINK, XRP, SOL, XLM; some in JPY+USD); up to 1:2 on BTC, zero commission, 24/5",
-      "notes": "Run by the Purple Trading team (established EU broker group; targets Japanese/Asian market). Account sizes/cap are EUR-denominated (max EUR 400,000 per customer at any time) — shown as approx USD. NOTE: some 2026 snippets wrongly claim no crypto — outdated; crypto CFDs are available on all current challenges (confirmed via support docs). ProTrader 2-phase (8%/6% targets), 5% daily / 10% max static, 80-95% split. SwiftTrader has no daily DD. First FX/CFD prop firm to launch one-click Instant Payouts (Aug 2025); standard cycle bi-weekly. Bans Martingale/latency arbitrage; allows news trading.",
+      "notes": "Run by the Purple Trading team (established EU broker group; targets Japanese/Asian market). Account sizes/cap are EUR-denominated (max EUR 400,000 per customer at any time) — shown as approx USD. NOTE: some 2026 snippets wrongly claim no crypto — outdated; crypto CFDs are available on all current challenges (confirmed via support docs). ProTrader 2-phase (8%/6% targets), 5% daily / 10% max static, 80-95% split. SwiftTrader has no daily DD. First FX/CFD prop firm to launch one-click Instant Payouts (Aug 2025); standard cycle bi-weekly. Bans Martingale/latency arbitrage; allows news trading. | [2026-06-07] DragonTrader replaced; lineup now StartTrader / SwiftTrader / ProTrader / ProTrader Swing.",
       "source": "https://www.fintokei.com/protrader/",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -3067,7 +3340,15 @@
           "payoutDays": 14,
           "note": "Program listed on site but per-program rules not captured in raw files. Steps/DD/target parameters unknown; null pending verification."
         }
-      ]
+      ],
+      "automation": {
+        "platform": "MT5-MT4 / cTrader / TradingView",
+        "ea": "restricted",
+        "apiKeys": "none",
+        "copy": "Own-built EA only; 3rd-party provider trading your account (auto) banned; signal copy banned",
+        "feasibility": "low",
+        "note": "Self-built EA only; a hosted SaaS = prohibited 3rd-party automation."
+      }
     },
     {
       "id": "bem-funding",
@@ -3102,9 +3383,9 @@
       "payoutSpeedHours": 48,
       "cryptoLeverage": 2,
       "cryptoAssets": "BTC/ETH 1:2, altcoins 1:1.5 (BEM Ltd MT5 entity)",
-      "notes": "Dubai-based crypto-native firm (Bex Software Development LLC-FZ + BEM Ltd, St Lucia MT5 entity). Unregulated. 2-phase eval on most; BEM One is 1-step. Flagship Classic Normal (confirmed on ToU): 9% Phase-1 target, 4.5% daily, 9% static max DD (does NOT trail), 80% split, 3 trading days to first reward. Crypto leverage BTC/ETH 1:2, altcoins 1:1.5 (corrected from 1:5). Other programs vary (Swing/Extended/One). Payouts 1-2 business days; scaling to 90% split. maxFundedTotal ~$200k. Launched 2024 (short track record).",
+      "notes": "Dubai-based crypto-native firm (Bex Software Development LLC-FZ + BEM Ltd, St Lucia MT5 entity). Unregulated. 2-phase eval on most; BEM One is 1-step. Flagship Classic Normal (confirmed on ToU): 9% Phase-1 target, 4.5% daily, 9% static max DD (does NOT trail), 80% split, 3 trading days to first reward. Crypto leverage BTC/ETH 1:2, altcoins 1:1.5 (corrected from 1:5). Other programs vary (Swing/Extended/One). Payouts 1-2 business days; scaling to 90% split. maxFundedTotal ~$200k. Launched 2024 (short track record). | [2026-06-07] now multi-platform (DXtrade / cTrader / MT5); added BEM Ascend.",
       "source": "https://bemfunding.com/",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -3156,7 +3437,15 @@
           "payoutDays": 3,
           "note": "1-step single-phase challenge. Per-program DD and target parameters not captured in raw files; null pending verification. Firm notes confirm 1-step structure."
         }
-      ]
+      ],
+      "automation": {
+        "platform": "cTrader / DXtrade / MT5",
+        "ea": "restricted",
+        "apiKeys": "none",
+        "copy": "Owned-source EAs only; 3rd-party EAs/copy/on-behalf/account-access banned (all phases)",
+        "feasibility": "low",
+        "note": "Self-owned EA only; a SaaS via the trader's keys = prohibited 3rd-party access."
+      }
     },
     {
       "id": "for-traders",
@@ -3193,11 +3482,11 @@
       "payoutDays": 4,
       "payoutSpeed": "~14h",
       "payoutSpeedHours": 14,
-      "cryptoLeverage": 20,
+      "cryptoLeverage": 5,
       "cryptoAssets": "70+ coins (BTC, ETH, XRP, SOL, ADA, SUI, DOT, TON, LTC, AVAX +more); 24/7, hold over weekend OK",
-      "notes": "Crypto-native; both evaluation (Fast Pro 1-step = 6% target, Fast 1-step = 10%, Classic 2-step, Strike 3-step) and Instant. Crypto plan: 6% target, 6% max DD, 4% daily, 1:20 leverage. Rewards ON-DEMAND after a minimum of 4 profitable days; consistency rule applies only on the Master account; weekend holds allowed. Split up to 90%. Avg payout ~14h with a 48h guarantee (else 100% split). Entities: FT Trading Ltd (Saint Lucia) + BLN Tech Club DMCC (Dubai); founded 2023 (formerly Billionsclub); 80K+ customers, $9M+ paid, Trustpilot 4.5. Restricted countries apply.",
+      "notes": "Crypto-native; both evaluation (Fast Pro 1-step = 6% target, Fast 1-step = 10%, Classic 2-step, Strike 3-step) and Instant. Crypto plan: 6% target, 6% max DD, 4% daily, 1:20 leverage. Rewards ON-DEMAND after a minimum of 4 profitable days; consistency rule applies only on the Master account; weekend holds allowed. Split up to 90%. Avg payout ~14h with a 48h guarantee (else 100% split). Entities: FT Trading Ltd (Saint Lucia) + BLN Tech Club DMCC (Dubai); founded 2023 (formerly Billionsclub); 80K+ customers, $9M+ paid, Trustpilot 4.5. Restricted countries apply. | [2026-06-07] new Instant Pro program; crypto leverage corrected to 1:5 BTC/ETH, 1:2 alts.",
       "source": "https://www.fortraders.com/crypto",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -3297,7 +3586,15 @@
           "payoutDays": null,
           "note": "Experimental/Labs program. No parameters captured in raw files; all null pending verification."
         }
-      ]
+      ],
+      "automation": {
+        "platform": "MT5 / cTrader / TradeLocker",
+        "ea": "restricted",
+        "apiKeys": "none",
+        "copy": "EAs assist-only (autonomous bots banned); copy only from own master; manual-trading rule",
+        "feasibility": "low",
+        "note": "Autonomous execution banned; only assist EAs + own-account copy."
+      }
     },
     {
       "id": "think-capital",
@@ -3335,7 +3632,7 @@
       "cryptoAssets": "CFD crypto via ThinkMarkets; limited — primarily BTC and ETH; leverage 1:2; crypto withdrawals in USDT/USDC",
       "notes": "Broker-backed prop firm 'powered by' multi-regulated ThinkMarkets (Think Capital Services UK Ltd, London). Forex/CFD-focused with limited crypto. Lightning 1-step (3% daily / 6% trailing), Dual Step 2-step (4% daily / 7% static), Nexus 3-step (4% / 8% static); Bolt additional. Split 80-90%. Bi-weekly payouts (weekly add-on). Sizes $5K-$200K; max allocation $600k, scaling to $1.5M. DD shown is the 2-step Dual Step (4%/7%); Nexus max is 8%.",
       "source": "https://www.thinkcapital.com/crypto-prop-firm/",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -3387,7 +3684,15 @@
           "payoutDays": 14,
           "note": "Additional program listed in firm notes. Steps/DD/target parameters not captured in raw files; null pending verification."
         }
-      ]
+      ],
+      "automation": {
+        "platform": "MT5 / ThinkTrader / TradingView",
+        "ea": "allowed",
+        "apiKeys": "trade",
+        "copy": "EAs allowed all account types (register the tool); copy from own ThinkCapital master only; HFT banned",
+        "feasibility": "high",
+        "note": "EAs allowed by default on MT5; route automation via MT5, not ThinkTrader."
+      }
     },
     {
       "id": "rebels-funding",
@@ -3427,7 +3732,7 @@
       "cryptoAssets": "CFD crypto within 70+ assets; specific coins not published; crypto leverage 1:2.5 (no weekend crypto)",
       "notes": "Slovakia (RIFM s.r.o., Bratislava); markets 'since 2008'. No-time-limit evals on RF-Trader + TradingView. Tiered Copper/Bronze/Silver/Gold/Diamond (4 to 1 step). DD by tier: Copper/Bronze/Silver 5% daily / 10% static; Gold no daily, 6% max; Diamond no daily, 5% max. Split 75-90% (scales to 90%); fee refunds 100-200%. First payout >=14d from first trade ($50 min); ~12h cadence advertised. Up to $320k base, scaling to $640k. True crypto leverage 1:2.5 (stored as 2). DD shown is Copper/Bronze/Silver tier.",
       "source": "https://www.rebelsfunding.com/all-the-rules/",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -3491,7 +3796,15 @@
           "payoutDays": 14,
           "note": "Instant-style: no challenge, no daily DD, 5% static max DD. Per firm notes. No weekend crypto trading."
         }
-      ]
+      ],
+      "automation": {
+        "platform": "Proprietary RF-Trader",
+        "ea": "banned",
+        "apiKeys": "none",
+        "copy": "EAs hard-banned & disabled in the UI; no MT/cTrader; no API",
+        "feasibility": "none",
+        "note": "Proprietary closed platform; automation impossible."
+      }
     },
     {
       "id": "fx2-funding",
@@ -3528,7 +3841,7 @@
       "cryptoAssets": "Crypto CFDs confirmed tradable at 1:2 (eval) / 2:1 (Instant); specific coins not published by FX2",
       "notes": "US-based; regulatory status UNVERIFIED (no license/regulator listed) — red flag. Sizes $10K-$200K; aggregate cap published as $400k. Four programs: One-Step (6% trailing equity DD, 4% daily), One-Step Pro (6% fixed DD, 4% daily), Two-Step (8% Phase-1 target / 5% Phase-2, 10% max DD, 4% daily), Instant Funding (6% trailing). Split 80% default / 85% standard, up to 95% via add-on. Payouts every 5 days (add-on) or bi-weekly; avg ~8h, <=48h guaranteed via Rise/crypto. Restricts HFT/latency/arbitrage; unavailable in 19+ countries. (Crypto leverage/assets not stated on captured page.) [verify 2026-05-27] fx2funding.com/faqs body now fetchable: crypto IS tradable at 1:2 (eval) / 2:1 (Instant); DD/target/split confirmed. Default first-payout window 14d (the 5-day was a paid faster cycle). Coin list still unpublished. Promoted to high.",
       "source": "https://fx2funding.com/faqs/",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -3580,7 +3893,15 @@
           "payoutDays": 0,
           "note": "No challenge. 6% trailing equity DD, 4% daily. Per firm notes. Split and payout same as challenge programs."
         }
-      ]
+      ],
+      "automation": {
+        "platform": "cTrader / DXtrade / Match-Trader / GooeyPro",
+        "ea": "allowed",
+        "apiKeys": "unknown",
+        "copy": "EAs allowed (MT5/cTrader, not DXtrade); 3rd-party account access/on-behalf trading banned",
+        "feasibility": "medium",
+        "note": "EA-friendly self-run; a SaaS-on-behalf risks the 3rd-party-access clause."
+      }
     },
     {
       "id": "ftuk",
@@ -3615,9 +3936,9 @@
       "payoutSpeedHours": 1,
       "cryptoLeverage": 2,
       "cryptoAssets": "35+ crypto pairs (BTC, ETH, LTC, XRP +more per secondary sources); crypto leverage 1:2 (forex up to 1:100)",
-      "notes": "Offers Instant Funding (5% daily / 6% trailing max, no target), One-Step (Flex), and Two-Step. Fields reflect One-Step (confirmed on FAQ): 10% target, 4% daily, 8% relative/trailing max DD (balance-or-equity high at 22:00 UTC), 10 min trading days to first payout, 80% split, bi-weekly. Account sizes $5K-$150K. Firm-claimed ~60-min avg payout (Instant on-demand). Doubling scale through Funded 1-7. UK brand; not a regulated broker. Crypto leverage (1:2) & asset list not on captured pages — pending. Max funded $6.4M = top of the single-account 7-level scaling ladder; a multi-account aggregate cap is not published. [verify 2026-05-27] One-Step rules confirmed on FTUK's own FAQ: 10% target, 4% daily, 8% relative max (22:00 UTC), first payout 10 trading days, 80% split. Crypto 1:2 stated on FTUK leverage FAQ but page JS-gates (search-index only); '35+ crypto pairs' still secondary-source => stays medium.",
+      "notes": "Offers Instant Funding (5% daily / 6% trailing max, no target), One-Step (Flex), and Two-Step. Fields reflect One-Step (confirmed on FAQ): 10% target, 4% daily, 8% relative/trailing max DD (balance-or-equity high at 22:00 UTC), 10 min trading days to first payout, 80% split, bi-weekly. Account sizes $5K-$150K. Firm-claimed ~60-min avg payout (Instant on-demand). Doubling scale through Funded 1-7. UK brand; not a regulated broker. Crypto leverage (1:2) & asset list not on captured pages — pending. Max funded $6.4M = top of the single-account 7-level scaling ladder; a multi-account aggregate cap is not published. [verify 2026-05-27] One-Step rules confirmed on FTUK's own FAQ: 10% target, 4% daily, 8% relative max (22:00 UTC), first payout 10 trading days, 80% split. Crypto 1:2 stated on FTUK leverage FAQ but page JS-gates (search-index only); '35+ crypto pairs' still secondary-source => stays medium. | [2026-06-07] added One-Step Evaluation + Futures (FTUK XT); EAs encouraged.",
       "source": "https://faq.ftuk.com/en/articles/12310193-one-step-program-rules-forex",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "medium",
       "status": "active",
       "programDetails": [
@@ -3657,7 +3978,15 @@
           "payoutDays": 10,
           "note": "2-step evaluation. Per-phase DD and target parameters not captured in raw files (only One-Step rules confirmed); null pending verification. Same split/payout structure expected."
         }
-      ]
+      ],
+      "automation": {
+        "platform": "MT5 (non-US) / Match-Trader / TradeLocker / FTUK XT",
+        "ea": "allowed",
+        "apiKeys": "none",
+        "copy": "EAs encouraged (no tick-scalp/Martingale/arb); copy INTO FTUK from external allowed; FTUK-to-FTUK banned",
+        "feasibility": "medium",
+        "note": "EA-friendly + inbound copy allowed; platform EA, not exchange keys."
+      }
     },
     {
       "id": "darwinex-zero",
@@ -3689,9 +4018,9 @@
       "payoutSpeedHours": 24,
       "cryptoLeverage": 1,
       "cryptoAssets": "BTC, ETH, XRP, SOL, BNB, ADA, DOGE (7 crypto CFDs; separate ~€50/mo account)",
-      "notes": "ALLOCATION/subscription track-record model (not a challenge). Pay monthly membership (~EUR 45/mo, or ~$50/mo; separate Crypto-CFD account same price) on EUR 100k virtual balance to build a verified DARWIN track record. Performance earns capital: DarwinIA monthly SILVER (rating >=75) EUR 30k-375k; GOLD (top 50) EUR 50k-500k; plus permanent EUR 100k allocations + Boosters (stackable to EUR 500k). Trader keeps 85% (15% perf fee, high-water-mark). FCA-regulated (Tradeslide Trading Tech Ltd, FRN 586466). 7 crypto CFDs confirmed: BTC, ETH, XRP, SOL, BNB, ADA, DOGE — per-instrument crypto leverage (field 1:1) NOT rendered on assets page; pending. No hard DD (risk scored into rating). No hard daily/max drawdown — the Darwinex Risk Engine targets ~6.5% monthly VaR by resizing positions (shown 'None'); allocation model has no challenge target or first-payout window ('N/A'). [verify 2026-05-27] Crypto leverage confirmed flat 1:1 across all 7 crypto CFDs (BTC,ETH,XRP,SOL,BNB,ADA,DOGE) on darwinexzero.com/docs. 85% trader share (15% perf fee), no DD gate (Risk Engine ~6.5% monthly VaR). Promoted to high.",
+      "notes": "ALLOCATION/subscription track-record model (not a challenge). Pay monthly membership (~EUR 45/mo, or ~$50/mo; separate Crypto-CFD account same price) on EUR 100k virtual balance to build a verified DARWIN track record. Performance earns capital: DarwinIA monthly SILVER (rating >=75) EUR 30k-375k; GOLD (top 50) EUR 50k-500k; plus permanent EUR 100k allocations + Boosters (stackable to EUR 500k). Trader keeps 85% (15% perf fee, high-water-mark). FCA-regulated (Tradeslide Trading Tech Ltd, FRN 586466). 7 crypto CFDs confirmed: BTC, ETH, XRP, SOL, BNB, ADA, DOGE — per-instrument crypto leverage (field 1:1) NOT rendered on assets page; pending. No hard DD (risk scored into rating). No hard daily/max drawdown — the Darwinex Risk Engine targets ~6.5% monthly VaR by resizing positions (shown 'None'); allocation model has no challenge target or first-payout window ('N/A'). [verify 2026-05-27] Crypto leverage confirmed flat 1:1 across all 7 crypto CFDs (BTC,ETH,XRP,SOL,BNB,ADA,DOGE) on darwinexzero.com/docs. 85% trader share (15% perf fee), no DD gate (Risk Engine ~6.5% monthly VaR). Promoted to high. | [2026-06-07] first-party programmatic trade API (DWX Connect / REST / FIX) on own MT4/MT5.",
       "source": "https://www.darwinexzero.com/docs/darwinex-zero-leverage",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -3731,7 +4060,15 @@
           "payoutDays": null,
           "note": "EUR 100K permanent allocation for qualifying DARWINs. Stackable with DarwinIA. Additional Boosters also stackable up to EUR 500K total."
         }
-      ]
+      ],
+      "automation": {
+        "platform": "MT4-MT5 (Darwinex broker)",
+        "ea": "allowed",
+        "apiKeys": "trade",
+        "copy": "EAs encouraged; DWX Connect/ZeroMQ + REST/FIX give full trade access on your own MT4/MT5",
+        "feasibility": "high",
+        "note": "First-party programmatic trade API (DWX Connect / REST / FIX) on the trader's own account — strong fit."
+      }
     },
     {
       "id": "eightcap",
@@ -3766,9 +4103,9 @@
       "payoutSpeedHours": 48,
       "cryptoLeverage": 3,
       "cryptoAssets": "Crypto CFDs incl. BTC, ETH +more (count not published); $0 crypto commission; dedicated crypto-only challenge on 2026 roadmap",
-      "notes": "Prop-challenge arm of regulated multi-asset broker Eightcap, launched 2025. Challenge entity Eightcap Services FZ LLC (Dubai); the broker group is ASIC/FCA/CySEC-regulated, giving more credibility than typical prop startups. One Phase: 10% target, 4% daily / 8% max DD. Two Phase: 10%/8% targets, 5% daily / 10% max DD. Static (balance-based) DD. Split up to 90%. Payouts bi-weekly standard (weekly add-on). Crypto leverage 1:3. Max total funded $600k across accounts. Entry from $5 (Day Trader). DD shown is One Phase.",
+      "notes": "Prop-challenge arm of regulated multi-asset broker Eightcap, launched 2025. Challenge entity Eightcap Services FZ LLC (Dubai); the broker group is ASIC/FCA/CySEC-regulated, giving more credibility than typical prop startups. One Phase: 10% target, 4% daily / 8% max DD. Two Phase: 10%/8% targets, 5% daily / 10% max DD. Static (balance-based) DD. Split up to 90%. Payouts bi-weekly standard (weekly add-on). Crypto leverage 1:3. Max total funded $600k across accounts. Entry from $5 (Day Trader). DD shown is One Phase. | [2026-06-07] Rules V2.3 — Two-Phase target 9%/5% for accounts opened on/after 2026-02-23.",
       "source": "https://challenges.eightcap.com/",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -3808,7 +4145,15 @@
           "payoutDays": 0,
           "note": "Entry-level from $5; same-day payout. Full DD and target parameters not published in captured pages; null pending verification."
         }
-      ]
+      ],
+      "automation": {
+        "platform": "MT4-MT5 / TradeLocker / TradingView",
+        "ea": "allowed",
+        "apiKeys": "unknown",
+        "copy": "EA = Allowed; copy own accounts OK; copy with other users + account management (3rd-party access) banned",
+        "feasibility": "medium",
+        "note": "EAs explicitly allowed (Rules V2.3); a credential-holding SaaS may trip the account-management ban."
+      }
     },
     {
       "id": "axi-select",
@@ -3848,7 +4193,7 @@
       "cryptoAssets": "Trades ~11 Axi crypto CFDs (BTC, ETH, LTC, XRP, BCH, ADA, LINK, DOGE, EOS, DOT, XLM); only BTCUSD + ETHUSD mirror into the Allocation Account",
       "notes": "NOT a classic challenge firm — a no-fee ALLOCATION model run by regulated broker Axi. Free to join (no fees); trader funds their own live account (min $500) and closes 20+ trades to build an 'Edge Score' (skill, consistency, risk mgmt, experience). Hit thresholds and Axi allocates parallel capital mirroring your trades, advancing 6 stages up to $1M (Pro M). Split by stage (official): Seed 0%, Incubation 40%, Acceleration 50%, Pro 60%, Pro 500 70%, Pro M 80% (some sites cite up to 90% — discrepancy flagged). Max loss -7%/stage, -10% at Pro M (breach = quarantine, not instant fail). Runs under AxiTrader LLC (St Vincent, offshore) though the wider group is ASIC/FCA-regulated. On-demand payouts. No daily loss limit; -7%/stage max loss (-10% at Pro M), breach = quarantine not fail. Allocation model: no profit target or challenge-style first-payout window ('N/A'). [verify 2026-05-27] Stage/split/max-loss table fully confirmed on axi.com/int/axi-select (6 stages, splits 0/40/50/60/70/80, -7% max loss / -10% Pro M, no daily limit, base split 80% not 90%). Only BTC+ETH copy to the allocation acct. OPEN: Axi help articles (JS-gated, search-index only) say Select uses a FIXED account leverage (~1:100), which would make the stored crypto 1:2 wrong - left unchanged pending a directly-fetchable Axi page => stays medium. [user 2026-05-27] cryptoLeverage set to 1:100 — Axi Select uses a single FIXED account leverage (~1:100) that also applies to its crypto CFDs (per Axi help articles, search-index sourced; not on a directly-fetchable page).",
       "source": "https://www.axi.com/int/axi-select",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "medium",
       "status": "active",
       "programDetails": [
@@ -3942,7 +4287,15 @@
           "payoutDays": null,
           "note": "Stage 6 (top). Edge Score >=90. Max funding $1M. No profit target to advance (final stage). 10% max loss (higher than earlier stages). 80% profit share. On-demand payouts. Some sources cite up to 90% split — unconfirmed. Runs under AxiTrader LLC (St Vincent, offshore entity)."
         }
-      ]
+      ],
+      "automation": {
+        "platform": "MT4-MT5 (Axi broker)",
+        "ea": "restricted",
+        "apiKeys": "unknown",
+        "copy": "Custom own EA OK; 3rd-party EAs signals-only (manual execution); copy trading banned",
+        "feasibility": "low",
+        "note": "Own custom EA only; 3rd-party tools are signals-only; copy banned."
+      }
     },
     {
       "id": "wencrypto",
@@ -3978,7 +4331,7 @@
       "cryptoAssets": "Crypto-native: 100+ assets from stablecoins to alts; max leverage 1:5 BTC/ETH, 1:2 alts",
       "notes": "Crypto-native, launched March 2026 by Maven Trading. Pricing page confirms flagship Single Pass (1-step: 9% target, 3% daily, 5% max static DD, 80% split, BTC/ETH 1:5, alts 1:2) and Double Pass (2-step: 10%/6% targets, 5% daily, 8% max static). Genesis (withdraw-any-day) still 'coming soon'/placeholder. Match Trader; 100+ crypto assets; payout cycle every 10 business days. Fields reflect Single Pass flagship. Max funded $300k (combined; $100k/account). Payout processing time is not published (cadence: every 10 business days; Genesis daily) — shown as 'unstated'.",
       "source": "https://wencrypto.com/",
-      "lastVerified": "2026-05-27",
+      "lastVerified": "2026-06-07",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -4030,7 +4383,57 @@
           "payoutDays": 0,
           "note": "Instant funded account (no challenge). Listed in programs array and referenced on pricing page. Per-program DD and split parameters not published in captured pages; null pending verification."
         }
-      ]
+      ],
+      "automation": {
+        "platform": "Match-Trader",
+        "ea": "banned",
+        "apiKeys": "none",
+        "copy": "EAs not permitted; copy/mirror = breach; simulated accounts",
+        "feasibility": "none",
+        "note": "EAs banned, copy = breach, manual-only Match-Trader."
+      }
+    },
+    {
+      "id": "ace-trader",
+      "name": "AceTrader",
+      "website": "https://acetrader.com",
+      "fundingModel": "both",
+      "assetClasses": [
+        "crypto"
+      ],
+      "programs": [
+        "Evaluation (Starter/Standard/Pro)",
+        "Instant Funds"
+      ],
+      "accountSizes": [
+        1000,
+        10000,
+        20000
+      ],
+      "dailyDrawdownPct": "None",
+      "maxDrawdownPct": 6,
+      "drawdownType": "trailing",
+      "profitTargetPct": null,
+      "profitSplitPct": 90,
+      "maxFundedTotal": 20000,
+      "payoutDays": 5,
+      "payoutSpeed": "monthly + ~3 business days",
+      "payoutSpeedHours": null,
+      "cryptoLeverage": null,
+      "cryptoAssets": "33 Hyperliquid perps (BTC, ETH, SOL, XRP, BNB, DOGE, HYPE, SUI, kPEPE +24) + 22 HIP-3 synthetics (NVDA, TSLA, GOLD, OIL, SP500)",
+      "notes": "Crypto-native prop on Hyperliquid + a proprietary app (very new, ~2026). Evaluation $9/$99/$169 (30d) + Instant Funds $49/$499/$999; sizes $1k/$10k/$20k. MLL trailing max-loss starts 6% below start (EOD-balance based, never trails down). Up to 90% split. Payout: 5 winning days (3 if paid in MEME); a winning day = >=$100 closed PnL; processed end-of-month then <=3 business days; min 100 USDC; 50% consistency rule. Execution is UI-only via app.acetrader.com — trader does NOT own the account/positions (evaluation/sim). Legal entity/country not disclosed.",
+      "source": "https://acetrader.com + docs.acetrader.com (llms-full.txt)",
+      "lastVerified": "2026-06-07",
+      "confidence": "high",
+      "status": "active",
+      "automation": {
+        "platform": "Hyperliquid (+ proprietary app)",
+        "ea": "unknown",
+        "apiKeys": "none",
+        "copy": "Not addressed; UI-only execution",
+        "feasibility": "low",
+        "note": "Hyperliquid underneath but execution is UI-only, no trader keys, and the trader does not own positions."
+      }
     }
   ]
 }

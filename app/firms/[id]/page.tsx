@@ -174,6 +174,29 @@ export default async function FirmDetailPage({
         <Tile label="Asset Classes" value={f.assetClasses.join(", ")} />
       </div>
 
+      {f.automation && (
+        <>
+          <SectionHeader>Automation / API — bots &amp; copy-trading (MiraSurge fit)</SectionHeader>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <Tile label="Execution Platform" value={<span className="text-sm">{f.automation.platform}</span>} />
+            <Tile label="EA / Bots / Algo" value={f.automation.ea} caption="Expert-Advisor / automated trading on funded accounts" />
+            <Tile label="API Keys" value={f.automation.apiKeys} caption="real trade-scope keys to your own account" />
+            <Tile
+              label="MiraSurge Fit"
+              value={f.automation.feasibility}
+              caption="can a SaaS connect via your own key / EA?"
+            />
+          </div>
+          <div className="mt-4 border border-border rounded-lg bg-panel p-4 space-y-2">
+            <p className="text-text/90 text-sm leading-relaxed">{f.automation.note}</p>
+            <p className="text-muted text-xs leading-relaxed">
+              <span className="text-muted/60">Copy / account-sharing / 3rd-party: </span>
+              {f.automation.copy}
+            </p>
+          </div>
+        </>
+      )}
+
       <SectionHeader>
         Programs{f.programDetails?.length ? ` — per-program rules (${f.programDetails.length})` : ""}
       </SectionHeader>

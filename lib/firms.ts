@@ -4,6 +4,20 @@ export type Confidence = "high" | "medium" | "low";
 export type FirmStatus = "active" | "closed";
 export type AssetClass = "crypto" | "forex" | "futures";
 
+/** MiraSurge automation/API axis: can a trader connect a 3rd-party execution/copy bot to their OWN account? */
+export type AutomationLevel = "allowed" | "restricted" | "banned" | "unknown";
+export type ApiKeyAccess = "trade" | "read-only" | "none" | "unknown";
+export type MiraFeasibility = "high" | "medium" | "low" | "none";
+
+export interface Automation {
+  platform: string;             // execution platform / infrastructure
+  ea: AutomationLevel;          // Expert-Advisor / bot / algo policy on funded accounts
+  apiKeys: ApiKeyAccess;        // real broker/exchange trade-scope API keys to the trader's own account
+  copy: string;                 // copy-trading / account-sharing / 3rd-party-management constraint
+  feasibility: MiraFeasibility; // overall fit for connecting a SaaS via the trader's own key/EA
+  note: string;
+}
+
 /**
  * One purchasable program/plan within a firm, with its OWN rules. Most firms run
  * several with materially different drawdown/target/split — the flat Firm fields
@@ -55,6 +69,8 @@ export interface Firm {
   status: FirmStatus;
   /** Per-program rule breakdown (optional; subpage falls back to flagship fields). */
   programDetails?: ProgramDetail[];
+  /** MiraSurge automation/API-key feasibility axis (added 2026-06-07). */
+  automation?: Automation;
 }
 
 export function formatMoney(n: number): string {
@@ -92,4 +108,19 @@ export function formatLeverage(n: number | string | null): string {
 /** Sort key for fields that may hold a string ($/None/N/A) — strings sort last. */
 export function numOrNull(v: number | string | null): number | null {
   return typeof v === "number" ? v : null;
+}
+
+/** Short label for the "Bots / API" column — the primary way a trader could automate. */
+export function automationLabel(a?: Automation): string {
+  if (!a) return "—";
+  if (a.apiKeys === "trade") return "API key";
+  if (a.ea === "allowed") return "EA / bots";
+  if (a.ea === "restricted") return "EA limited";
+  if (a.ea === "banned") return "No bots";
+  return "Unknown";
+}
+
+/** Sort rank for the automation column (best fit first). */
+export function feasibilityRank(f?: MiraFeasibility): number {
+  return f === "high" ? 0 : f === "medium" ? 1 : f === "low" ? 2 : f === "none" ? 3 : 4;
 }
