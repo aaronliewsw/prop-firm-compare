@@ -68,7 +68,7 @@ function automationCell(a?: Automation) {
       ? "border-danger/40 text-danger"
       : "border-muted/40 text-muted";
   const title = a
-    ? `${a.platform} — EA/bots: ${a.ea}, API keys: ${a.apiKeys}. ${a.copy}. MiraSurge fit: ${a.feasibility}. ${a.note}`
+    ? `${a.platform} — EA/bots: ${a.ea}, API keys: ${a.apiKeys}. ${a.copy}. TradeSurge fit: ${a.feasibility}. ${a.note}`
     : "No automation data";
   return (
     <span
@@ -289,7 +289,7 @@ export default function FirmTable({
               <Th
                 k="feasibility"
                 label="Bots / API"
-                title="Can you connect a 3rd-party execution/copy bot to your OWN account — via real trade-scope API keys or an allowed EA? Cell colour = overall MiraSurge feasibility (green high · amber medium/low · red none). Sort puts the best fits first."
+                title="Can you connect a 3rd-party execution/copy bot to your OWN account — via real trade-scope API keys or an allowed EA? Cell colour = overall TradeSurge feasibility (green high · amber medium/low · red none). Sort puts the best fits first."
               />
               <th scope="col" className="px-3 py-2 text-left font-medium text-muted whitespace-nowrap">Crypto Assets</th>
               <th scope="col" className="px-3 py-2 text-left font-medium text-muted whitespace-nowrap">Verified</th>
@@ -397,7 +397,7 @@ export default function FirmTable({
                                 <span><span className="text-muted/60">Platform:</span> {f.automation.platform}</span>
                                 <span><span className="text-muted/60">EA / bots:</span> {f.automation.ea}</span>
                                 <span><span className="text-muted/60">API keys:</span> {f.automation.apiKeys}</span>
-                                <span><span className="text-muted/60">MiraSurge fit:</span> {f.automation.feasibility}</span>
+                                <span><span className="text-muted/60">TradeSurge fit:</span> {f.automation.feasibility}</span>
                               </div>
                               <p className="text-text/80">{f.automation.note}</p>
                               <p className="text-muted">Copy / 3rd-party: {f.automation.copy}</p>

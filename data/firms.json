@@ -84,7 +84,7 @@
         "apiKeys": "trade",
         "copy": "Own Bybit key (trade scope); key locked once connected; copy banned between Ascend accounts",
         "feasibility": "medium",
-        "note": "Own-Bybit-key model fits MiraSurge, but bans HFT/scalp/arbitrage bots and locks the key once connected."
+        "note": "Own-Bybit-key model fits TradeSurge, but bans HFT/scalp/arbitrage bots and locks the key once connected."
       }
     },
     {

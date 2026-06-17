@@ -38,7 +38,7 @@ const rows: Row[] = [
   { label: "Platform", render: (f) => f.automation?.platform ?? "—", truncate: true },
   { label: "EA / bots", render: (f) => f.automation?.ea ?? "—" },
   { label: "API keys", render: (f) => f.automation?.apiKeys ?? "—" },
-  { label: "MiraSurge fit", render: (f) => f.automation?.feasibility ?? "—" },
+  { label: "TradeSurge fit", render: (f) => f.automation?.feasibility ?? "—" },
   { label: "Confidence", render: (f) => f.confidence },
 ];
 

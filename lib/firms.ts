@@ -4,7 +4,7 @@ export type Confidence = "high" | "medium" | "low";
 export type FirmStatus = "active" | "closed";
 export type AssetClass = "crypto" | "forex" | "futures";
 
-/** MiraSurge automation/API axis: can a trader connect a 3rd-party execution/copy bot to their OWN account? */
+/** TradeSurge automation/API axis: can a trader connect a 3rd-party execution/copy bot to their OWN account? */
 export type AutomationLevel = "allowed" | "restricted" | "banned" | "unknown";
 export type ApiKeyAccess = "trade" | "read-only" | "none" | "unknown";
 export type MiraFeasibility = "high" | "medium" | "low" | "none";
@@ -69,7 +69,7 @@ export interface Firm {
   status: FirmStatus;
   /** Per-program rule breakdown (optional; subpage falls back to flagship fields). */
   programDetails?: ProgramDetail[];
-  /** MiraSurge automation/API-key feasibility axis (added 2026-06-07). */
+  /** TradeSurge automation/API-key feasibility axis (added 2026-06-07). */
   automation?: Automation;
 }
 

@@ -176,13 +176,13 @@ export default async function FirmDetailPage({
 
       {f.automation && (
         <>
-          <SectionHeader>Automation / API — bots &amp; copy-trading (MiraSurge fit)</SectionHeader>
+          <SectionHeader>Automation / API — bots &amp; copy-trading (TradeSurge fit)</SectionHeader>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <Tile label="Execution Platform" value={<span className="text-sm">{f.automation.platform}</span>} />
             <Tile label="EA / Bots / Algo" value={f.automation.ea} caption="Expert-Advisor / automated trading on funded accounts" />
             <Tile label="API Keys" value={f.automation.apiKeys} caption="real trade-scope keys to your own account" />
             <Tile
-              label="MiraSurge Fit"
+              label="TradeSurge Fit"
               value={f.automation.feasibility}
               caption="can a SaaS connect via your own key / EA?"
             />
