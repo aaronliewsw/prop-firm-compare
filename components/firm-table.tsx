@@ -304,6 +304,12 @@ export default function FirmTable({
   const [sortKey, setSortKey] = useState<SortKey>("profitSplitPct");
   const [sortDir, setSortDir] = useState<SortDir>("desc");
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const confidenceHeaderRef = useRef<HTMLTableCellElement>(null);
+  const [detailPanelMetrics, setDetailPanelMetrics] = useState({
+    leftOffset: 0,
+    panelWidth: 0,
+  });
 
   // Popover state — keyed by column id so only one is open at a time.
   const [openColId, setOpenColId] = useState<string | null>(null);
@@ -311,6 +317,44 @@ export default function FirmTable({
   // SSR-safety: only render portal after mount.
   const [isMounted, setIsMounted] = useState(false);
   useEffect(() => { setIsMounted(true); }, []);
+
+  const updateDetailPanelMetrics = useCallback(() => {
+    const scrollContainer = scrollContainerRef.current;
+    const confidenceHeader = confidenceHeaderRef.current;
+    if (!scrollContainer || !confidenceHeader) return;
+
+    const leftOffset = confidenceHeader.offsetLeft;
+    const panelWidth = Math.max(0, scrollContainer.clientWidth - leftOffset);
+
+    setDetailPanelMetrics((prev) =>
+      prev.leftOffset === leftOffset && prev.panelWidth === panelWidth
+        ? prev
+        : { leftOffset, panelWidth },
+    );
+  }, []);
+
+  useEffect(() => {
+    updateDetailPanelMetrics();
+
+    const scrollContainer = scrollContainerRef.current;
+    if (!scrollContainer) return;
+
+    const resizeObserver = new ResizeObserver(updateDetailPanelMetrics);
+    resizeObserver.observe(scrollContainer);
+    // Also observe the Confidence header: filtering/sorting changes the widest
+    // firm name → the Firm column width → the Confidence column's offsetLeft,
+    // without changing the scroll container's size. Observing the header cell
+    // catches that so the pinned panel stays anchored after a filter change.
+    if (confidenceHeaderRef.current) {
+      resizeObserver.observe(confidenceHeaderRef.current);
+    }
+    window.addEventListener("resize", updateDetailPanelMetrics);
+
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", updateDetailPanelMetrics);
+    };
+  }, [updateDetailPanelMetrics]);
 
   // Outside-click: close when clicking outside the popover.
   useEffect(() => {
@@ -458,13 +502,16 @@ export default function FirmTable({
     isMounted,
   };
 
-  const Th = ({ k, label, align = "left", title }: { k: SortKey; label: string; align?: "left" | "right"; title?: string }) => {
+  const { leftOffset, panelWidth } = detailPanelMetrics;
+
+  const Th = ({ k, label, align = "left", title, headerRef }: { k: SortKey; label: string; align?: "left" | "right"; title?: string; headerRef?: React.Ref<HTMLTableCellElement> }) => {
     const isActive = sortKey === k;
     const alignClass = align === "right" ? "text-right" : "text-left";
     const justifyClass = align === "right" ? "justify-end" : "justify-start";
 
     return (
       <th
+        ref={headerRef}
         scope="col"
         aria-sort={isActive ? (sortDir === "asc" ? "ascending" : "descending") : "none"}
         className={`p-0 font-medium whitespace-nowrap ${alignClass}`}
@@ -512,7 +559,12 @@ export default function FirmTable({
           <span className="flex items-center gap-1"><span className="text-danger" aria-hidden="true">●</span> none</span>
         </span>
       </div>
-      <div className="overflow-x-auto">
+      {/* NOTE: keep this scroll container padding-free. The expanded detail panel
+          anchors via confidenceHeader.offsetLeft (table-relative) used as a sticky
+          `left` (scroll-container-relative); the two origins only coincide while the
+          table sits flush at x=0 here. If you add px-* to this div, subtract that
+          padding from leftOffset in updateDetailPanelMetrics. */}
+      <div ref={scrollContainerRef} className="overflow-x-auto">
         <table className="w-full text-[13px]">
           <caption className="sr-only">
             Comparison of prop trading firms. Sortable by column header; activate a
@@ -521,12 +573,12 @@ export default function FirmTable({
           {/* #1 sticky thead */}
           <thead className="sticky top-0 z-10 border-b-[1.5px] border-text bg-bg text-[11px] uppercase tracking-[0.06em] text-muted">
             <tr>
-              {/* Pin col — not sticky, narrow */}
-              <th scope="col" className="w-[44px] px-2 py-2 text-left font-medium whitespace-nowrap" title="Pin a firm to your shortlist to compare side by side.">
+              {/* Pin col — sticky, narrow */}
+              <th scope="col" className="sticky left-0 z-20 w-[44px] bg-bg px-2 py-2 text-left font-medium whitespace-nowrap" title="Pin a firm to your shortlist to compare side by side.">
                 <span className="sr-only">Pin</span>
               </th>
               {/* Firm name col — sticky left (#1) */}
-              <th scope="col" className="sticky left-0 z-20 bg-bg px-3 py-2 text-left font-medium whitespace-nowrap border-r border-border">
+              <th scope="col" className="sticky left-[44px] z-20 bg-bg px-3 py-2 text-left font-medium whitespace-nowrap border-r border-border">
                 <div className="flex items-center gap-1">
                   <button
                     type="button"
@@ -548,7 +600,7 @@ export default function FirmTable({
                   />
                 </div>
               </th>
-              <Th k="confidence" label="Confidence" title="Data confidence — High (recently verified), Medium (check before buying), Low (verify thoroughly)." />
+              <Th k="confidence" label="Confidence" title="Data confidence — High (recently verified), Medium (check before buying), Low (verify thoroughly)." headerRef={confidenceHeaderRef} />
               <Th k="fundingModel" label="Model" title="Funding model — Challenge (pass an evaluation first), Instant (funded immediately), or Both." />
               <th scope="col" className="px-3 py-2 text-left font-medium whitespace-nowrap" title="Challenge program tiers offered by this firm (e.g. 1-step, 2-step, instant).">
                 <div className="flex items-center gap-1">
@@ -646,7 +698,7 @@ export default function FirmTable({
                       f.status === "closed" ? "opacity-50" : ""
                     } ${rowBg} ${pinnedBorder}`}
                   >
-                    <td className="px-2 py-1 whitespace-nowrap">
+                    <td className={`sticky left-0 z-[11] w-[44px] px-0 py-1 whitespace-nowrap ${stickyBg}`}>
                       <PinButton
                         active={isPinned}
                         onClick={(e) => {
@@ -655,8 +707,8 @@ export default function FirmTable({
                         }}
                       />
                     </td>
-                    {/* Sticky firm-name cell (#1) */}
-                    <td className={`sticky left-0 z-10 px-3 py-2 whitespace-nowrap border-r border-border ${stickyBg}`}>
+                    {/* Sticky firm-name cell (#1) — z below the header's z-20 sticky cells */}
+                    <td className={`sticky left-[44px] z-[11] px-3 py-2 whitespace-nowrap border-r border-border ${stickyBg}`}>
                       <span className="inline-flex items-center gap-2">
                         <button
                           type="button"
@@ -725,49 +777,60 @@ export default function FirmTable({
                   {isOpen && (
                     <tr className="bg-bg">
                       <td colSpan={18} className="px-4 pt-1 pb-4">
-                        <div className="max-w-[1100px] space-y-2 text-xs leading-relaxed">
-                          <p className="text-text/90">{f.notes}</p>
-                          {f.automation && (
-                            <div className="rounded border border-border bg-panel2 p-2 space-y-1">
-                              <div className="flex flex-wrap gap-x-6 gap-y-1 text-muted font-mono tnum">
-                                <span><span className="text-muted/60">Platform:</span> {f.automation.platform}</span>
-                                <span><span className="text-muted/60">EA / bots:</span> {f.automation.ea}</span>
-                                <span><span className="text-muted/60">API keys:</span> {f.automation.apiKeys}</span>
-                                <span><span className="text-muted/60">TradeSurge fit:</span> {f.automation.feasibility}</span>
+                        <div
+                          style={{
+                            position: "sticky",
+                            left: leftOffset,
+                            width: panelWidth,
+                            zIndex: 1,
+                          }}
+                        >
+                          {/* overflow-hidden lives here (not the sticky positioner) so
+                              keyboard focus rings on the links below aren't clipped */}
+                          <div className="max-w-[1100px] space-y-2 overflow-hidden text-xs leading-relaxed">
+                            <p className="text-text/90">{f.notes}</p>
+                            {f.automation && (
+                              <div className="rounded border border-border bg-panel2 p-2 space-y-1">
+                                <div className="flex flex-wrap gap-x-6 gap-y-1 text-muted font-mono tnum">
+                                  <span><span className="text-muted/60">Platform:</span> {f.automation.platform}</span>
+                                  <span><span className="text-muted/60">EA / bots:</span> {f.automation.ea}</span>
+                                  <span><span className="text-muted/60">API keys:</span> {f.automation.apiKeys}</span>
+                                  <span><span className="text-muted/60">TradeSurge fit:</span> {f.automation.feasibility}</span>
+                                </div>
+                                <p className="text-text/80">{f.automation.note}</p>
+                                <p className="text-muted">Copy / 3rd-party: {f.automation.copy}</p>
                               </div>
-                              <p className="text-text/80">{f.automation.note}</p>
-                              <p className="text-muted">Copy / 3rd-party: {f.automation.copy}</p>
+                            )}
+                            <div className="flex flex-wrap gap-x-6 gap-y-1 text-muted font-mono tnum">
+                              <span><span className="text-muted/60">Trades:</span> {f.assetClasses.join(", ")}</span>
+                              <span><span className="text-muted/60">Programs:</span> {f.programs.join(", ")}</span>
+                              <span><span className="text-muted/60">Sizes:</span> {f.accountSizes.map(formatMoney).join(" · ")}</span>
+                              <span><span className="text-muted/60">Crypto:</span> {f.cryptoAssets}</span>
+                              <span><span className="text-muted/60">1st payout:</span> {f.payoutDays == null ? "—" : typeof f.payoutDays === "number" ? `${f.payoutDays}d min on funded acct` : f.payoutDays}</span>
+                              <span><span className="text-muted/60">Payout speed:</span> {f.payoutSpeed ?? "—"} after request</span>
                             </div>
-                          )}
-                          <div className="flex flex-wrap gap-x-6 gap-y-1 text-muted font-mono tnum">
-                            <span><span className="text-muted/60">Trades:</span> {f.assetClasses.join(", ")}</span>
-                            <span><span className="text-muted/60">Programs:</span> {f.programs.join(", ")}</span>
-                            <span><span className="text-muted/60">Sizes:</span> {f.accountSizes.map(formatMoney).join(" · ")}</span>
-                            <span><span className="text-muted/60">Crypto:</span> {f.cryptoAssets}</span>
-                            <span><span className="text-muted/60">1st payout:</span> {f.payoutDays == null ? "—" : typeof f.payoutDays === "number" ? `${f.payoutDays}d min on funded acct` : f.payoutDays}</span>
-                            <span><span className="text-muted/60">Payout speed:</span> {f.payoutSpeed ?? "—"} after request</span>
-                          </div>
-                          <div className="flex flex-wrap items-center gap-x-6 gap-y-1 text-muted">
-                            <Link
-                              href={`/firms/${f.id}`}
-                              onClick={(e) => e.stopPropagation()}
-                              className="text-accent hover:underline font-medium"
-                            >
-                              Full rules &amp; payout page
-                            </Link>
-                            <a
-                              href={f.source}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              onClick={(e) => e.stopPropagation()}
-                              className="inline-flex items-center gap-1 text-accent hover:underline"
-                            >
-                              <ExternalLink aria-hidden="true" size={14} strokeWidth={1.5} />
-                              Source
-                            </a>
-                            <span>Verified {f.lastVerified}</span>
-                            <span>Confidence: {f.confidence}</span>
-                            <span>Status: {f.status}</span>
+                            <div className="flex flex-wrap items-center gap-x-6 gap-y-1 text-muted">
+                              <Link
+                                href={`/firms/${f.id}`}
+                                onClick={(e) => e.stopPropagation()}
+                                className="text-accent hover:underline font-medium"
+                              >
+                                Full rules &amp; payout page
+                              </Link>
+                              <a
+                                href={f.source}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(e) => e.stopPropagation()}
+                                className="inline-flex items-center gap-1 text-accent hover:underline"
+                              >
+                                <ExternalLink aria-hidden="true" size={14} strokeWidth={1.5} />
+                                Source
+                              </a>
+                              <span>Verified {f.lastVerified}</span>
+                              <span>Confidence: {f.confidence}</span>
+                              <span>Status: {f.status}</span>
+                            </div>
                           </div>
                         </div>
                       </td>
