@@ -71,7 +71,7 @@ export default function Dashboard({ firms, generatedAt }: { firms: Firm[]; gener
             <button
               onClick={() => setShowCompare((v) => !v)}
               aria-pressed={showCompare}
-              className="rounded-md border border-accent bg-accent px-3 py-2 text-[13px] font-medium text-bg transition-colors"
+              className="rounded-md border border-accent-hover bg-accent-hover px-3 py-2 text-sm font-semibold text-bg transition-colors hover:bg-accent"
             >
               {showCompare ? "Hide comparison" : `Compare pinned (${pinnedFirms.length})`}
             </button>

@@ -66,7 +66,7 @@ function automationCell(a?: Automation) {
       : f === "medium"
       ? "amber"
       : f === "low"
-      ? "amber"
+      ? "neutral"
       : f === "none"
       ? "negative"
       : "neutral";
