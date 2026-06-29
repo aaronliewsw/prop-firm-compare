@@ -1,6 +1,8 @@
 "use client";
 
+import { Search } from "lucide-react";
 import type { AssetClass, DrawdownType } from "@/lib/firms";
+import { SegButton } from "./ui/primitives";
 
 interface Props {
   fundingModel: "all" | "challenge" | "instant" | "both";
@@ -64,19 +66,16 @@ function Segmented<T extends string | number>({
   onChange: (v: T) => void;
 }) {
   return (
-    <div className="flex w-full sm:w-auto border border-border rounded-md bg-panel overflow-hidden">
+    <div className="flex w-full gap-1 sm:w-auto">
       {options.map((opt) => (
-        <button
+        <SegButton
           key={String(opt.value)}
+          active={value === opt.value}
           onClick={() => onChange(opt.value)}
-          className={`flex-1 sm:flex-none px-3 py-1.5 text-sm transition-colors ${
-            value === opt.value
-              ? "bg-accent/20 text-accent"
-              : "text-muted hover:text-text"
-          }`}
+          className="flex-1 sm:flex-none"
         >
           {opt.label}
-        </button>
+        </SegButton>
       ))}
     </div>
   );
@@ -100,42 +99,46 @@ export default function FilterBar({
   setSearch,
 }: Props) {
   return (
-    <div className="flex flex-wrap gap-3 items-end mb-4">
-      <div className="flex flex-col gap-1 w-full sm:w-auto">
-        <label className="text-xs text-muted uppercase tracking-wide">Asset class</label>
+    <div className="mb-4 flex flex-wrap items-end gap-3">
+      <div className="flex w-full flex-col gap-1 sm:w-auto">
+        <label className="text-[13px] uppercase tracking-[0.06em] text-muted">Asset class</label>
         <Segmented options={assetOptions} value={assetClass} onChange={setAssetClass} />
       </div>
 
-      <div className="flex flex-col gap-1 w-full sm:w-auto">
-        <label className="text-xs text-muted uppercase tracking-wide">Funding model</label>
+      <div className="flex w-full flex-col gap-1 sm:w-auto">
+        <label className="text-[13px] uppercase tracking-[0.06em] text-muted">Funding model</label>
         <Segmented options={modelOptions} value={fundingModel} onChange={setFundingModel} />
       </div>
 
-      <div className="flex flex-col gap-1 w-full sm:w-auto">
-        <label className="text-xs text-muted uppercase tracking-wide">Min leverage</label>
+      <div className="flex w-full flex-col gap-1 sm:w-auto">
+        <label className="text-[13px] uppercase tracking-[0.06em] text-muted">Min leverage</label>
         <Segmented options={leverageOptions} value={minLeverage} onChange={setMinLeverage} />
       </div>
 
-      <div className="flex flex-col gap-1 w-full sm:w-auto">
-        <label className="text-xs text-muted uppercase tracking-wide">Drawdown type</label>
+      <div className="flex w-full flex-col gap-1 sm:w-auto">
+        <label className="text-[13px] uppercase tracking-[0.06em] text-muted">Drawdown type</label>
         <Segmented options={drawdownOptions} value={drawdownType} onChange={setDrawdownType} />
       </div>
 
-      <div className="flex flex-col gap-1 w-full sm:w-auto">
-        <label className="text-xs text-muted uppercase tracking-wide">Payout speed</label>
+      <div className="flex w-full flex-col gap-1 sm:w-auto">
+        <label className="text-[13px] uppercase tracking-[0.06em] text-muted">Payout speed</label>
         <Segmented options={payoutSpeedOptions} value={payoutSpeed} onChange={setPayoutSpeed} />
       </div>
 
-      <div className="flex flex-col gap-1 w-full sm:w-auto">
-        <label className="text-xs text-muted uppercase tracking-wide">Shortlist</label>
-        <div className="flex border border-border rounded-md bg-panel overflow-hidden">
+      <div className="flex w-full flex-col gap-1 sm:w-auto">
+        <label className="text-[13px] uppercase tracking-[0.06em] text-muted">Shortlist</label>
+        <div className="flex">
           <button
             onClick={() => setPinnedOnly(!pinnedOnly)}
             aria-pressed={pinnedOnly}
-            className={`px-3 py-1.5 text-sm transition-colors ${
+            className={`rounded-md border px-3 py-1.5 text-[13px] transition-colors ${
+              pinnedCount > 0
+                ? "border-border bg-accent-soft text-accent hover:border-text"
+                : "border-border bg-bg text-muted hover:text-text"
+            } ${
               pinnedOnly
-                ? "bg-accent/20 text-accent"
-                : "text-muted hover:text-text"
+                ? "border-text"
+                : ""
             }`}
           >
             Pinned ({pinnedCount})
@@ -143,16 +146,24 @@ export default function FilterBar({
         </div>
       </div>
 
-      <div className="flex flex-col gap-1 flex-1 min-w-[200px]">
-        <label htmlFor="search" className="text-xs text-muted uppercase tracking-wide">Search</label>
-        <input
-          id="search"
-          type="text"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          placeholder="Firm name or asset (e.g. SOL)"
-          className="px-3 py-1.5 bg-panel border border-border rounded-md text-sm text-text placeholder:text-muted focus:outline-none focus:border-accent"
-        />
+      <div className="flex min-w-[200px] flex-1 flex-col gap-1">
+        <label htmlFor="search" className="text-[13px] uppercase tracking-[0.06em] text-muted">Search</label>
+        <div className="relative">
+          <Search
+            aria-hidden="true"
+            className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-muted"
+            size={14}
+            strokeWidth={1.5}
+          />
+          <input
+            id="search"
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Firm name or asset (e.g. SOL)"
+            className="w-full rounded-md border border-border bg-bg py-1.5 pl-8 pr-3 text-[13px] text-text placeholder:text-muted focus:border-[1.5px] focus:border-text focus:outline-none focus:ring-0"
+          />
+        </div>
       </div>
     </div>
   );

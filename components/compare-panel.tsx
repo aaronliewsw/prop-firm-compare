@@ -8,6 +8,7 @@ import {
   formatMoney,
   formatPct,
 } from "@/lib/firms";
+import { Card } from "./ui/primitives";
 
 interface Props {
   firms: Firm[];
@@ -54,28 +55,30 @@ const monoLabels = new Set([
   "Leverage",
 ]);
 
+// TODO(restyle): Add ▲/▼ signed-delta treatment if compare rows expose directional figures; these rows are absolute rule values.
+
 export default function ComparePanel({ firms, onClose }: Props) {
   if (firms.length < 2) return null;
 
   return (
-    <div className="mb-6 border border-accent/40 rounded-lg overflow-hidden bg-panel">
-      <div className="px-4 py-2 border-b border-border flex justify-between items-center">
-        <span className="text-xs uppercase tracking-wide text-accent">
+    <Card className="mb-6 overflow-hidden">
+      <div className="flex items-center justify-between border-b-[1.5px] border-text px-4 py-3">
+        <span className="text-[13px] uppercase tracking-[0.06em] text-muted">
           Comparing {firms.length} pinned firms
         </span>
         <button
           onClick={onClose}
-          className="text-xs text-muted hover:text-text px-2 py-1"
+          className="min-h-[44px] px-3 py-2 text-[13px] text-muted transition-colors hover:text-text"
           aria-label="Close comparison"
         >
-          Close ✕
+          Close
         </button>
       </div>
       <div className="overflow-x-auto">
-        <table className="w-full text-sm">
-          <thead className="bg-bg/40 border-b border-border text-xs uppercase tracking-wide">
-            <tr>
-              <th className="px-3 py-2 text-left font-medium text-muted whitespace-nowrap sticky left-0 bg-bg/40">
+        <table className="w-full text-[13px]">
+          <thead className="border-b border-border bg-bg text-[11px] uppercase tracking-[0.06em] text-muted">
+            <tr className="divide-x divide-border">
+              <th className="sticky left-0 z-10 border-r-[1.5px] border-text bg-panel px-3 py-2 text-left font-medium whitespace-nowrap">
                 Attribute
               </th>
               {firms.map((f) => (
@@ -95,20 +98,20 @@ export default function ComparePanel({ firms, onClose }: Props) {
               ))}
             </tr>
           </thead>
-          <tbody>
+          <tbody className="divide-y divide-border">
             {rows.map((row) => (
               <tr
                 key={row.label}
-                className="border-b border-border last:border-0 hover:bg-bg/30"
+                className="divide-x divide-border hover:bg-panel2"
               >
-                <td className="px-3 py-2 text-muted whitespace-nowrap sticky left-0 bg-panel">
+                <td className="sticky left-0 z-10 border-r-[1.5px] border-text bg-panel px-3 py-2 text-muted whitespace-nowrap">
                   {row.label}
                 </td>
                 {firms.map((f) => (
                   <td
                     key={f.id}
-                    className={`px-3 py-2 ${row.truncate ? "" : "whitespace-nowrap"} ${
-                      monoLabels.has(row.label) ? "font-mono" : "text-text/90"
+                    className={`px-3 py-2 tnum font-mono ${row.truncate ? "" : "whitespace-nowrap"} ${
+                      monoLabels.has(row.label) ? "text-text" : "text-text/90"
                     }`}
                   >
                     {row.truncate ? (
@@ -125,8 +128,8 @@ export default function ComparePanel({ firms, onClose }: Props) {
                 ))}
               </tr>
             ))}
-            <tr className="border-b border-border last:border-0">
-              <td className="px-3 py-2 text-muted whitespace-nowrap sticky left-0 bg-panel">
+            <tr className="divide-x divide-border">
+              <td className="sticky left-0 z-10 border-r-[1.5px] border-text bg-panel px-3 py-2 text-muted whitespace-nowrap">
                 Details
               </td>
               {firms.map((f) => (
@@ -135,7 +138,7 @@ export default function ComparePanel({ firms, onClose }: Props) {
                     href={`/firms/${f.id}`}
                     className="text-accent hover:underline"
                   >
-                    Full rules →
+                    Full rules
                   </Link>
                 </td>
               ))}
@@ -143,6 +146,6 @@ export default function ComparePanel({ firms, onClose }: Props) {
           </tbody>
         </table>
       </div>
-    </div>
+    </Card>
   );
 }

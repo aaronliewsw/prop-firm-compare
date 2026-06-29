@@ -2,6 +2,7 @@
 
 import { Fragment, useMemo, useState } from "react";
 import Link from "next/link";
+import { ChevronDown, ChevronUp, ExternalLink, Pin } from "lucide-react";
 import type { AssetClass, Automation, DrawdownType, Firm } from "@/lib/firms";
 import {
   automationLabel,
@@ -14,6 +15,7 @@ import {
   leverageOrNull,
   numOrNull,
 } from "@/lib/firms";
+import { Badge } from "./ui/primitives";
 
 type SortKey =
   | "name"
@@ -58,32 +60,31 @@ function cmpStr(a: string, b: string, dir: SortDir): number {
 
 function automationCell(a?: Automation) {
   const f = a?.feasibility;
-  const tone =
+  const tone: "neutral" | "positive" | "negative" | "accent" | "amber" =
     f === "high"
-      ? "border-accent/40 text-accent"
+      ? "positive"
       : f === "medium"
-      ? "border-warn/40 text-warn"
+      ? "amber"
       : f === "low"
-      ? "border-warn/30 text-warn/80"
+      ? "amber"
       : f === "none"
-      ? "border-danger/40 text-danger"
-      : "border-muted/40 text-muted";
+      ? "negative"
+      : "neutral";
   const title = a
     ? `${a.platform} — EA/bots: ${a.ea}, API keys: ${a.apiKeys}. ${a.copy}. TradeSurge fit: ${a.feasibility}. ${a.note}`
     : "No automation data";
   return (
-    <span
-      className={`text-xs px-2 py-0.5 rounded border whitespace-nowrap ${tone}`}
-      title={title}
-    >
-      {automationLabel(a)}
+    <span title={title}>
+      <Badge tone={tone}>{automationLabel(a)}</Badge>
     </span>
   );
 }
 
 function confidenceDot(c: Firm["confidence"]) {
   const color =
-    c === "high" ? "bg-accent" : c === "medium" ? "bg-warn" : "bg-danger";
+    c === "high" ? "text-positive" : c === "medium" ? "text-warn" : "text-danger";
+  const text =
+    c === "high" ? "High" : c === "medium" ? "Medium" : "Low";
   const label =
     c === "high"
       ? "High confidence (verified recently)"
@@ -91,11 +92,11 @@ function confidenceDot(c: Firm["confidence"]) {
       ? "Medium confidence (verify before purchase)"
       : "Low confidence (verify thoroughly)";
   return (
-    <span
-      className={`inline-block w-2 h-2 rounded-full ${color}`}
-      title={label}
-      aria-label={label}
-    />
+    <span className="inline-flex items-center gap-1 whitespace-nowrap text-xs text-muted" title={label}>
+      <span className={color} aria-hidden="true">●</span>
+      <span>{text}</span>
+      <span className="sr-only">{label}</span>
+    </span>
   );
 }
 
@@ -112,11 +113,11 @@ function PinButton({
       aria-pressed={active}
       aria-label={active ? "Unpin firm" : "Pin firm"}
       title={active ? "Unpin from shortlist" : "Pin to shortlist"}
-      className={`text-sm leading-none select-none transition-colors ${
+      className={`inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-md leading-none transition-colors ${
         active ? "text-accent" : "text-muted hover:text-text"
       }`}
     >
-      {active ? "★" : "☆"}
+      <Pin aria-hidden="true" size={16} strokeWidth={1.5} />
     </button>
   );
 }
@@ -224,50 +225,58 @@ export default function FirmTable({
     }
   }
 
-  const arrow = (k: SortKey) =>
-    sortKey === k ? (sortDir === "asc" ? "▲" : "▼") : "";
+  const sortIcon = (k: SortKey) => {
+    if (sortKey !== k) return null;
+    const Icon = sortDir === "asc" ? ChevronUp : ChevronDown;
+    return <Icon aria-hidden="true" className="text-accent" size={14} strokeWidth={1.5} />;
+  };
 
-  const Th = ({ k, label, align = "left", title }: { k: SortKey; label: string; align?: "left" | "right"; title?: string }) => (
-    <th
-      scope="col"
-      aria-sort={sortKey === k ? (sortDir === "asc" ? "ascending" : "descending") : "none"}
-      className={`p-0 font-medium whitespace-nowrap text-${align}`}
-    >
-      <button
-        type="button"
-        onClick={() => toggleSort(k)}
-        title={title}
-        className={`w-full px-3 py-2 select-none hover:text-text text-${align} focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent`}
+  const Th = ({ k, label, align = "left", title }: { k: SortKey; label: string; align?: "left" | "right"; title?: string }) => {
+    const alignClass = align === "right" ? "text-right" : "text-left";
+    const justifyClass = align === "right" ? "justify-end" : "justify-start";
+
+    return (
+      <th
+        scope="col"
+        aria-sort={sortKey === k ? (sortDir === "asc" ? "ascending" : "descending") : "none"}
+        className={`p-0 font-medium whitespace-nowrap ${alignClass}`}
       >
-        <span className="text-muted">{label}</span>{" "}
-        <span className="text-accent">{arrow(k)}</span>
-      </button>
-    </th>
-  );
+        <button
+          type="button"
+          onClick={() => toggleSort(k)}
+          title={title}
+          className={`flex w-full items-center gap-1 px-3 py-2 ${justifyClass} ${alignClass} select-none text-muted hover:text-text focus-visible:outline-none`}
+        >
+          <span>{label}</span>
+          {sortIcon(k)}
+        </button>
+      </th>
+    );
+  };
 
   return (
-    <div className="border border-border rounded-lg overflow-hidden bg-panel">
-      <div className="px-4 py-2 border-b border-border text-xs text-muted flex justify-between items-center">
+    <div className="overflow-hidden rounded-lg border border-border bg-panel">
+      <div className="flex items-center justify-between border-b border-border px-4 py-3 text-[13px] text-muted">
         <span>{sorted.length} firm{sorted.length === 1 ? "" : "s"} shown</span>
         <span className="flex items-center gap-3">
-          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-accent inline-block" /> high</span>
-          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-warn inline-block" /> medium</span>
-          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-danger inline-block" /> low</span>
+          <span className="flex items-center gap-1"><span className="text-positive" aria-hidden="true">●</span> high</span>
+          <span className="flex items-center gap-1"><span className="text-warn" aria-hidden="true">●</span> medium</span>
+          <span className="flex items-center gap-1"><span className="text-danger" aria-hidden="true">●</span> low</span>
         </span>
       </div>
       <div className="overflow-x-auto">
-        <table className="w-full text-sm">
+        <table className="w-full text-[13px]">
           <caption className="sr-only">
             Comparison of prop trading firms. Sortable by column header; activate a
             row&apos;s expand button to reveal full notes and source links.
           </caption>
-          <thead className="bg-bg/40 border-b border-border text-xs uppercase tracking-wide">
+          <thead className="border-b-[1.5px] border-text bg-bg text-[11px] uppercase tracking-[0.06em] text-muted">
             <tr>
-              <th scope="col" className="px-3 py-2 text-left font-medium text-muted whitespace-nowrap w-8" title="Pin to shortlist"><span className="sr-only">Pin</span><span aria-hidden="true">★</span></th>
+              <th scope="col" className="w-[44px] px-2 py-2 text-left font-medium whitespace-nowrap" title="Pin to shortlist"><span className="sr-only">Pin</span></th>
               <Th k="name" label="Firm" />
               <Th k="fundingModel" label="Model" />
-              <th scope="col" className="px-3 py-2 text-left font-medium text-muted whitespace-nowrap">Programs</th>
-              <th scope="col" className="px-3 py-2 text-left font-medium text-muted whitespace-nowrap">Sizes</th>
+              <th scope="col" className="px-3 py-2 text-left font-medium whitespace-nowrap">Programs</th>
+              <th scope="col" className="px-3 py-2 text-right font-medium whitespace-nowrap">Sizes</th>
               <Th k="dailyDrawdownPct" label="Daily DD" align="right" />
               <Th k="maxDrawdownPct" label="Max DD" align="right" />
               <Th k="drawdownType" label="DD Type" />
@@ -292,11 +301,11 @@ export default function FirmTable({
                 label="Bots / API"
                 title="Can you connect a 3rd-party execution/copy bot to your OWN account — via real trade-scope API keys or an allowed EA? Cell colour = overall TradeSurge feasibility (green high · amber medium/low · red none). Sort puts the best fits first."
               />
-              <th scope="col" className="px-3 py-2 text-left font-medium text-muted whitespace-nowrap">Crypto Assets</th>
-              <th scope="col" className="px-3 py-2 text-left font-medium text-muted whitespace-nowrap">Verified</th>
+              <th scope="col" className="px-3 py-2 text-left font-medium whitespace-nowrap">Crypto Assets</th>
+              <th scope="col" className="px-3 py-2 text-right font-medium whitespace-nowrap">Verified</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="divide-y divide-border">
             {sorted.map((f) => {
               const isOpen = expanded.has(f.id);
               const isPinned = pinned.has(f.id);
@@ -304,13 +313,11 @@ export default function FirmTable({
                 <Fragment key={f.id}>
                   <tr
                     onClick={() => toggleExpand(f.id)}
-                    className={`h-[46px] border-b border-border last:border-0 hover:bg-bg/30 cursor-pointer ${
+                    className={`h-[48px] cursor-pointer hover:bg-panel2 ${
                       f.status === "closed" ? "opacity-50" : ""
-                    } ${isOpen ? "bg-bg/20" : ""} ${
-                      isPinned ? "border-l-2 border-l-accent bg-accent/[0.04]" : "border-l-2 border-l-transparent"
-                    }`}
+                    } ${isOpen ? "bg-panel2" : ""} ${isPinned ? "bg-accent-soft" : ""}`}
                   >
-                    <td className="px-3 py-2 whitespace-nowrap">
+                    <td className="px-2 py-1 whitespace-nowrap">
                       <PinButton
                         active={isPinned}
                         onClick={(e) => {
@@ -329,9 +336,13 @@ export default function FirmTable({
                             e.stopPropagation();
                             toggleExpand(f.id);
                           }}
-                          className="text-muted text-[10px] w-4 h-4 inline-flex items-center justify-center select-none hover:text-text rounded focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent"
+                          className="inline-flex h-4 w-4 items-center justify-center rounded text-muted hover:text-text focus-visible:outline-none"
                         >
-                          {isOpen ? "▾" : "▸"}
+                          {isOpen ? (
+                            <ChevronUp aria-hidden="true" size={14} strokeWidth={1.5} />
+                          ) : (
+                            <ChevronDown aria-hidden="true" size={14} strokeWidth={1.5} />
+                          )}
                         </button>
                         {confidenceDot(f.confidence)}
                         <a
@@ -339,62 +350,54 @@ export default function FirmTable({
                           target="_blank"
                           rel="noopener noreferrer"
                           onClick={(e) => e.stopPropagation()}
-                          className={`font-medium ${
+                          className={`inline-flex items-center gap-1 font-medium ${
                             f.status === "closed"
                               ? "text-muted line-through hover:text-muted"
                               : "text-text hover:text-accent"
                           }`}
                         >
                           {f.name}
+                          <ExternalLink aria-hidden="true" size={14} strokeWidth={1.5} />
                         </a>
                         {f.status === "closed" && (
-                          <span
-                            className="text-[10px] uppercase tracking-wide px-1.5 py-0.5 rounded border border-danger/50 text-danger font-semibold"
-                            title="This firm has shut down — retained for reference only"
-                          >
-                            Closed
+                          <span title="This firm has shut down — retained for reference only">
+                            <Badge tone="negative">Closed</Badge>
                           </span>
                         )}
                       </span>
                     </td>
                     <td className="px-3 py-2">
-                      <span className={`text-xs px-2 py-0.5 rounded border ${
-                        f.fundingModel === "instant"
-                          ? "border-accent/40 text-accent"
-                          : f.fundingModel === "both"
-                          ? "border-warn/40 text-warn"
-                          : "border-muted/40 text-muted"
-                      }`}>
+                      <Badge tone={f.fundingModel === "instant" ? "accent" : f.fundingModel === "both" ? "amber" : "neutral"}>
                         {f.fundingModel}
-                      </span>
+                      </Badge>
                     </td>
                     <td className="px-3 py-2">
                       <div className="truncate max-w-[170px] text-muted text-xs" title={f.programs.join(", ")}>{f.programs.join(", ")}</div>
                     </td>
-                    <td className="px-3 py-2 text-muted whitespace-nowrap font-mono text-xs">{formatSizes(f.accountSizes)}</td>
-                    <td className="px-3 py-2 text-right font-mono whitespace-nowrap">{formatPct(f.dailyDrawdownPct)}</td>
-                    <td className="px-3 py-2 text-right font-mono whitespace-nowrap">{formatPct(f.maxDrawdownPct)}</td>
+                    <td className="px-3 py-2 tnum text-right font-mono text-xs text-muted whitespace-nowrap">{formatSizes(f.accountSizes)}</td>
+                    <td className="px-3 py-2 tnum text-right font-mono whitespace-nowrap">{formatPct(f.dailyDrawdownPct)}</td>
+                    <td className="px-3 py-2 tnum text-right font-mono whitespace-nowrap">{formatPct(f.maxDrawdownPct)}</td>
                     <td className="px-3 py-2 text-muted">{f.drawdownType}</td>
-                    <td className="px-3 py-2 text-right font-mono whitespace-nowrap">{formatPct(f.profitTargetPct)}</td>
-                    <td className="px-3 py-2 text-right font-mono">{f.profitSplitPct}%</td>
-                    <td className="px-3 py-2 text-right font-mono">{f.maxFundedTotal == null ? "—" : formatMoney(f.maxFundedTotal)}</td>
-                    <td className="px-3 py-2 text-right font-mono">{formatDays(f.payoutDays)}</td>
-                    <td className="px-3 py-2 text-right font-mono text-xs whitespace-nowrap">{f.payoutSpeed ?? "—"}</td>
-                    <td className="px-3 py-2 text-right font-mono">{formatLeverage(f.cryptoLeverage)}</td>
+                    <td className="px-3 py-2 tnum text-right font-mono whitespace-nowrap">{formatPct(f.profitTargetPct)}</td>
+                    <td className="px-3 py-2 tnum text-right font-mono">{f.profitSplitPct}%</td>
+                    <td className="px-3 py-2 tnum text-right font-mono">{f.maxFundedTotal == null ? "—" : formatMoney(f.maxFundedTotal)}</td>
+                    <td className="px-3 py-2 tnum text-right font-mono">{formatDays(f.payoutDays)}</td>
+                    <td className="px-3 py-2 tnum text-right font-mono text-xs whitespace-nowrap">{f.payoutSpeed ?? "—"}</td>
+                    <td className="px-3 py-2 tnum text-right font-mono">{formatLeverage(f.cryptoLeverage)}</td>
                     <td className="px-3 py-2">{automationCell(f.automation)}</td>
                     <td className="px-3 py-2">
                       <div className="truncate max-w-[200px] text-muted text-xs" title={f.cryptoAssets}>{f.cryptoAssets}</div>
                     </td>
-                    <td className="px-3 py-2 text-muted text-xs font-mono">{f.lastVerified}</td>
+                    <td className="px-3 py-2 tnum text-right font-mono text-xs text-muted">{f.lastVerified}</td>
                   </tr>
                   {isOpen && (
-                    <tr className="border-b border-border bg-bg/20">
+                    <tr className="bg-bg">
                       <td colSpan={17} className="px-4 pt-1 pb-4">
                         <div className="max-w-[1100px] space-y-2 text-xs leading-relaxed">
                           <p className="text-text/90">{f.notes}</p>
                           {f.automation && (
-                            <div className="rounded border border-border/60 bg-bg/30 p-2 space-y-1">
-                              <div className="flex flex-wrap gap-x-6 gap-y-1 text-muted font-mono">
+                            <div className="rounded border border-border bg-panel2 p-2 space-y-1">
+                              <div className="flex flex-wrap gap-x-6 gap-y-1 text-muted font-mono tnum">
                                 <span><span className="text-muted/60">Platform:</span> {f.automation.platform}</span>
                                 <span><span className="text-muted/60">EA / bots:</span> {f.automation.ea}</span>
                                 <span><span className="text-muted/60">API keys:</span> {f.automation.apiKeys}</span>
@@ -404,7 +407,7 @@ export default function FirmTable({
                               <p className="text-muted">Copy / 3rd-party: {f.automation.copy}</p>
                             </div>
                           )}
-                          <div className="flex flex-wrap gap-x-6 gap-y-1 text-muted font-mono">
+                          <div className="flex flex-wrap gap-x-6 gap-y-1 text-muted font-mono tnum">
                             <span><span className="text-muted/60">Trades:</span> {f.assetClasses.join(", ")}</span>
                             <span><span className="text-muted/60">Programs:</span> {f.programs.join(", ")}</span>
                             <span><span className="text-muted/60">Sizes:</span> {f.accountSizes.map(formatMoney).join(" · ")}</span>
@@ -418,16 +421,17 @@ export default function FirmTable({
                               onClick={(e) => e.stopPropagation()}
                               className="text-accent hover:underline font-medium"
                             >
-                              Full rules &amp; payout page →
+                              Full rules &amp; payout page
                             </Link>
                             <a
                               href={f.source}
                               target="_blank"
                               rel="noopener noreferrer"
                               onClick={(e) => e.stopPropagation()}
-                              className="text-accent hover:underline"
+                              className="inline-flex items-center gap-1 text-accent hover:underline"
                             >
-                              ↗ Source
+                              <ExternalLink aria-hidden="true" size={14} strokeWidth={1.5} />
+                              Source
                             </a>
                             <span>Verified {f.lastVerified}</span>
                             <span>Confidence: {f.confidence}</span>

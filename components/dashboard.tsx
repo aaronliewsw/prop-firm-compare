@@ -26,74 +26,85 @@ export default function Dashboard({ firms, generatedAt }: { firms: Firm[]; gener
   );
 
   return (
-    <main className="max-w-[1400px] mx-auto px-6 py-8">
-      <header className="mb-6">
-        <h1 className="text-2xl font-semibold text-text mb-1">Prop Firm Compare</h1>
-        <p className="text-sm text-muted">
-          {firms.length} firms · dataset last refreshed {generatedAt}
-        </p>
-      </header>
+    <main className="min-h-screen bg-bg text-text">
+      <div className="mx-auto flex max-w-[1320px] flex-col gap-6 px-4 py-6 sm:px-6">
+        <header className="flex flex-col gap-2 border-b-[1.5px] border-text pb-4">
+          <p className="text-[13px] uppercase tracking-[0.06em] text-muted">Dashboard</p>
+          <div className="flex flex-col gap-1">
+            <h1 className="text-xl font-medium text-text">Prop Firm Compare</h1>
+            <p className="text-[13px] text-muted">
+              {firms.length} firms · dataset last refreshed {generatedAt}
+            </p>
+          </div>
+        </header>
 
-      <div className="mb-6 p-3 border border-warn/40 bg-warn/5 rounded-md text-xs text-muted">
-        <strong className="text-warn">Verify before buying.</strong>{" "}
-        Prop firm terms change without notice. Daily DD, max DD, profit splits, and payout cadence
-        differ across programs within a single firm and update routinely. This dashboard is a
-        starting point — confirm every number on the firm's site before purchasing a challenge.
-      </div>
+        <div className="rounded-md border border-border bg-panel2 p-3 text-[13px] text-muted">
+          <strong className="font-medium text-warn">Verify before buying.</strong>{" "}
+          Prop firm terms change without notice. Daily DD, max DD, profit splits, and payout cadence
+          differ across programs within a single firm and update routinely. This dashboard is a
+          starting point — confirm every number on the firm's site before purchasing a challenge.
+        </div>
 
-      <FilterBar
-        fundingModel={fundingModel}
-        setFundingModel={setFundingModel}
-        assetClass={assetClass}
-        setAssetClass={setAssetClass}
-        minLeverage={minLeverage}
-        setMinLeverage={setMinLeverage}
-        drawdownType={drawdownType}
-        setDrawdownType={setDrawdownType}
-        payoutSpeed={payoutSpeed}
-        setPayoutSpeed={setPayoutSpeed}
-        pinnedOnly={pinnedOnly}
-        setPinnedOnly={setPinnedOnly}
-        pinnedCount={pinned.size}
-        search={search}
-        setSearch={setSearch}
-      />
+        <section className="flex flex-col gap-4">
+          <p className="text-[13px] uppercase tracking-[0.06em] text-muted">Filters</p>
+          <FilterBar
+            fundingModel={fundingModel}
+            setFundingModel={setFundingModel}
+            assetClass={assetClass}
+            setAssetClass={setAssetClass}
+            minLeverage={minLeverage}
+            setMinLeverage={setMinLeverage}
+            drawdownType={drawdownType}
+            setDrawdownType={setDrawdownType}
+            payoutSpeed={payoutSpeed}
+            setPayoutSpeed={setPayoutSpeed}
+            pinnedOnly={pinnedOnly}
+            setPinnedOnly={setPinnedOnly}
+            pinnedCount={pinned.size}
+            search={search}
+            setSearch={setSearch}
+          />
+        </section>
 
-      <div className="flex items-center justify-end gap-3 mb-4">
-        {pinnedFirms.length >= 2 && (
-          <button
-            onClick={() => setShowCompare((v) => !v)}
-            aria-pressed={showCompare}
-            className="px-3 py-1.5 text-sm rounded-md border border-accent/40 text-accent hover:bg-accent/10 transition-colors"
-          >
-            {showCompare ? "Hide comparison" : `Compare pinned (${pinnedFirms.length})`}
-          </button>
+        <div className="flex items-center justify-end gap-3">
+          {pinnedFirms.length >= 2 && (
+            <button
+              onClick={() => setShowCompare((v) => !v)}
+              aria-pressed={showCompare}
+              className="rounded-md border border-accent bg-accent px-3 py-2 text-[13px] font-medium text-bg transition-colors"
+            >
+              {showCompare ? "Hide comparison" : `Compare pinned (${pinnedFirms.length})`}
+            </button>
+          )}
+        </div>
+
+        {showCompare && pinnedFirms.length >= 2 && (
+          <ComparePanel firms={pinnedFirms} onClose={() => setShowCompare(false)} />
         )}
+
+        <section className="flex flex-col gap-4">
+          <p className="text-[13px] uppercase tracking-[0.06em] text-muted">Firm Rules</p>
+          <FirmTable
+            firms={firms}
+            fundingModel={fundingModel}
+            assetClass={assetClass}
+            minLeverage={minLeverage}
+            drawdownType={drawdownType}
+            payoutSpeed={payoutSpeed}
+            pinnedOnly={pinnedOnly}
+            search={search}
+            pinned={pinned}
+            togglePin={togglePin}
+          />
+        </section>
+
+        <footer className="border-t border-border pt-4 text-[13px] text-muted">
+          Click any column header to sort. Click a row to expand full notes &
+          source. Click a firm name to open its site. Pin firms with the star to
+          shortlist them and compare side by side. Confidence dots indicate how
+          recently terms were verified.
+        </footer>
       </div>
-
-      {showCompare && pinnedFirms.length >= 2 && (
-        <ComparePanel firms={pinnedFirms} onClose={() => setShowCompare(false)} />
-      )}
-
-      <FirmTable
-        firms={firms}
-        fundingModel={fundingModel}
-        assetClass={assetClass}
-        minLeverage={minLeverage}
-        drawdownType={drawdownType}
-        payoutSpeed={payoutSpeed}
-        pinnedOnly={pinnedOnly}
-        search={search}
-        pinned={pinned}
-        togglePin={togglePin}
-      />
-
-      <footer className="mt-6 text-xs text-muted">
-        Click any column header to sort. Click a row to expand full notes &
-        source. Click a firm name to open its site. Pin firms with the star to
-        shortlist them and compare side by side. Confidence dots indicate how
-        recently terms were verified.
-      </footer>
     </main>
   );
 }
