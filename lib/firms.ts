@@ -148,7 +148,7 @@ export type Better = "higher" | "lower";
  * Returns null if the list is empty or all values are null.
  */
 export function bestValue(values: Array<number | null>, better: Better): number | null {
-  const valid = values.filter((v): v is number => v !== null);
+  const valid = values.filter((v): v is number => v !== null && !Number.isNaN(v));
   if (valid.length === 0) return null;
   return better === "higher" ? Math.max(...valid) : Math.min(...valid);
 }

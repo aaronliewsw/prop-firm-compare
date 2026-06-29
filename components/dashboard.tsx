@@ -109,8 +109,8 @@ export default function Dashboard({ firms, generatedAt }: { firms: Firm[]; gener
 
         <footer className="border-t border-border pt-4 text-[13px] text-muted">
           Click any column header to sort. Click a row to expand full notes &
-          source. Click a firm name to open its site. Pin firms with the star to
-          shortlist them and compare side by side. Confidence dots indicate how
+          source. Click a firm name to open its site. Pin firms with the pin icon
+          to shortlist them and compare side by side. Confidence dots indicate how
           recently terms were verified.
         </footer>
       </div>

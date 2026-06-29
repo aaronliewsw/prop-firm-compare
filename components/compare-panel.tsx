@@ -34,13 +34,13 @@ const rows: Row[] = [
   {
     label: "Daily DD",
     render: (f) => formatPct(f.dailyDrawdownPct),
-    numeric: (f) => numOrNull(typeof f.dailyDrawdownPct === "number" ? f.dailyDrawdownPct : parseFloat(f.dailyDrawdownPct as string)),
+    numeric: (f) => numOrNull(f.dailyDrawdownPct),
     better: "lower",
   },
   {
     label: "Max DD",
     render: (f) => formatPct(f.maxDrawdownPct),
-    numeric: (f) => numOrNull(typeof f.maxDrawdownPct === "number" ? f.maxDrawdownPct : parseFloat(f.maxDrawdownPct as string)),
+    numeric: (f) => numOrNull(f.maxDrawdownPct),
     better: "lower",
   },
   { label: "DD Type", render: (f) => f.drawdownType },
@@ -48,7 +48,7 @@ const rows: Row[] = [
     label: "Profit Target",
     render: (f) => formatPct(f.profitTargetPct),
     // Lower target = easier hurdle = better
-    numeric: (f) => numOrNull(typeof f.profitTargetPct === "number" ? f.profitTargetPct : parseFloat(f.profitTargetPct as string)),
+    numeric: (f) => numOrNull(f.profitTargetPct),
     better: "lower",
   },
   {
@@ -67,7 +67,7 @@ const rows: Row[] = [
     label: "1st Payout",
     render: (f) => formatDays(f.payoutDays),
     // Fewer days to first payout = better
-    numeric: (f) => numOrNull(typeof f.payoutDays === "number" ? f.payoutDays : parseFloat(f.payoutDays as string)),
+    numeric: (f) => numOrNull(f.payoutDays),
     better: "lower",
   },
   {

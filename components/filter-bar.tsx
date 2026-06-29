@@ -173,7 +173,7 @@ export default function FilterBar({
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Firm name or asset (e.g. SOL)"
-            className="focus-ring w-full rounded-md border border-border bg-bg py-1.5 pl-8 pr-3 text-[13px] text-text placeholder:text-muted focus:border-[1.5px] focus:border-text focus:outline-none focus:ring-0"
+            className="focus-ring w-full rounded-md border border-border bg-bg py-1.5 pl-8 pr-3 text-[13px] text-text placeholder:text-muted"
           />
         </div>
       </div>

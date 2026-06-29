@@ -319,7 +319,7 @@ export default async function FirmDetailPage({
           <section className="pb-8 md:pb-12">
             <SectionHeader>Automation / API — bots &amp; copy-trading (TradeSurge fit)</SectionHeader>
             <div className="mt-4 overflow-hidden rounded-lg border border-border bg-panel">
-              <div className="grid divide-y divide-border sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
+              <div className="grid divide-y divide-border sm:grid-cols-2 sm:divide-x lg:grid-cols-4 lg:divide-y-0">
                 <KpiCell
                   label="Execution Platform"
                   value={<span className="text-[13px] font-sans">{f.automation.platform}</span>}
