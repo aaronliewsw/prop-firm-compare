@@ -436,7 +436,7 @@ export default function FirmTable({
     } else {
       setSortKey(k);
       setSortDir(
-        k === "name" || k === "fundingModel" || k === "drawdownType" || k === "feasibility"
+        k === "name" || k === "fundingModel" || k === "drawdownType" || k === "feasibility" || k === "confidence"
           ? "asc"
           : "desc",
       );
