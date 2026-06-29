@@ -62,15 +62,17 @@ export function Card({
 export function SegButton({
   active,
   children,
+  className,
   ...props
 }: { active?: boolean; children: React.ReactNode } & React.ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
     <button
       className={cx(
-        "px-3 py-1.5 text-[13px] rounded-md border transition-colors focus-ring",
+        "rounded px-3 py-1.5 text-[13px] transition-colors focus-ring",
         active
-          ? "bg-text text-bg border-text"
-          : "bg-bg text-muted border-border hover:text-text",
+          ? "bg-bg text-text font-medium shadow-sm"
+          : "bg-transparent text-muted hover:text-text",
+        className,
       )}
       {...props}
     >

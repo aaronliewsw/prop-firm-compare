@@ -57,22 +57,28 @@ const payoutSpeedOptions: Array<{ value: Props["payoutSpeed"]; label: string }> 
 ];
 
 function Segmented<T extends string | number>({
+  ariaLabel,
   options,
   value,
   onChange,
 }: {
+  ariaLabel: string;
   options: Array<{ value: T; label: string }>;
   value: T;
   onChange: (v: T) => void;
 }) {
   return (
-    <div className="flex w-full gap-1 sm:w-auto">
+    <div
+      role="group"
+      aria-label={ariaLabel}
+      className="inline-flex w-full gap-0.5 rounded-md border border-border bg-panel p-0.5 sm:w-auto"
+    >
       {options.map((opt) => (
         <SegButton
           key={String(opt.value)}
           active={value === opt.value}
           onClick={() => onChange(opt.value)}
-          className="flex-1 sm:flex-none"
+          className="min-w-0 flex-1 sm:flex-none"
         >
           {opt.label}
         </SegButton>
@@ -102,27 +108,27 @@ export default function FilterBar({
     <div className="mb-4 flex flex-wrap items-end gap-3">
       <div className="flex w-full flex-col gap-1 sm:w-auto">
         <label className="text-[13px] uppercase tracking-[0.06em] text-muted">Asset class</label>
-        <Segmented options={assetOptions} value={assetClass} onChange={setAssetClass} />
+        <Segmented ariaLabel="Asset class" options={assetOptions} value={assetClass} onChange={setAssetClass} />
       </div>
 
       <div className="flex w-full flex-col gap-1 sm:w-auto">
         <label className="text-[13px] uppercase tracking-[0.06em] text-muted">Funding model</label>
-        <Segmented options={modelOptions} value={fundingModel} onChange={setFundingModel} />
+        <Segmented ariaLabel="Funding model" options={modelOptions} value={fundingModel} onChange={setFundingModel} />
       </div>
 
       <div className="flex w-full flex-col gap-1 sm:w-auto">
         <label className="text-[13px] uppercase tracking-[0.06em] text-muted">Min leverage</label>
-        <Segmented options={leverageOptions} value={minLeverage} onChange={setMinLeverage} />
+        <Segmented ariaLabel="Min leverage" options={leverageOptions} value={minLeverage} onChange={setMinLeverage} />
       </div>
 
       <div className="flex w-full flex-col gap-1 sm:w-auto">
         <label className="text-[13px] uppercase tracking-[0.06em] text-muted">Drawdown type</label>
-        <Segmented options={drawdownOptions} value={drawdownType} onChange={setDrawdownType} />
+        <Segmented ariaLabel="Drawdown type" options={drawdownOptions} value={drawdownType} onChange={setDrawdownType} />
       </div>
 
       <div className="flex w-full flex-col gap-1 sm:w-auto">
         <label className="text-[13px] uppercase tracking-[0.06em] text-muted">Payout speed</label>
-        <Segmented options={payoutSpeedOptions} value={payoutSpeed} onChange={setPayoutSpeed} />
+        <Segmented ariaLabel="Payout speed" options={payoutSpeedOptions} value={payoutSpeed} onChange={setPayoutSpeed} />
       </div>
 
       <div className="flex w-full flex-col gap-1 sm:w-auto">
