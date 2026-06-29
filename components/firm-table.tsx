@@ -251,6 +251,7 @@ function HeaderInfo({
         aria-controls={isOpen ? popoverId : undefined}
         onClick={handleToggle}
         onKeyDown={handleKeyDown}
+        onPointerDown={(e) => e.stopPropagation()}
         className="focus-ring inline-flex items-center justify-center rounded text-muted hover:text-text focus-visible:outline-none"
         style={{ lineHeight: 0 }}
       >
@@ -270,7 +271,7 @@ function HeaderInfo({
               left: popoverPos.left,
               zIndex: 200,
             }}
-            className="max-w-[260px] rounded-lg border border-border bg-bg p-3 text-[13px] text-text shadow-modal"
+            className="max-w-[260px] rounded-lg border border-border bg-bg p-3 text-[13px] text-text shadow-lg"
             onClick={(e) => e.stopPropagation()}
             onPointerDown={(e) => e.stopPropagation()}
           >
@@ -322,6 +323,22 @@ export default function FirmTable({
     }
     document.addEventListener("pointerdown", onPointerDown);
     return () => document.removeEventListener("pointerdown", onPointerDown);
+  }, [openColId]);
+
+  // Close the popover on scroll/resize (its fixed coords would otherwise go stale
+  // and detach from the trigger). Capture phase catches inner overflow scrolling.
+  useEffect(() => {
+    if (!openColId) return;
+    function dismiss() {
+      setOpenColId(null);
+      setPopoverPos(null);
+    }
+    window.addEventListener("scroll", dismiss, true);
+    window.addEventListener("resize", dismiss);
+    return () => {
+      window.removeEventListener("scroll", dismiss, true);
+      window.removeEventListener("resize", dismiss);
+    };
   }, [openColId]);
 
   function toggleExpand(id: string) {
