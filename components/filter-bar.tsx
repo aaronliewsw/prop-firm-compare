@@ -134,8 +134,7 @@ export default function FilterBar({
       <div className="flex w-full flex-col gap-1 sm:w-auto">
         <label className="text-[13px] uppercase tracking-[0.06em] text-muted">Shortlist</label>
         <div className="inline-flex rounded-md border border-border bg-panel p-0.5">
-          {/* CHANGE 2: prominent active state driven by pinnedOnly (filter ON), not pinnedCount.
-              Secondary cue (count) always visible; button fill/text only flips on pinnedOnly. */}
+          {/* pinnedCount > 0 gives a colour cue (text-text vs text-muted) with no width change. */}
           <button
             onClick={() => setPinnedOnly(!pinnedOnly)}
             aria-pressed={pinnedOnly}
@@ -148,17 +147,6 @@ export default function FilterBar({
             }`}
           >
             Pinned
-            {pinnedCount > 0 && (
-              <span
-                className={`ml-1.5 inline-flex h-4 min-w-[1rem] items-center justify-center rounded-full px-1 text-[11px] font-medium tabular-nums ${
-                  pinnedOnly
-                    ? "bg-accent text-bg"
-                    : "bg-panel text-muted"
-                }`}
-              >
-                {pinnedCount}
-              </span>
-            )}
           </button>
         </div>
       </div>
