@@ -541,6 +541,16 @@ export default function FirmTable({
                   />
                 </div>
               </th>
+              <th scope="col" className="px-3 py-2 text-left font-medium whitespace-nowrap" title="Data confidence — High (recently verified), Medium (check before buying), Low (verify thoroughly).">
+                <div className="flex items-center gap-1">
+                  <span>Confidence</span>
+                  <HeaderInfo
+                    definition="Data confidence — High (recently verified), Medium (check before buying), Low (verify thoroughly)."
+                    colId="confidence"
+                    {...infoProps}
+                  />
+                </div>
+              </th>
               <Th k="fundingModel" label="Model" title="Funding model — Challenge (pass an evaluation first), Instant (funded immediately), or Both." />
               <th scope="col" className="px-3 py-2 text-left font-medium whitespace-nowrap" title="Challenge program tiers offered by this firm (e.g. 1-step, 2-step, instant).">
                 <div className="flex items-center gap-1">
@@ -666,7 +676,6 @@ export default function FirmTable({
                             <ChevronDown aria-hidden="true" size={14} strokeWidth={1.5} />
                           )}
                         </button>
-                        <span className="inline-flex w-[72px] shrink-0 items-center">{confidenceDot(f.confidence)}</span>
                         <a
                           href={f.website}
                           target="_blank"
@@ -688,6 +697,7 @@ export default function FirmTable({
                         )}
                       </span>
                     </td>
+                    <td className="px-3 py-2">{confidenceDot(f.confidence)}</td>
                     {/* Funding model badge — #5: instant → neutral, not accent */}
                     <td className="px-3 py-2">
                       <Badge tone={f.fundingModel === "instant" ? "neutral" : f.fundingModel === "both" ? "amber" : "neutral"}>
@@ -716,7 +726,7 @@ export default function FirmTable({
                   </tr>
                   {isOpen && (
                     <tr className="bg-bg">
-                      <td colSpan={17} className="px-4 pt-1 pb-4">
+                      <td colSpan={18} className="px-4 pt-1 pb-4">
                         <div className="max-w-[1100px] space-y-2 text-xs leading-relaxed">
                           <p className="text-text/90">{f.notes}</p>
                           {f.automation && (
@@ -771,7 +781,7 @@ export default function FirmTable({
             {/* #6 zero-results empty state */}
             {sorted.length === 0 && (
               <tr>
-                <td colSpan={17} className="px-3 py-12 text-center">
+                <td colSpan={18} className="px-3 py-12 text-center">
                   <div className="flex flex-col items-center gap-0">
                     <SearchX aria-hidden="true" size={20} strokeWidth={1.5} className="text-muted" />
                     <h3 className="mt-3 text-sm font-medium text-text">No firms match</h3>
