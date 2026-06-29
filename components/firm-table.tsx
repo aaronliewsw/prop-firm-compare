@@ -2,16 +2,18 @@
 
 import { Fragment, useMemo, useState } from "react";
 import Link from "next/link";
-import { ChevronDown, ChevronUp, ExternalLink, Pin } from "lucide-react";
+import { ChevronDown, ChevronUp, ExternalLink, Pin, SearchX } from "lucide-react";
 import type { AssetClass, Automation, DrawdownType, Firm } from "@/lib/firms";
 import {
   automationLabel,
+  bestValue,
   feasibilityRank,
   formatDays,
   formatLeverage,
   formatMoney,
   formatPct,
   formatSizes,
+  leaderClass,
   leverageOrNull,
   numOrNull,
 } from "@/lib/firms";
@@ -44,6 +46,43 @@ interface Props {
   search: string;
   pinned: Set<string>;
   togglePin: (id: string) => void;
+}
+
+// Columns that are numeric and can show leader highlight, keyed by SortKey.
+// Value = "higher" means bigger = better; "lower" means smaller = better.
+const NUMERIC_BETTER: Partial<Record<SortKey, "higher" | "lower">> = {
+  profitSplitPct: "higher",
+  maxFundedTotal: "higher",
+  maxDrawdownPct: "lower",
+  dailyDrawdownPct: "lower",
+  payoutSpeedHours: "lower",
+  payoutDays: "lower",
+  cryptoLeverage: "higher",
+  profitTargetPct: "lower",
+};
+
+// Extract the numeric value used for the active sort from a firm row.
+function sortNumericValue(f: Firm, k: SortKey): number | null {
+  switch (k) {
+    case "profitSplitPct":
+      return f.profitSplitPct;
+    case "maxFundedTotal":
+      return f.maxFundedTotal ?? null;
+    case "maxDrawdownPct":
+      return numOrNull(f.maxDrawdownPct);
+    case "dailyDrawdownPct":
+      return numOrNull(f.dailyDrawdownPct);
+    case "payoutSpeedHours":
+      return f.payoutSpeedHours ?? null;
+    case "payoutDays":
+      return numOrNull(f.payoutDays);
+    case "cryptoLeverage":
+      return leverageOrNull(f.cryptoLeverage);
+    case "profitTargetPct":
+      return numOrNull(f.profitTargetPct);
+    default:
+      return null;
+  }
 }
 
 function nullLast(a: number | null, b: number | null, dir: SortDir): number {
@@ -113,7 +152,7 @@ function PinButton({
       aria-pressed={active}
       aria-label={active ? "Unpin firm" : "Pin firm"}
       title={active ? "Unpin from shortlist" : "Pin to shortlist"}
-      className={`inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-md leading-none transition-colors ${
+      className={`focus-ring inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-md leading-none transition-colors ${
         active ? "text-accent" : "text-muted hover:text-text"
       }`}
     >
@@ -212,6 +251,14 @@ export default function FirmTable({
     return arr;
   }, [filtered, sortKey, sortDir, pinned]);
 
+  // Compute best-in-view value for the active sorted numeric column (#3 decisive-number highlight).
+  const activeLeaderBest = useMemo<number | null>(() => {
+    const dir = NUMERIC_BETTER[sortKey];
+    if (!dir) return null;
+    const vals = sorted.map((f) => sortNumericValue(f, sortKey));
+    return bestValue(vals, dir);
+  }, [sorted, sortKey]);
+
   function toggleSort(k: SortKey) {
     if (k === sortKey) {
       setSortDir((d) => (d === "asc" ? "desc" : "asc"));
@@ -232,20 +279,25 @@ export default function FirmTable({
   };
 
   const Th = ({ k, label, align = "left", title }: { k: SortKey; label: string; align?: "left" | "right"; title?: string }) => {
+    const isActive = sortKey === k;
     const alignClass = align === "right" ? "text-right" : "text-left";
     const justifyClass = align === "right" ? "justify-end" : "justify-start";
 
     return (
       <th
         scope="col"
-        aria-sort={sortKey === k ? (sortDir === "asc" ? "ascending" : "descending") : "none"}
+        aria-sort={isActive ? (sortDir === "asc" ? "ascending" : "descending") : "none"}
         className={`p-0 font-medium whitespace-nowrap ${alignClass}`}
       >
         <button
           type="button"
           onClick={() => toggleSort(k)}
           title={title}
-          className={`flex w-full items-center gap-1 px-3 py-2 ${justifyClass} ${alignClass} select-none text-muted hover:text-text focus-visible:outline-none`}
+          className={`focus-ring flex w-full items-center gap-1 px-3 py-2 ${justifyClass} ${alignClass} select-none transition-colors hover:bg-panel ${
+            isActive
+              ? "text-text border-b-2 border-accent"
+              : "text-muted hover:text-text"
+          } focus-visible:outline-none`}
         >
           <span>{label}</span>
           {sortIcon(k)}
@@ -256,13 +308,28 @@ export default function FirmTable({
 
   return (
     <div className="overflow-hidden rounded-lg border border-border bg-panel">
-      <div className="flex items-center justify-between border-b border-border px-4 py-3 text-[13px] text-muted">
-        <span>{sorted.length} firm{sorted.length === 1 ? "" : "s"} shown</span>
-        <span className="flex items-center gap-3">
-          <span className="flex items-center gap-1"><span className="text-positive" aria-hidden="true">●</span> high</span>
-          <span className="flex items-center gap-1"><span className="text-warn" aria-hidden="true">●</span> medium</span>
-          <span className="flex items-center gap-1"><span className="text-danger" aria-hidden="true">●</span> low</span>
-        </span>
+      {/* Caption bar: count + legend (#7 legend/key) */}
+      <div className="flex flex-col gap-2 border-b border-border px-4 py-3 text-[13px] text-muted">
+        <div className="flex items-center justify-between">
+          <span>{sorted.length} firm{sorted.length === 1 ? "" : "s"} shown</span>
+          <span className="flex items-center gap-3">
+            <span className="flex items-center gap-1"><span className="text-positive" aria-hidden="true">●</span> high</span>
+            <span className="flex items-center gap-1"><span className="text-warn" aria-hidden="true">●</span> medium</span>
+            <span className="flex items-center gap-1"><span className="text-danger" aria-hidden="true">●</span> low</span>
+          </span>
+        </div>
+        {/* Legend row */}
+        <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted leading-relaxed">
+          <span className="font-medium text-text/60 uppercase tracking-wide">Key:</span>
+          <span><span className="text-positive" aria-hidden="true">●</span> Conf: High (verified)</span>
+          <span><span className="text-warn" aria-hidden="true">●</span> Medium (check first)</span>
+          <span><span className="text-danger" aria-hidden="true">●</span> Low (verify thoroughly)</span>
+          <span aria-hidden="true">·</span>
+          <span>Bots/API: <span className="text-positive">green</span> = high fit · <span className="text-warn">amber</span> = medium/low · <span className="text-danger">red</span> = none</span>
+          <span aria-hidden="true">·</span>
+          <span><span className="font-medium">1st Payout</span> = min days before first withdrawal</span>
+          <span><span className="font-medium">Payout Speed</span> = hours to process after request</span>
+        </div>
       </div>
       <div className="overflow-x-auto">
         <table className="w-full text-[13px]">
@@ -270,10 +337,26 @@ export default function FirmTable({
             Comparison of prop trading firms. Sortable by column header; activate a
             row&apos;s expand button to reveal full notes and source links.
           </caption>
-          <thead className="border-b-[1.5px] border-text bg-bg text-[11px] uppercase tracking-[0.06em] text-muted">
+          {/* #1 sticky thead */}
+          <thead className="sticky top-0 z-10 border-b-[1.5px] border-text bg-bg text-[11px] uppercase tracking-[0.06em] text-muted">
             <tr>
+              {/* Pin col — not sticky, narrow */}
               <th scope="col" className="w-[44px] px-2 py-2 text-left font-medium whitespace-nowrap" title="Pin to shortlist"><span className="sr-only">Pin</span></th>
-              <Th k="name" label="Firm" />
+              {/* Firm name col — sticky left (#1) */}
+              <th scope="col" className="sticky left-0 z-20 bg-bg px-3 py-2 text-left font-medium whitespace-nowrap border-r border-border">
+                <button
+                  type="button"
+                  onClick={() => toggleSort("name")}
+                  className={`focus-ring flex items-center gap-1 select-none transition-colors hover:bg-panel ${
+                    sortKey === "name"
+                      ? "text-text border-b-2 border-accent"
+                      : "text-muted hover:text-text"
+                  } focus-visible:outline-none`}
+                >
+                  <span>Firm</span>
+                  {sortIcon("name")}
+                </button>
+              </th>
               <Th k="fundingModel" label="Model" />
               <th scope="col" className="px-3 py-2 text-left font-medium whitespace-nowrap">Programs</th>
               <th scope="col" className="px-3 py-2 text-right font-medium whitespace-nowrap">Sizes</th>
@@ -309,13 +392,31 @@ export default function FirmTable({
             {sorted.map((f) => {
               const isOpen = expanded.has(f.id);
               const isPinned = pinned.has(f.id);
+
+              // Compute leader class for this row's active-sort numeric cell (#3).
+              const activeSortVal = sortNumericValue(f, sortKey);
+              const activeLeaderCls = NUMERIC_BETTER[sortKey]
+                ? leaderClass(activeSortVal, activeLeaderBest)
+                : "";
+
+              // Row bg: pinned > open > default. Pinned also gets accent left border (#4).
+              const rowBg = isPinned
+                ? "bg-accent-soft"
+                : isOpen
+                ? "bg-panel2"
+                : "";
+              const pinnedBorder = isPinned ? "border-l-[1.5px] border-accent" : "";
+
+              // Sticky first-col bg follows row state.
+              const stickyBg = isPinned ? "bg-accent-soft" : isOpen ? "bg-panel2" : "bg-bg";
+
               return (
                 <Fragment key={f.id}>
                   <tr
                     onClick={() => toggleExpand(f.id)}
                     className={`h-[48px] cursor-pointer hover:bg-panel2 ${
                       f.status === "closed" ? "opacity-50" : ""
-                    } ${isOpen ? "bg-panel2" : ""} ${isPinned ? "bg-accent-soft" : ""}`}
+                    } ${rowBg} ${pinnedBorder}`}
                   >
                     <td className="px-2 py-1 whitespace-nowrap">
                       <PinButton
@@ -326,7 +427,8 @@ export default function FirmTable({
                         }}
                       />
                     </td>
-                    <td className="px-3 py-2 whitespace-nowrap">
+                    {/* Sticky firm-name cell (#1) */}
+                    <td className={`sticky left-0 z-10 px-3 py-2 whitespace-nowrap border-r border-border ${stickyBg}`}>
                       <span className="inline-flex items-center gap-2">
                         <button
                           type="button"
@@ -336,7 +438,7 @@ export default function FirmTable({
                             e.stopPropagation();
                             toggleExpand(f.id);
                           }}
-                          className="inline-flex h-4 w-4 items-center justify-center rounded text-muted hover:text-text focus-visible:outline-none"
+                          className="focus-ring inline-flex h-4 w-4 items-center justify-center rounded text-muted hover:text-text focus-visible:outline-none"
                         >
                           {isOpen ? (
                             <ChevronUp aria-hidden="true" size={14} strokeWidth={1.5} />
@@ -366,8 +468,9 @@ export default function FirmTable({
                         )}
                       </span>
                     </td>
+                    {/* Funding model badge — #5: instant → neutral, not accent */}
                     <td className="px-3 py-2">
-                      <Badge tone={f.fundingModel === "instant" ? "accent" : f.fundingModel === "both" ? "amber" : "neutral"}>
+                      <Badge tone={f.fundingModel === "instant" ? "neutral" : f.fundingModel === "both" ? "amber" : "neutral"}>
                         {f.fundingModel}
                       </Badge>
                     </td>
@@ -375,15 +478,16 @@ export default function FirmTable({
                       <div className="truncate max-w-[170px] text-muted text-xs" title={f.programs.join(", ")}>{f.programs.join(", ")}</div>
                     </td>
                     <td className="px-3 py-2 tnum text-right font-mono text-xs text-muted whitespace-nowrap">{formatSizes(f.accountSizes)}</td>
-                    <td className="px-3 py-2 tnum text-right font-mono whitespace-nowrap">{formatPct(f.dailyDrawdownPct)}</td>
-                    <td className="px-3 py-2 tnum text-right font-mono whitespace-nowrap">{formatPct(f.maxDrawdownPct)}</td>
+                    {/* Numeric cells — apply activeLeaderCls only on the active sort column (#3) */}
+                    <td className={`px-3 py-2 tnum text-right font-mono whitespace-nowrap ${sortKey === "dailyDrawdownPct" ? activeLeaderCls : ""}`}>{formatPct(f.dailyDrawdownPct)}</td>
+                    <td className={`px-3 py-2 tnum text-right font-mono whitespace-nowrap ${sortKey === "maxDrawdownPct" ? activeLeaderCls : ""}`}>{formatPct(f.maxDrawdownPct)}</td>
                     <td className="px-3 py-2 text-muted">{f.drawdownType}</td>
-                    <td className="px-3 py-2 tnum text-right font-mono whitespace-nowrap">{formatPct(f.profitTargetPct)}</td>
-                    <td className="px-3 py-2 tnum text-right font-mono">{f.profitSplitPct}%</td>
-                    <td className="px-3 py-2 tnum text-right font-mono">{f.maxFundedTotal == null ? "—" : formatMoney(f.maxFundedTotal)}</td>
-                    <td className="px-3 py-2 tnum text-right font-mono">{formatDays(f.payoutDays)}</td>
-                    <td className="px-3 py-2 tnum text-right font-mono text-xs whitespace-nowrap">{f.payoutSpeed ?? "—"}</td>
-                    <td className="px-3 py-2 tnum text-right font-mono">{formatLeverage(f.cryptoLeverage)}</td>
+                    <td className={`px-3 py-2 tnum text-right font-mono whitespace-nowrap ${sortKey === "profitTargetPct" ? activeLeaderCls : ""}`}>{formatPct(f.profitTargetPct)}</td>
+                    <td className={`px-3 py-2 tnum text-right font-mono ${sortKey === "profitSplitPct" ? activeLeaderCls : ""}`}>{f.profitSplitPct}%</td>
+                    <td className={`px-3 py-2 tnum text-right font-mono ${sortKey === "maxFundedTotal" ? activeLeaderCls : ""}`}>{f.maxFundedTotal == null ? "—" : formatMoney(f.maxFundedTotal)}</td>
+                    <td className={`px-3 py-2 tnum text-right font-mono ${sortKey === "payoutDays" ? activeLeaderCls : ""}`}>{formatDays(f.payoutDays)}</td>
+                    <td className={`px-3 py-2 tnum text-right font-mono text-xs whitespace-nowrap ${sortKey === "payoutSpeedHours" ? activeLeaderCls : ""}`}>{f.payoutSpeed ?? "—"}</td>
+                    <td className={`px-3 py-2 tnum text-right font-mono ${sortKey === "cryptoLeverage" ? activeLeaderCls : ""}`}>{formatLeverage(f.cryptoLeverage)}</td>
                     <td className="px-3 py-2">{automationCell(f.automation)}</td>
                     <td className="px-3 py-2">
                       <div className="truncate max-w-[200px] text-muted text-xs" title={f.cryptoAssets}>{f.cryptoAssets}</div>
@@ -444,10 +548,15 @@ export default function FirmTable({
                 </Fragment>
               );
             })}
+            {/* #6 zero-results empty state */}
             {sorted.length === 0 && (
               <tr>
-                <td colSpan={17} className="px-3 py-8 text-center text-muted">
-                  No firms match the current filters.
+                <td colSpan={17} className="px-3 py-12 text-center">
+                  <div className="flex flex-col items-center gap-0">
+                    <SearchX aria-hidden="true" size={20} strokeWidth={1.5} className="text-muted" />
+                    <h3 className="mt-3 text-sm font-medium text-text">No firms match</h3>
+                    <p className="mt-1 text-xs text-muted">Try broadening your filters.</p>
+                  </div>
                 </td>
               </tr>
             )}
