@@ -66,12 +66,21 @@ export default function Dashboard({ firms, generatedAt }: { firms: Firm[]; gener
           />
         </section>
 
+        {/* CHANGE 1: discoverable compare CTA.
+            - 0 pinned: nothing rendered (unchanged).
+            - 1 pinned: muted hint chip to teach the feature (non-interactive).
+            - >=2 pinned: existing live Compare button with focus-ring (CHANGE 3). */}
         <div className="flex items-center justify-end gap-3">
+          {pinnedFirms.length === 1 && (
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-panel px-3 py-1.5 text-[13px] text-muted select-none">
+              1 pinned — pin 1 more to compare
+            </span>
+          )}
           {pinnedFirms.length >= 2 && (
             <button
               onClick={() => setShowCompare((v) => !v)}
               aria-pressed={showCompare}
-              className="rounded-md border border-accent-hover bg-accent-hover px-3 py-2 text-sm font-semibold text-bg transition-colors hover:bg-accent"
+              className="focus-ring rounded-md border border-accent-hover bg-accent-hover px-3 py-2 text-sm font-semibold text-bg transition-colors hover:bg-accent"
             >
               {showCompare ? "Hide comparison" : `Compare pinned (${pinnedFirms.length})`}
             </button>
