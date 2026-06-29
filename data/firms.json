@@ -14,7 +14,8 @@
       "programs": [
         "Instant",
         "1-Phase",
-        "2-Phase"
+        "2-Phase",
+        "Break"
       ],
       "accountSizes": [
         5000,
@@ -35,7 +36,7 @@
       "payoutSpeedHours": 48,
       "cryptoLeverage": 100,
       "cryptoAssets": "715+ Bybit USDT perps; 556 cryptos on MT5/Match-Trader; up to 1:100 (Bybit/Advanced), 1:5 student",
-      "notes": "Zug, Switzerland (Swiss RLCrates AG; educational/evaluation firm, MT5 via RLCrates SL). Current products: Instant, 1-Phase, 2-Phase (the funded account is the post-eval stage, not a separate purchase). Challenge profit split DEFAULT 80% (90% via paid add-on, +20% of eval price). 1-Phase: 4% daily / 6% trailing, 10% target. 2-Phase: 5% daily / 10% static, 8% P1 + 5% P2. Instant: 4% daily / 6% overall (static), 10% target to 'double up' to the next level, split scales 50%->90% by level, 0 min days, up to 1:100, scales to $1.28M. Max allocation $300K/user (Instant exempt). 715+ Bybit USDT perps; 556 cryptos on MT5/Match-Trader; up to 1:100. Challenge first payout ~15 days; reward paid within 48 business hrs (received <24h). | [2026-06-07] funded traders generate their OWN Bybit trade-scope API key.",
+      "notes": "Zug, Switzerland (Swiss RLCrates AG; educational/evaluation firm, MT5 via RLCrates SL). Current products: Instant, 1-Phase, 2-Phase (the funded account is the post-eval stage, not a separate purchase). Challenge profit split DEFAULT 80% (90% via paid add-on, +20% of eval price). 1-Phase: 4% daily / 6% trailing, 10% target. 2-Phase: 5% daily / 10% static, 8% P1 + 5% P2. Instant: 4% daily / 6% overall (static), 10% target to 'double up' to the next level, split scales 50%->90% by level, 0 min days, up to 1:100, scales to $1.28M. Max allocation $300K/user (Instant exempt). 715+ Bybit USDT perps; 556 cryptos on MT5/Match-Trader; up to 1:100. Challenge first payout ~15 days; reward paid within 48 business hrs (received <24h). | [2026-06-07] funded traders generate their OWN Bybit trade-scope API key. Break: a 1-phase trailing evaluation ($25k/$50k/$100k; 4% daily, 4%/3% trailing max, 5–6% target, 80% split, 1:100, no min days; activation fee $138/$198/$328).",
       "source": "https://cryptofundtrader.com/faq/",
       "lastVerified": "2026-06-29",
       "confidence": "high",
@@ -79,6 +80,19 @@
           "payoutDays": 15,
           "note": "8% P1 + 5% P2 targets; phase 2 leads into the live funded account",
           "pricing": "Program checkout required; current FAQ does not expose the full base ladder. Add-ons: weekly reward +20%, 90% split +20%, 6% daily DD +15%, 12% max DD +25%."
+        },
+        {
+          "name": "Break",
+          "steps": "1-step",
+          "model": "challenge",
+          "dailyDrawdownPct": 4,
+          "maxDrawdownPct": 4,
+          "drawdownType": "trailing",
+          "profitTargetPct": 6,
+          "profitSplitPct": 80,
+          "payoutDays": 0,
+          "note": "Single-phase trailing evaluation (official 'Break' product). Trailing max loss 4% on $25k/$50k, 3% on $100k. Profit target 5% on $25k, 6% on $50k/$100k. Leverage 1:100 all assets. No minimum trading days; on-demand payout after the post-eval activation fee. 40% single-day consistency rule.",
+          "pricing": "Activation fee after passing: $138 ($25k) / $198 ($50k) / $328 ($100k). Sizes: $25k / $50k / $100k."
         }
       ],
       "automation": {
