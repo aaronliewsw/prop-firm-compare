@@ -308,28 +308,20 @@ export default function FirmTable({
 
   return (
     <div className="overflow-hidden rounded-lg border border-border bg-panel">
-      {/* Caption bar: count + legend (#7 legend/key) */}
-      <div className="flex flex-col gap-2 border-b border-border px-4 py-3 text-[13px] text-muted">
-        <div className="flex items-center justify-between">
-          <span>{sorted.length} firm{sorted.length === 1 ? "" : "s"} shown</span>
-          <span className="flex items-center gap-3">
-            <span className="flex items-center gap-1"><span className="text-positive" aria-hidden="true">●</span> high</span>
-            <span className="flex items-center gap-1"><span className="text-warn" aria-hidden="true">●</span> medium</span>
-            <span className="flex items-center gap-1"><span className="text-danger" aria-hidden="true">●</span> low</span>
-          </span>
-        </div>
-        {/* Legend row */}
-        <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted leading-relaxed">
-          <span className="font-medium text-text/60 uppercase tracking-wide">Key:</span>
-          <span><span className="text-positive" aria-hidden="true">●</span> Conf: High (verified)</span>
-          <span><span className="text-warn" aria-hidden="true">●</span> Medium (check first)</span>
-          <span><span className="text-danger" aria-hidden="true">●</span> Low (verify thoroughly)</span>
-          <span aria-hidden="true">·</span>
-          <span>Bots/API: <span className="text-positive">green</span> = high fit · <span className="text-warn">amber</span> = medium/low · <span className="text-danger">red</span> = none</span>
-          <span aria-hidden="true">·</span>
-          <span><span className="font-medium">1st Payout</span> = min days before first withdrawal</span>
-          <span><span className="font-medium">Payout Speed</span> = hours to process after request</span>
-        </div>
+      {/* Caption bar: count + compact legend (#7 legend/key) */}
+      <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-1 border-b border-border px-4 py-3 text-[13px] text-muted">
+        <span>{sorted.length} firm{sorted.length === 1 ? "" : "s"} shown</span>
+        <span className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs">
+          <span className="font-medium text-text/60 uppercase tracking-wide">Confidence:</span>
+          <span className="flex items-center gap-1"><span className="text-positive" aria-hidden="true">●</span> High</span>
+          <span className="flex items-center gap-1"><span className="text-warn" aria-hidden="true">●</span> Medium</span>
+          <span className="flex items-center gap-1"><span className="text-danger" aria-hidden="true">●</span> Low</span>
+          <span aria-hidden="true" className="text-border">·</span>
+          <span className="font-medium text-text/60 uppercase tracking-wide">Bots/API:</span>
+          <span className="flex items-center gap-1"><span className="text-positive" aria-hidden="true">●</span> high fit</span>
+          <span className="flex items-center gap-1"><span className="text-warn" aria-hidden="true">●</span> medium/low</span>
+          <span className="flex items-center gap-1"><span className="text-danger" aria-hidden="true">●</span> none</span>
+        </span>
       </div>
       <div className="overflow-x-auto">
         <table className="w-full text-[13px]">
@@ -341,12 +333,13 @@ export default function FirmTable({
           <thead className="sticky top-0 z-10 border-b-[1.5px] border-text bg-bg text-[11px] uppercase tracking-[0.06em] text-muted">
             <tr>
               {/* Pin col — not sticky, narrow */}
-              <th scope="col" className="w-[44px] px-2 py-2 text-left font-medium whitespace-nowrap" title="Pin to shortlist"><span className="sr-only">Pin</span></th>
+              <th scope="col" className="w-[44px] px-2 py-2 text-left font-medium whitespace-nowrap" title="Pin a firm to your shortlist to compare side by side."><span className="sr-only">Pin</span></th>
               {/* Firm name col — sticky left (#1) */}
               <th scope="col" className="sticky left-0 z-20 bg-bg px-3 py-2 text-left font-medium whitespace-nowrap border-r border-border">
                 <button
                   type="button"
                   onClick={() => toggleSort("name")}
+                  title="Prop firm name — click a row’s name to open the firm’s site."
                   className={`focus-ring flex items-center gap-1 select-none transition-colors hover:bg-panel ${
                     sortKey === "name"
                       ? "text-text border-b-2 border-accent"
@@ -357,35 +350,35 @@ export default function FirmTable({
                   {sortIcon("name")}
                 </button>
               </th>
-              <Th k="fundingModel" label="Model" />
-              <th scope="col" className="px-3 py-2 text-left font-medium whitespace-nowrap">Programs</th>
-              <th scope="col" className="px-3 py-2 text-right font-medium whitespace-nowrap">Sizes</th>
-              <Th k="dailyDrawdownPct" label="Daily DD" align="right" />
-              <Th k="maxDrawdownPct" label="Max DD" align="right" />
-              <Th k="drawdownType" label="DD Type" />
-              <Th k="profitTargetPct" label="Target" align="right" />
-              <Th k="profitSplitPct" label="Split" align="right" />
-              <Th k="maxFundedTotal" label="Max Funded" align="right" />
+              <Th k="fundingModel" label="Model" title="Funding model — Challenge (pass an evaluation first), Instant (funded immediately), or Both." />
+              <th scope="col" className="px-3 py-2 text-left font-medium whitespace-nowrap" title="Challenge program tiers offered by this firm (e.g. 1-step, 2-step, instant).">Programs</th>
+              <th scope="col" className="px-3 py-2 text-right font-medium whitespace-nowrap" title="Account sizes available (in USD).">Sizes</th>
+              <Th k="dailyDrawdownPct" label="Daily DD" align="right" title="Daily drawdown limit — the most you can lose in a single day before breaching." />
+              <Th k="maxDrawdownPct" label="Max DD" align="right" title="Maximum overall drawdown — total loss allowed before the account fails." />
+              <Th k="drawdownType" label="DD Type" title="Drawdown type — Static (fixed floor), Trailing (follows your peak balance), or Mixed." />
+              <Th k="profitTargetPct" label="Target" align="right" title="Profit target — % gain required to pass the evaluation." />
+              <Th k="profitSplitPct" label="Split" align="right" title="Profit split — share of profits the trader keeps." />
+              <Th k="maxFundedTotal" label="Max Funded" align="right" title="Maximum funded capital available after scaling." />
               <Th
                 k="payoutDays"
                 label="1st Payout"
                 align="right"
-                title="Minimum days on a funded account before your first withdrawal is allowed (payout cycle / add-ons can shorten it — see expanded row). NOT the processing time."
+                title="Minimum days before your first withdrawal."
               />
               <Th
                 k="payoutSpeedHours"
                 label="Payout Speed"
                 align="right"
-                title="Typical processing time after requesting a withdrawal, in hours, sorted by max hours (0h = instant). NOT the eligibility wait."
+                title="Hours to process a payout after you request it."
               />
-              <Th k="cryptoLeverage" label="Lev" align="right" />
+              <Th k="cryptoLeverage" label="Lev" align="right" title="Maximum crypto leverage offered." />
               <Th
                 k="feasibility"
                 label="Bots / API"
-                title="Can you connect a 3rd-party execution/copy bot to your OWN account — via real trade-scope API keys or an allowed EA? Cell colour = overall TradeSurge feasibility (green high · amber medium/low · red none). Sort puts the best fits first."
+                title="Automation fit — can you connect a 3rd-party bot/EA or trade-scope API keys to your own account? Green = high fit, amber = medium/low, red = none."
               />
-              <th scope="col" className="px-3 py-2 text-left font-medium whitespace-nowrap">Crypto Assets</th>
-              <th scope="col" className="px-3 py-2 text-right font-medium whitespace-nowrap">Verified</th>
+              <th scope="col" className="px-3 py-2 text-left font-medium whitespace-nowrap" title="Cryptocurrency pairs or assets available to trade on this firm.">Crypto Assets</th>
+              <th scope="col" className="px-3 py-2 text-right font-medium whitespace-nowrap" title="When this firm's terms were last verified.">Verified</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-border">
