@@ -9,6 +9,7 @@ import type { AssetClass, Automation, DrawdownType, Firm } from "@/lib/firms";
 import {
   automationLabel,
   bestValue,
+  confidenceRank,
   feasibilityRank,
   formatDays,
   formatLeverage,
@@ -33,6 +34,7 @@ type SortKey =
   | "payoutDays"
   | "payoutSpeedHours"
   | "cryptoLeverage"
+  | "confidence"
   | "feasibility";
 
 type SortDir = "asc" | "desc";
@@ -405,6 +407,11 @@ export default function FirmTable({
           return nullLast(a.payoutSpeedHours, b.payoutSpeedHours, sortDir);
         case "cryptoLeverage":
           return nullLast(leverageOrNull(a.cryptoLeverage), leverageOrNull(b.cryptoLeverage), sortDir);
+        case "confidence": {
+          const ra = confidenceRank(a.confidence);
+          const rb = confidenceRank(b.confidence);
+          return sortDir === "asc" ? ra - rb : rb - ra;
+        }
         case "feasibility": {
           const ra = feasibilityRank(a.automation?.feasibility);
           const rb = feasibilityRank(b.automation?.feasibility);
@@ -541,16 +548,7 @@ export default function FirmTable({
                   />
                 </div>
               </th>
-              <th scope="col" className="px-3 py-2 text-left font-medium whitespace-nowrap" title="Data confidence — High (recently verified), Medium (check before buying), Low (verify thoroughly).">
-                <div className="flex items-center gap-1">
-                  <span>Confidence</span>
-                  <HeaderInfo
-                    definition="Data confidence — High (recently verified), Medium (check before buying), Low (verify thoroughly)."
-                    colId="confidence"
-                    {...infoProps}
-                  />
-                </div>
-              </th>
+              <Th k="confidence" label="Confidence" title="Data confidence — High (recently verified), Medium (check before buying), Low (verify thoroughly)." />
               <Th k="fundingModel" label="Model" title="Funding model — Challenge (pass an evaluation first), Instant (funded immediately), or Both." />
               <th scope="col" className="px-3 py-2 text-left font-medium whitespace-nowrap" title="Challenge program tiers offered by this firm (e.g. 1-step, 2-step, instant).">
                 <div className="flex items-center gap-1">

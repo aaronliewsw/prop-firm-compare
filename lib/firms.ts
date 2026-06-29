@@ -136,6 +136,11 @@ export function feasibilityRank(f?: MiraFeasibility): number {
   return f === "high" ? 0 : f === "medium" ? 1 : f === "low" ? 2 : f === "none" ? 3 : 4;
 }
 
+/** Sort rank for the confidence column (highest confidence first). */
+export function confidenceRank(c?: Confidence): number {
+  return c === "high" ? 0 : c === "medium" ? 1 : c === "low" ? 2 : 3;
+}
+
 // ---------------------------------------------------------------------------
 // Directional-emphasis helpers (used by comparison columns)
 // ---------------------------------------------------------------------------
