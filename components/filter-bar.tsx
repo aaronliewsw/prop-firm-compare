@@ -128,20 +128,31 @@ export default function FilterBar({
       <div className="flex w-full flex-col gap-1 sm:w-auto">
         <label className="text-[13px] uppercase tracking-[0.06em] text-muted">Shortlist</label>
         <div className="flex">
+          {/* CHANGE 2: prominent active state driven by pinnedOnly (filter ON), not pinnedCount.
+              Secondary cue (count) always visible; button fill/text only flips on pinnedOnly. */}
           <button
             onClick={() => setPinnedOnly(!pinnedOnly)}
             aria-pressed={pinnedOnly}
-            className={`rounded-md border px-3 py-1.5 text-[13px] transition-colors ${
-              pinnedCount > 0
-                ? "border-border bg-accent-soft text-accent hover:border-text"
-                : "border-border bg-bg text-muted hover:text-text"
-            } ${
+            className={`focus-ring rounded-md border px-3 py-1.5 text-[13px] transition-colors ${
               pinnedOnly
-                ? "border-text"
-                : ""
+                ? "border-accent bg-accent-soft text-accent hover:border-accent-hover"
+                : pinnedCount > 0
+                ? "border-border bg-bg text-text hover:text-text"
+                : "border-border bg-bg text-muted hover:text-text"
             }`}
           >
-            Pinned ({pinnedCount})
+            Pinned
+            {pinnedCount > 0 && (
+              <span
+                className={`ml-1.5 inline-flex h-4 min-w-[1rem] items-center justify-center rounded-full px-1 text-[11px] font-medium tabular-nums ${
+                  pinnedOnly
+                    ? "bg-accent text-bg"
+                    : "bg-panel text-muted"
+                }`}
+              >
+                {pinnedCount}
+              </span>
+            )}
           </button>
         </div>
       </div>
@@ -155,13 +166,14 @@ export default function FilterBar({
             size={14}
             strokeWidth={1.5}
           />
+          {/* CHANGE 3: added focus-ring className to search input */}
           <input
             id="search"
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Firm name or asset (e.g. SOL)"
-            className="w-full rounded-md border border-border bg-bg py-1.5 pl-8 pr-3 text-[13px] text-text placeholder:text-muted focus:border-[1.5px] focus:border-text focus:outline-none focus:ring-0"
+            className="focus-ring w-full rounded-md border border-border bg-bg py-1.5 pl-8 pr-3 text-[13px] text-text placeholder:text-muted focus:border-[1.5px] focus:border-text focus:outline-none focus:ring-0"
           />
         </div>
       </div>
