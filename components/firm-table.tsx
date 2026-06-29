@@ -712,7 +712,7 @@ export default function FirmTable({
                     <td className="px-3 py-2">
                       <div className="truncate max-w-[200px] text-muted text-xs" title={f.cryptoAssets}>{f.cryptoAssets}</div>
                     </td>
-                    <td className="px-3 py-2 tnum text-right font-mono text-xs text-muted">{f.lastVerified}</td>
+                    <td className="px-3 py-2 tnum text-right font-mono text-xs text-muted whitespace-nowrap">{f.lastVerified}</td>
                   </tr>
                   {isOpen && (
                     <tr className="bg-bg">
