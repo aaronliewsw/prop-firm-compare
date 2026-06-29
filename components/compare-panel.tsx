@@ -3,10 +3,14 @@
 import Link from "next/link";
 import type { Firm } from "@/lib/firms";
 import {
+  bestValue,
   formatDays,
   formatLeverage,
   formatMoney,
   formatPct,
+  leaderClass,
+  leverageOrNull,
+  numOrNull,
 } from "@/lib/firms";
 import { Card } from "./ui/primitives";
 
@@ -19,22 +23,66 @@ type Row = {
   label: string;
   render: (f: Firm) => React.ReactNode;
   truncate?: boolean; // clamp width + ellipsis (long free-text cells); full value on hover
+  /** Extract a numeric comparable for winner highlighting. Omit for non-numeric rows. */
+  numeric?: (f: Firm) => number | null;
+  /** Which direction is favorable for this row. */
+  better?: "higher" | "lower";
 };
 
 const rows: Row[] = [
   { label: "Model", render: (f) => f.fundingModel },
-  { label: "Daily DD", render: (f) => formatPct(f.dailyDrawdownPct) },
-  { label: "Max DD", render: (f) => formatPct(f.maxDrawdownPct) },
+  {
+    label: "Daily DD",
+    render: (f) => formatPct(f.dailyDrawdownPct),
+    numeric: (f) => numOrNull(typeof f.dailyDrawdownPct === "number" ? f.dailyDrawdownPct : parseFloat(f.dailyDrawdownPct as string)),
+    better: "lower",
+  },
+  {
+    label: "Max DD",
+    render: (f) => formatPct(f.maxDrawdownPct),
+    numeric: (f) => numOrNull(typeof f.maxDrawdownPct === "number" ? f.maxDrawdownPct : parseFloat(f.maxDrawdownPct as string)),
+    better: "lower",
+  },
   { label: "DD Type", render: (f) => f.drawdownType },
-  { label: "Profit Target", render: (f) => formatPct(f.profitTargetPct) },
-  { label: "Profit Split", render: (f) => `${f.profitSplitPct}%` },
+  {
+    label: "Profit Target",
+    render: (f) => formatPct(f.profitTargetPct),
+    // Lower target = easier hurdle = better
+    numeric: (f) => numOrNull(typeof f.profitTargetPct === "number" ? f.profitTargetPct : parseFloat(f.profitTargetPct as string)),
+    better: "lower",
+  },
+  {
+    label: "Profit Split",
+    render: (f) => `${f.profitSplitPct}%`,
+    numeric: (f) => f.profitSplitPct,
+    better: "higher",
+  },
   {
     label: "Max Funded",
     render: (f) => (f.maxFundedTotal == null ? "—" : formatMoney(f.maxFundedTotal)),
+    numeric: (f) => f.maxFundedTotal,
+    better: "higher",
   },
-  { label: "1st Payout", render: (f) => formatDays(f.payoutDays) },
-  { label: "Payout Speed", render: (f) => f.payoutSpeed ?? "—" },
-  { label: "Leverage", render: (f) => formatLeverage(f.cryptoLeverage) },
+  {
+    label: "1st Payout",
+    render: (f) => formatDays(f.payoutDays),
+    // Fewer days to first payout = better
+    numeric: (f) => numOrNull(typeof f.payoutDays === "number" ? f.payoutDays : parseFloat(f.payoutDays as string)),
+    better: "lower",
+  },
+  {
+    label: "Payout Speed",
+    render: (f) => f.payoutSpeed ?? "—",
+    // payoutSpeedHours: fewer hours = faster = better
+    numeric: (f) => f.payoutSpeedHours,
+    better: "lower",
+  },
+  {
+    label: "Leverage",
+    render: (f) => formatLeverage(f.cryptoLeverage),
+    numeric: (f) => leverageOrNull(f.cryptoLeverage),
+    better: "higher",
+  },
   { label: "Crypto Assets", render: (f) => f.cryptoAssets, truncate: true },
   { label: "Platform", render: (f) => f.automation?.platform ?? "—", truncate: true },
   { label: "EA / bots", render: (f) => f.automation?.ea ?? "—" },
@@ -55,8 +103,6 @@ const monoLabels = new Set([
   "Leverage",
 ]);
 
-// TODO(restyle): Add ▲/▼ signed-delta treatment if compare rows expose directional figures; these rows are absolute rule values.
-
 export default function ComparePanel({ firms, onClose }: Props) {
   if (firms.length < 2) return null;
 
@@ -68,7 +114,7 @@ export default function ComparePanel({ firms, onClose }: Props) {
         </span>
         <button
           onClick={onClose}
-          className="min-h-[44px] px-3 py-2 text-[13px] text-muted transition-colors hover:text-text"
+          className="focus-ring min-h-[44px] px-3 py-2 text-[13px] text-muted transition-colors hover:text-text"
           aria-label="Close comparison"
         >
           Close
@@ -99,35 +145,51 @@ export default function ComparePanel({ firms, onClose }: Props) {
             </tr>
           </thead>
           <tbody className="divide-y divide-border">
-            {rows.map((row) => (
-              <tr
-                key={row.label}
-                className="divide-x divide-border hover:bg-panel2"
-              >
-                <td className="sticky left-0 z-10 border-r-[1.5px] border-text bg-panel px-3 py-2 text-muted whitespace-nowrap">
-                  {row.label}
-                </td>
-                {firms.map((f) => (
-                  <td
-                    key={f.id}
-                    className={`px-3 py-2 tnum font-mono ${row.truncate ? "" : "whitespace-nowrap"} ${
-                      monoLabels.has(row.label) ? "text-text" : "text-text/90"
-                    }`}
-                  >
-                    {row.truncate ? (
-                      <span
-                        className="block max-w-[180px] truncate"
-                        title={String(row.render(f))}
-                      >
-                        {row.render(f)}
-                      </span>
-                    ) : (
-                      row.render(f)
-                    )}
+            {rows.map((row) => {
+              // Compute best value for numeric rows once per row.
+              const best =
+                row.numeric && row.better
+                  ? bestValue(firms.map(row.numeric), row.better)
+                  : null;
+
+              return (
+                <tr
+                  key={row.label}
+                  className="divide-x divide-border hover:bg-panel2"
+                >
+                  <td className="sticky left-0 z-10 border-r-[1.5px] border-text bg-panel px-3 py-2 text-muted whitespace-nowrap">
+                    {row.label}
                   </td>
-                ))}
-              </tr>
-            ))}
+                  {firms.map((f) => {
+                    const numVal = row.numeric ? row.numeric(f) : null;
+                    const winner = leaderClass(numVal, best);
+                    return (
+                      <td
+                        key={f.id}
+                        className={`px-3 py-2 tnum font-mono ${row.truncate ? "" : "whitespace-nowrap"} ${
+                          winner
+                            ? winner
+                            : monoLabels.has(row.label)
+                            ? "text-text"
+                            : "text-text/90"
+                        }`}
+                      >
+                        {row.truncate ? (
+                          <span
+                            className="block max-w-[180px] truncate"
+                            title={String(row.render(f))}
+                          >
+                            {row.render(f)}
+                          </span>
+                        ) : (
+                          row.render(f)
+                        )}
+                      </td>
+                    );
+                  })}
+                </tr>
+              );
+            })}
             <tr className="divide-x divide-border">
               <td className="sticky left-0 z-10 border-r-[1.5px] border-text bg-panel px-3 py-2 text-muted whitespace-nowrap">
                 Details
