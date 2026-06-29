@@ -85,6 +85,7 @@
           "name": "Break",
           "steps": "1-step",
           "model": "challenge",
+          "accountSizes": [25000, 50000, 100000],
           "dailyDrawdownPct": 4,
           "maxDrawdownPct": 4,
           "drawdownType": "trailing",
