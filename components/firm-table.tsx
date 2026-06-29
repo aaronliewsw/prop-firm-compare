@@ -666,7 +666,7 @@ export default function FirmTable({
                             <ChevronDown aria-hidden="true" size={14} strokeWidth={1.5} />
                           )}
                         </button>
-                        {confidenceDot(f.confidence)}
+                        <span className="inline-flex w-[72px] shrink-0 items-center">{confidenceDot(f.confidence)}</span>
                         <a
                           href={f.website}
                           target="_blank"

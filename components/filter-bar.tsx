@@ -105,7 +105,7 @@ export default function FilterBar({
   setSearch,
 }: Props) {
   return (
-    <div className="mb-4 flex flex-wrap items-end gap-3">
+    <div className="mb-4 flex flex-wrap items-start gap-3">
       <div className="flex w-full flex-col gap-1 sm:w-auto">
         <label className="text-[13px] uppercase tracking-[0.06em] text-muted">Asset class</label>
         <Segmented ariaLabel="Asset class" options={assetOptions} value={assetClass} onChange={setAssetClass} />
@@ -133,18 +133,18 @@ export default function FilterBar({
 
       <div className="flex w-full flex-col gap-1 sm:w-auto">
         <label className="text-[13px] uppercase tracking-[0.06em] text-muted">Shortlist</label>
-        <div className="flex">
+        <div className="inline-flex rounded-md border border-border bg-panel p-0.5">
           {/* CHANGE 2: prominent active state driven by pinnedOnly (filter ON), not pinnedCount.
               Secondary cue (count) always visible; button fill/text only flips on pinnedOnly. */}
           <button
             onClick={() => setPinnedOnly(!pinnedOnly)}
             aria-pressed={pinnedOnly}
-            className={`focus-ring rounded-md border px-3 py-1.5 text-[13px] transition-colors ${
+            className={`focus-ring rounded px-3 py-1.5 text-[13px] transition-colors ${
               pinnedOnly
-                ? "border-accent bg-accent-soft text-accent hover:border-accent-hover"
+                ? "bg-accent-soft text-accent"
                 : pinnedCount > 0
-                ? "border-border bg-bg text-text hover:text-text"
-                : "border-border bg-bg text-muted hover:text-text"
+                ? "text-text hover:text-text"
+                : "text-muted hover:text-text"
             }`}
           >
             Pinned
