@@ -11,6 +11,7 @@ import {
   formatMoney,
   formatPct,
   formatSizes,
+  leverageOrNull,
   numOrNull,
 } from "@/lib/firms";
 
@@ -158,7 +159,7 @@ export default function FirmTable({
       }
       if (pinnedOnly && !pinned.has(f.id)) return false;
       if (minLeverage > 0) {
-        const lev = numOrNull(f.cryptoLeverage);
+        const lev = leverageOrNull(f.cryptoLeverage);
         if (lev == null || lev < minLeverage) return false;
       }
       if (q && !f.name.toLowerCase().includes(q) && !f.cryptoAssets.toLowerCase().includes(q)) {
@@ -199,7 +200,7 @@ export default function FirmTable({
         case "payoutSpeedHours":
           return nullLast(a.payoutSpeedHours, b.payoutSpeedHours, sortDir);
         case "cryptoLeverage":
-          return nullLast(numOrNull(a.cryptoLeverage), numOrNull(b.cryptoLeverage), sortDir);
+          return nullLast(leverageOrNull(a.cryptoLeverage), leverageOrNull(b.cryptoLeverage), sortDir);
         case "feasibility": {
           const ra = feasibilityRank(a.automation?.feasibility);
           const rb = feasibilityRank(b.automation?.feasibility);

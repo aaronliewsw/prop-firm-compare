@@ -1,6 +1,6 @@
 {
   "$schema": "../lib/firms.ts#Firm[]",
-  "generatedAt": "2026-06-07",
+  "generatedAt": "2026-06-29",
   "disclaimer": "Prop firm terms change frequently. All values reflect publicly stated terms at lastVerified date. Firms marked status=closed are retained for reference only — they no longer operate. Always confirm on the firm's site before purchasing.",
   "firms": [
     {
@@ -37,7 +37,7 @@
       "cryptoAssets": "715+ Bybit USDT perps; 556 cryptos on MT5/Match-Trader; up to 1:100 (Bybit/Advanced), 1:5 student",
       "notes": "Zug, Switzerland (Swiss RLCrates AG; educational/evaluation firm, MT5 via RLCrates SL). Current products: Instant, 1-Phase, 2-Phase (the funded account is the post-eval stage, not a separate purchase). Challenge profit split DEFAULT 80% (90% via paid add-on, +20% of eval price). 1-Phase: 4% daily / 6% trailing, 10% target. 2-Phase: 5% daily / 10% static, 8% P1 + 5% P2. Instant: 4% daily / 6% overall (static), 10% target to 'double up' to the next level, split scales 50%->90% by level, 0 min days, up to 1:100, scales to $1.28M. Max allocation $300K/user (Instant exempt). 715+ Bybit USDT perps; 556 cryptos on MT5/Match-Trader; up to 1:100. Challenge first payout ~15 days; reward paid within 48 business hrs (received <24h). | [2026-06-07] funded traders generate their OWN Bybit trade-scope API key.",
       "source": "https://cryptofundtrader.com/faq/",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -51,7 +51,8 @@
           "profitTargetPct": 10,
           "profitSplitPct": 50,
           "payoutDays": 0,
-          "note": "Double-up model: hit the 10% target to scale to the next level ($5k->$1.28M); profit split rises 50%->90% by level (base 50%). 0 min days, up to 1:100."
+          "note": "Double-up model: hit the 10% target to scale to the next level ($5k->$1.28M); profit split rises 50%->90% by level (base 50%). 0 min days, up to 1:100.",
+          "pricing": "Program checkout required; current FAQ does not expose the full base ladder. Add-ons captured: weekly reward +20%, 90% split +20%."
         },
         {
           "name": "1-Phase",
@@ -63,7 +64,8 @@
           "profitTargetPct": 10,
           "profitSplitPct": 80,
           "payoutDays": 15,
-          "note": "Trailing 6% locks at initial balance once +6% reached"
+          "note": "Trailing 6% locks at initial balance once +6% reached",
+          "pricing": "Program checkout required; current FAQ does not expose the full base ladder. Add-ons: weekly reward +20%, 90% split +20%."
         },
         {
           "name": "2-Phase",
@@ -75,7 +77,8 @@
           "profitTargetPct": 8,
           "profitSplitPct": 80,
           "payoutDays": 15,
-          "note": "8% P1 + 5% P2 targets; phase 2 leads into the live funded account"
+          "note": "8% P1 + 5% P2 targets; phase 2 leads into the live funded account",
+          "pricing": "Program checkout required; current FAQ does not expose the full base ladder. Add-ons: weekly reward +20%, 90% split +20%, 6% daily DD +15%, 12% max DD +25%."
         }
       ],
       "automation": {
@@ -120,7 +123,7 @@
       "cryptoAssets": "700+ Bybit USDT perps (BTC, ETH, SOL, BNB, XRP +alts)",
       "notes": "Crypto-native, EU (Hyro Finance j.s.a., Bratislava). 1-Step (10 minimum trading days, 4% daily / 6% max static, 10% target) + 2-Step. Funded acct: no min days. MANDATORY stop-loss on every trade. PROHIBITED: trading EUR/USD or USDC pairs, Martingale, cross-account hedging, low-cap altcoins above 5% of balance, news-only trading, combining spot + margin in one account. Swing add-on relaxes the daily drawdown. Split starts 80%, scales time-based to 90% (~16 months). First funded payout 1 day after first trade; processed 12-48h in USDT/USDC; challenge fee refunded on first payout. Trades on Bybit feed (700+ USDT perps); OKX integration slated Q4 2026. | [2026-06-07] bots/EAs allowed on funded via own Bybit subaccount API key (banned during challenge).",
       "source": "https://www.hyrotrader.com/",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -134,7 +137,8 @@
           "profitTargetPct": 10,
           "profitSplitPct": 80,
           "payoutDays": 1,
-          "note": "Split starts 80%, scales time-based to 90% (~16 months); Swing add-on relaxes daily DD; 10 min trading days"
+          "note": "Split starts 80%, scales time-based to 90% (~16 months); Swing add-on relaxes daily DD; 10 min trading days",
+          "pricing": "Pricing ladder was not exposed in the refreshed rules/help captures; challenge entry fee is described as refundable. Verify in checkout before purchase."
         },
         {
           "name": "2-Step Challenge",
@@ -146,7 +150,8 @@
           "profitTargetPct": null,
           "profitSplitPct": 80,
           "payoutDays": 1,
-          "note": "2-Step listed in programs but specific DD/target not detailed in notes; fields inherited from 1-Step are firm-level defaults only"
+          "note": "2-Step listed in programs but specific DD/target not detailed in notes; fields inherited from 1-Step are firm-level defaults only",
+          "pricing": "Pricing ladder was not exposed in the refreshed rules/help captures; challenge entry fee is described as refundable. Verify in checkout before purchase."
         }
       ],
       "automation": {
@@ -191,7 +196,7 @@
       "cryptoAssets": "62 tradeable pairs; BTC/ETH up to 5x, alts up to 2x (Kraken/OKX liquidity)",
       "notes": "Owned by KRAKEN via Payward Oceanic Ltd (POL). 1-Step plans: Classic (10% target, 3% daily / 6% max), Pro (12% target, 3%/5%), Turbo (9% target, 3%/3%); 2-step also offered. $5K-$200K. Split 80% base, 90% paid upgrade. On-demand 24/7 USDC (ERC-20) payouts, ~24h, no min days / consistency / profit cap / time limit. 62 pairs, 5x BTC/ETH, 2x alts. IMPORTANT funded-account reality: funded traders do NOT own the account or positions; POL may record a trade idea as an internal book entry OR route it to market at its sole discretion, and may earn third-party incentives not shared with the trader (conflicts of interest disclosed). 20,000+ funded accounts since 2023, 0 reported payout delays. | [2026-06-07] on-demand 24/7 USDC payouts (~12-24h), no min days; funded traders don't own positions.",
       "source": "https://www.breakoutprop.com/",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -205,7 +210,8 @@
           "profitTargetPct": 10,
           "profitSplitPct": 80,
           "payoutDays": 0,
-          "note": "Base split 80%, 90% on paid upgrade; on-demand 24/7 USDC payouts"
+          "note": "Base split 80%, 90% on paid upgrade; on-demand 24/7 USDC payouts",
+          "pricing": "$45 one-time, or $54 with the 90% split option."
         },
         {
           "name": "Pro 1-Step",
@@ -217,7 +223,8 @@
           "profitTargetPct": 12,
           "profitSplitPct": 80,
           "payoutDays": 0,
-          "note": "12% target, 3%/5% DD"
+          "note": "12% target, 3%/5% DD",
+          "pricing": "$33 one-time, or $40 with the 90% split option."
         },
         {
           "name": "Turbo 1-Step",
@@ -229,7 +236,8 @@
           "profitTargetPct": 9,
           "profitSplitPct": 80,
           "payoutDays": 0,
-          "note": "9% target, 3%/3% DD"
+          "note": "9% target, 3%/3% DD",
+          "pricing": "$20 one-time, or $24 with the 90% split option."
         },
         {
           "name": "2-Step",
@@ -241,7 +249,8 @@
           "profitTargetPct": null,
           "profitSplitPct": 80,
           "payoutDays": 0,
-          "note": "2-Step listed in programs; specific DD/target figures not stated in notes"
+          "note": "2-Step listed in programs; specific DD/target figures not stated in notes",
+          "pricing": "2-Step price was not exposed in the refreshed public capture; verify checkout."
         }
       ],
       "automation": {
@@ -289,7 +298,7 @@
       "cryptoAssets": "9 crypto pairs at 1:1 (BTC, ETH, SOL, ADA, XRP +majors)",
       "notes": "Stellar brand: 1-Step (3%/6% DD), 2-Step (5%/10% static), Lite (4%/8%), Instant ($2k-$20k, 6% trailing). Up to 95% split on scaling; 15% earnable during challenge. Crypto leverage 1:1, commission-free, 24/7. First payout: 1-Step ~5d, 2-Step ~21d, Lite ~14d, Instant on-demand. CAUTION: post-funding 'Disciplined Trader Program' can cap margin to 30% and risk to 1%/trade. | [2026-06-07] added FundedNext Futures line.",
       "source": "https://fundednext.com/stellar-model",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -311,7 +320,8 @@
           "profitTargetPct": 8,
           "profitSplitPct": 80,
           "payoutDays": 5,
-          "note": "3%/6% DD; 15% split earnable during challenge; first payout ~5d"
+          "note": "3%/6% DD; 15% split earnable during challenge; first payout ~5d",
+          "pricing": "FundedNext pricing page refreshed, but the public capture did not expose a stable fee ladder; verify the pricing widget/checkout."
         },
         {
           "name": "Stellar 2-Step",
@@ -331,7 +341,8 @@
           "profitTargetPct": 8,
           "profitSplitPct": 80,
           "payoutDays": 21,
-          "note": "5%/10% static DD; first payout ~21d"
+          "note": "5%/10% static DD; first payout ~21d",
+          "pricing": "FundedNext pricing page refreshed, but the public capture did not expose a stable fee ladder; verify the pricing widget/checkout."
         },
         {
           "name": "Stellar Lite",
@@ -351,7 +362,8 @@
           "profitTargetPct": 8,
           "profitSplitPct": 80,
           "payoutDays": 14,
-          "note": "4%/8% DD; first payout ~14d"
+          "note": "4%/8% DD; first payout ~14d",
+          "pricing": "FundedNext pricing page refreshed, but the public capture did not expose a stable fee ladder; verify the pricing widget/checkout."
         },
         {
           "name": "Stellar Instant",
@@ -369,7 +381,8 @@
           "profitTargetPct": "N/A",
           "profitSplitPct": 80,
           "payoutDays": 0,
-          "note": "$2k-$20k; 6% trailing max DD; daily DD not specified; on-demand payouts"
+          "note": "$2k-$20k; 6% trailing max DD; daily DD not specified; on-demand payouts",
+          "pricing": "FundedNext pricing page refreshed, but the public capture did not expose a stable fee ladder; verify the pricing widget/checkout."
         }
       ],
       "automation": {
@@ -416,7 +429,7 @@
       "cryptoAssets": "BTC, ETH, LTC, XRP",
       "notes": "Active (recovered from 2024 turmoil). Lineup revamped: pick a phase (1/2/3-Step) and an account tier (Knight / Knight Pro / Classic). Flagship Knight 1-Step: 10% target, 3% daily DD, 8% max DD (balance-based). Up to 95% split (Knight Pro VIP); challenge scales to $1.2M, max $600k live funded. Weekend crypto force-closed (Fri 4pm EST) on most plans. First payout eligible ~7 days; bi-weekly. (2-Step/Classic DD + crypto leverage not re-confirmed on homepage.) [verify 2026-05-27] Crypto leverage 1:2->1:1 per TFT's own Knight Pro guide (FX 1:30, gold 1:10, indices 1:5, crypto 1:1; weekend crypto force-close Fri 4pm EST). Default split 80% (90-99% ceilings via scaling/VIP). Help-center articles bot-block direct fetch (read via search snippets) and exact crypto-asset list unconfirmed => stays medium. | [2026-06-07] lineup rebranded Knight/Royal/Dragon (+Pro VIP); EAs allowed on Royal & Dragon.",
       "source": "https://help.thefundedtraderprogram.com/en/articles/9930524-a-comprehensive-guide-to-the-funded-trader-knight-pro-challenge",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "medium",
       "status": "active",
       "programDetails": [
@@ -430,7 +443,8 @@
           "profitTargetPct": 10,
           "profitSplitPct": 80,
           "payoutDays": 7,
-          "note": "Balance-based max DD; up to 95% via Knight Pro VIP; weekend crypto force-closed (Fri 4pm EST)"
+          "note": "Balance-based max DD; up to 95% via Knight Pro VIP; weekend crypto force-closed (Fri 4pm EST)",
+          "pricing": "Configurator capture showed 200k Knight 1-Step at $549; 100k comparison table showed $578/$519/$489 across account variants."
         },
         {
           "name": "Knight 2-Step",
@@ -442,7 +456,8 @@
           "profitTargetPct": null,
           "profitSplitPct": 80,
           "payoutDays": 7,
-          "note": "2-Step listed in programs but specific DD/target not re-confirmed on homepage per notes"
+          "note": "2-Step listed in programs but specific DD/target not re-confirmed on homepage per notes",
+          "pricing": "100k comparison table showed $578/$519/$489 across account variants; exact selected 2-Step ladder requires checkout."
         },
         {
           "name": "Knight 3-Step",
@@ -454,7 +469,8 @@
           "profitTargetPct": null,
           "profitSplitPct": 80,
           "payoutDays": 7,
-          "note": "3-Step listed in programs but specific DD/target not re-confirmed on homepage per notes"
+          "note": "3-Step listed in programs but specific DD/target not re-confirmed on homepage per notes",
+          "pricing": "100k comparison table showed $578/$519/$489 across account variants; exact selected 3-Step ladder requires checkout."
         }
       ],
       "automation": {
@@ -507,7 +523,7 @@
       "cryptoAssets": "BTC, ETH +majors",
       "notes": "Both challenge and instant (1/2/3-Step + Instant Funding). 2-Step Standard (confirmed on help page): 5% daily / 10% static max DD, 10% Phase-1 / 5% Phase-2 targets, crypto 1:2. Base split 80%, up to 100% via paid add-on. First payout needs 3 valid trading days (>=0.5%/day); payout cycle bi-weekly (14d), or On-Demand First Reward add-on (40% split after 3 days). Funded daily profit cap $3k; first two payouts capped 6%/$10k. Account sizes $5K-$400K. Scaling to $2M.",
       "source": "https://www.goatfundedtrader.com",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -521,7 +537,8 @@
           "profitTargetPct": 10,
           "profitSplitPct": 80,
           "payoutDays": 14,
-          "note": "10% P1 / 5% P2 targets; base 80%, up to 100% via paid add-on; first payout needs 3 valid days (>=0.5%/day); On-Demand First Reward add-on gives 40% after 3 days"
+          "note": "10% P1 / 5% P2 targets; base 80%, up to 100% via paid add-on; first payout needs 3 valid days (>=0.5%/day); On-Demand First Reward add-on gives 40% after 3 days",
+          "pricing": "Pricing widget capture showed a selected 100k account at $509 promo / $848 list; full ladder and program variant should be verified in checkout."
         },
         {
           "name": "1-Step",
@@ -533,7 +550,8 @@
           "profitTargetPct": null,
           "profitSplitPct": 80,
           "payoutDays": 14,
-          "note": "1-Step listed in programs; specific DD/target not detailed in notes"
+          "note": "1-Step listed in programs; specific DD/target not detailed in notes",
+          "pricing": "Pricing widget capture showed a selected 100k account at $509 promo / $848 list; full ladder and program variant should be verified in checkout."
         },
         {
           "name": "3-Step",
@@ -545,7 +563,8 @@
           "profitTargetPct": null,
           "profitSplitPct": 80,
           "payoutDays": 14,
-          "note": "3-Step listed in programs; specific DD/target not detailed in notes"
+          "note": "3-Step listed in programs; specific DD/target not detailed in notes",
+          "pricing": "Pricing widget capture showed a selected 100k account at $509 promo / $848 list; full ladder and program variant should be verified in checkout."
         },
         {
           "name": "Instant Funding",
@@ -557,7 +576,8 @@
           "profitTargetPct": "N/A",
           "profitSplitPct": 80,
           "payoutDays": 14,
-          "note": "Instant Funding listed in programs; specific DD not detailed in notes"
+          "note": "Instant Funding listed in programs; specific DD not detailed in notes",
+          "pricing": "Pricing widget capture showed a selected 100k account at $509 promo / $848 list; full ladder and program variant should be verified in checkout."
         }
       ],
       "automation": {
@@ -602,7 +622,7 @@
       "cryptoAssets": "BTC, ETH, LTC, XRP +majors (~10 coins, CFDs)",
       "notes": "Industry incumbent. NEW 1-Step Challenge added Feb 2026 (no time limit, no verification phase). Base split 80%, up to 90% via Scaling Plan. Funded-account max loss is EOD trailing (moves up, not down); challenge max loss 10% of initial. Crypto leverage ~1:3.3 on Standard (1:1 on Swing). First payout from 14 days, then bi-weekly.",
       "source": "https://ftmo.com/en/faq/what-are-the-account-specifications/",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -616,7 +636,8 @@
           "profitTargetPct": 10,
           "profitSplitPct": 80,
           "payoutDays": 14,
-          "note": "Funded max loss is EOD trailing; challenge max loss 10% of initial balance; base 80%, up to 90% via Scaling Plan; crypto 1:3.3 (Standard), 1:1 (Swing)"
+          "note": "Funded max loss is EOD trailing; challenge max loss 10% of initial balance; base 80%, up to 90% via Scaling Plan; crypto 1:3.3 (Standard), 1:1 (Swing)",
+          "pricing": "Official FTMO pages were refreshed, but the public capture did not expose the current fee ladder; verify the FTMO Challenge checkout."
         },
         {
           "name": "1-Step Challenge",
@@ -628,7 +649,8 @@
           "profitTargetPct": null,
           "profitSplitPct": 80,
           "payoutDays": 14,
-          "note": "Added Feb 2026; no time limit, no verification phase; specific DD/target figures not stated in notes"
+          "note": "Added Feb 2026; no time limit, no verification phase; specific DD/target figures not stated in notes",
+          "pricing": "Official FTMO pages were refreshed, but the public capture did not expose the current fee ladder; verify the FTMO Challenge checkout."
         }
       ],
       "automation": {
@@ -675,7 +697,7 @@
       "cryptoAssets": "BTC, ETH +majors (BTCUSD, ETHUSD)",
       "notes": "Scales to $4M. Up to 100% split. Programs: Hyper Growth (1-step, 3%/6% DD, 1:30 lev), High Stakes (2-step flagship: 5% daily / 10% absolute max, 10% target), Bootcamp (3-step). Account sizes $2.5K-$100K (per rules page). Bi-weekly payouts (every 14d). Crypto leverage max ~1:2; crypto deposits/payouts supported (2% fee). | [2026-06-07] added Pro Growth (1-step); Hyper Growth flagship 10% target / 3% daily / 6% max.",
       "source": "https://the5ers.com/",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -689,7 +711,8 @@
           "profitTargetPct": 10,
           "profitSplitPct": 100,
           "payoutDays": 14,
-          "note": "1:30 leverage; 3%/6% DD"
+          "note": "1:30 leverage; 3%/6% DD",
+          "pricing": "Home capture showed a selected/default one-time fee of $74; full account-size ladder requires checkout."
         },
         {
           "name": "High Stakes",
@@ -701,7 +724,8 @@
           "profitTargetPct": 10,
           "profitSplitPct": 100,
           "payoutDays": 14,
-          "note": "Flagship 2-step; 5% daily / 10% absolute max DD"
+          "note": "Flagship 2-step; 5% daily / 10% absolute max DD",
+          "pricing": "High Stakes page showed cost from $19 on the selected/default size; full ladder requires checkout."
         },
         {
           "name": "Bootcamp",
@@ -713,7 +737,8 @@
           "profitTargetPct": null,
           "profitSplitPct": 100,
           "payoutDays": 14,
-          "note": "3-step program; specific DD/target not detailed in notes"
+          "note": "3-step program; specific DD/target not detailed in notes",
+          "pricing": "Bootcamp fee ladder was not exposed in the refreshed public capture; verify checkout."
         }
       ],
       "automation": {
@@ -760,7 +785,7 @@
       "cryptoAssets": "BTC, ETH +majors",
       "notes": "UK-based. Programs: 1-Step Express (10% target, 6% relative-trailing max DD, 4% daily, payout from day 1 every 7 days), 2-Step Classic (7% target both phases, 8% static max, 4% daily, first payout day 10), Instant Funding. Fields reflect 2-Step Classic. 80% split confirmed on all program pages (no higher tier shown). 35% consistency + 3% symbol-loss limit on Classic. Scaling to $2.5M; 30-day activity rule. Crypto leverage (1:2) not stated on program pages — pending. [verify 2026-05-27] Crypto leverage 1:2 confirmed on FTP's own leverage page (ft-leverage); 2-Step Classic 4%/8% static, 7% target, 80% split, first payout day 10 all confirmed on help center. Promoted to high.",
       "source": "https://help.fundedtradingplus.com/ft-leverage/",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -774,7 +799,8 @@
           "profitTargetPct": 10,
           "profitSplitPct": 80,
           "payoutDays": 7,
-          "note": "6% relative-trailing max DD; payout from day 1, every 7 days"
+          "note": "6% relative-trailing max DD; payout from day 1, every 7 days",
+          "pricing": "Program help pages refreshed, but purchase fees were not exposed in the help captures; verify the order page/checkout."
         },
         {
           "name": "2-Step Classic",
@@ -786,7 +812,8 @@
           "profitTargetPct": 7,
           "profitSplitPct": 80,
           "payoutDays": 10,
-          "note": "7% target both phases; 8% static max; 35% consistency + 3% symbol-loss limit; first payout day 10"
+          "note": "7% target both phases; 8% static max; 35% consistency + 3% symbol-loss limit; first payout day 10",
+          "pricing": "Program help pages refreshed, but purchase fees were not exposed in the help captures; verify the order page/checkout."
         },
         {
           "name": "Instant Funding",
@@ -798,7 +825,8 @@
           "profitTargetPct": "N/A",
           "profitSplitPct": 80,
           "payoutDays": null,
-          "note": "Instant Funding listed in programs; specific DD/target/payout not detailed in notes"
+          "note": "Instant Funding listed in programs; specific DD/target/payout not detailed in notes",
+          "pricing": "Program help pages refreshed, but purchase fees were not exposed in the help captures; verify the order page/checkout."
         }
       ],
       "automation": {
@@ -850,7 +878,7 @@
       "cryptoAssets": "BTC, ETH +alts (80+ cryptos on Crypto/Instant plans)",
       "notes": "Programs: 1-Phase, 2-Phase, 3-Phase, Instant, Lightning, Crypto Standard, Crypto Instant. 2-Phase Classic (confirmed): Phase-1 5%, 4% daily, 10% static max, up to 90% split; first payout on-demand after 5 min trading days, then monthly/bi-weekly. Crypto accounts carry a 25% consistency rule. Fields reflect the 1-Phase flagship (10% target / 5% daily / 10% max) — NOT re-confirmed on captures; crypto leverage (1:5) pending. Labuan-licensed (Malaysia). [verify 2026-05-27] 1-Phase flagship corrected to 3% daily / 6% trailing (was 5/10 mixed = the 2-Phase figures) per fxify.com one-phase + max-trailing FAQ. Crypto leverage 1:5->1:2 (consistent across fxify.com pages). Max allocation $800k->$795k for joiners after 2024-11-25. 80+ coins on Crypto Standard/Instant plans. Promoted to high.",
       "source": "https://fxify.com/faqs/all-faqs/how-do-you-calculate-the-max-trailing-drawdown/",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -864,7 +892,8 @@
           "profitTargetPct": 10,
           "profitSplitPct": 80,
           "payoutDays": 5,
-          "note": "Flagship; fields from firm-level (not re-confirmed on raw capture per notes)"
+          "note": "Flagship; fields from firm-level (not re-confirmed on raw capture per notes)",
+          "pricing": "FXIFY program page refreshed; the visible selected example was 5k Two Phase Classic at $43.66 promo / $59 list. Other variants require checkout."
         },
         {
           "name": "2-Phase Classic",
@@ -876,7 +905,8 @@
           "profitTargetPct": 5,
           "profitSplitPct": 80,
           "payoutDays": 5,
-          "note": "P1 5% target, 4% daily, 10% static max; confirmed on notes; on-demand payout after 5 min trading days; 25% consistency rule on crypto accounts"
+          "note": "P1 5% target, 4% daily, 10% static max; confirmed on notes; on-demand payout after 5 min trading days; 25% consistency rule on crypto accounts",
+          "pricing": "5k Two Phase Classic showed $43.66 with code GOAL26 / $59 list."
         },
         {
           "name": "3-Phase",
@@ -888,7 +918,8 @@
           "profitTargetPct": null,
           "profitSplitPct": 80,
           "payoutDays": 5,
-          "note": "3-Phase listed in programs; specific DD/target not detailed in notes"
+          "note": "3-Phase listed in programs; specific DD/target not detailed in notes",
+          "pricing": "FXIFY program page refreshed; the visible selected example was 5k Two Phase Classic at $43.66 promo / $59 list. Other variants require checkout."
         },
         {
           "name": "Instant",
@@ -900,7 +931,8 @@
           "profitTargetPct": "N/A",
           "profitSplitPct": 80,
           "payoutDays": null,
-          "note": "Instant listed in programs; specific DD not detailed in notes"
+          "note": "Instant listed in programs; specific DD not detailed in notes",
+          "pricing": "FXIFY program page refreshed; the visible selected example was 5k Two Phase Classic at $43.66 promo / $59 list. Other variants require checkout."
         },
         {
           "name": "Lightning",
@@ -912,7 +944,8 @@
           "profitTargetPct": null,
           "profitSplitPct": 80,
           "payoutDays": null,
-          "note": "Lightning listed in programs; specific DD/target not detailed in notes"
+          "note": "Lightning listed in programs; specific DD/target not detailed in notes",
+          "pricing": "FXIFY program page refreshed; the visible selected example was 5k Two Phase Classic at $43.66 promo / $59 list. Other variants require checkout."
         },
         {
           "name": "Crypto Standard",
@@ -924,7 +957,8 @@
           "profitTargetPct": null,
           "profitSplitPct": 80,
           "payoutDays": 5,
-          "note": "Crypto-specific account; 25% consistency rule; specific DD/target not detailed in notes"
+          "note": "Crypto-specific account; 25% consistency rule; specific DD/target not detailed in notes",
+          "pricing": "FXIFY program page refreshed; the visible selected example was 5k Two Phase Classic at $43.66 promo / $59 list. Other variants require checkout."
         },
         {
           "name": "Crypto Instant",
@@ -936,7 +970,8 @@
           "profitTargetPct": "N/A",
           "profitSplitPct": 80,
           "payoutDays": null,
-          "note": "Crypto-specific instant account; specific DD not detailed in notes"
+          "note": "Crypto-specific instant account; specific DD not detailed in notes",
+          "pricing": "FXIFY program page refreshed; the visible selected example was 5k Two Phase Classic at $43.66 promo / $59 list. Other variants require checkout."
         }
       ],
       "automation": {
@@ -984,7 +1019,7 @@
       "cryptoAssets": "BTC, ETH (1:5), other alts (1:2)",
       "notes": "E8 One (1-step FX/Crypto flagship): 6% target, 3% daily, ~6% dynamic/trailing max DD (default; customizable 4-14%). E8 Signature (1-step, FX or Crypto): 6% target, EOD dynamic DD fixed by account size; Signature Crypto BTC/ETH 1:5, other crypto 1:2 (confirmed on help page) — Lev column reflects this. 2% daily pause on funded (non-breach); 5 profitable days between payouts (not the first). Split 80/90/100%. Max allocation $400k. E8 One default max-DD figure remains slightly fuzzy (customizable). [verify 2026-05-27] E8 One default max-DD corrected 6%->4% (4% Dynamic preset, customizable 4-14%; the 6% was the profit target). Default split 80%. Crypto leverage: E8 One = 1:1, E8 Signature Crypto = BTC/ETH 1:5 / alts 1:2 (stored cryptoLeverage 5 reflects Signature). All from help.e8markets.com but pages bot-block direct fetch (search-snippet only) => stays medium. | [2026-06-07] consolidated to 1-step E8 One + E8 Signature.",
       "source": "https://help.e8markets.com/en/articles/11775980-e8-one",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "medium",
       "status": "active",
       "programDetails": [
@@ -998,7 +1033,8 @@
           "profitTargetPct": 6,
           "profitSplitPct": 80,
           "payoutDays": 14,
-          "note": "Default ~6% dynamic/trailing max DD; customizable 4-14%; FX/Crypto flagship; 2% daily pause (non-breach) on funded; 5 profitable days between payouts after first"
+          "note": "Default ~6% dynamic/trailing max DD; customizable 4-14%; FX/Crypto flagship; 2% daily pause (non-breach) on funded; 5 profitable days between payouts after first",
+          "pricing": "E8 help pages refreshed, but prices were not exposed in the help capture; configurable challenge pricing requires checkout."
         },
         {
           "name": "E8 Signature",
@@ -1010,7 +1046,8 @@
           "profitTargetPct": 6,
           "profitSplitPct": 80,
           "payoutDays": 14,
-          "note": "1-step FX or Crypto; EOD dynamic DD fixed by account size — exact % not stated in notes; Crypto BTC/ETH 1:5, other crypto 1:2"
+          "note": "1-step FX or Crypto; EOD dynamic DD fixed by account size — exact % not stated in notes; Crypto BTC/ETH 1:5, other crypto 1:2",
+          "pricing": "E8 help pages refreshed, but prices were not exposed in the help capture; configurable challenge pricing requires checkout."
         }
       ],
       "automation": {
@@ -1058,7 +1095,7 @@
       "cryptoAssets": "None — crypto no longer offered",
       "notes": "Crypto DROPPED — forex (~29 pairs), indices, metals, commodities only. Fields reflect Alpha One (1-Step, confirmed on help pages): 10% target, 6% trailing max DD (per high-water-mark, locks at initial once +6%), 4% daily (balance or equity, whichever greater). Other programs: Alpha Pro (2-Step, 8% target), Alpha Three (3-Step), Alpha Swing. 80% split. Max allocation $400k shared across all four plans. Leverage up to 1:30 FX. On-demand payouts (min-days unstated). Review sites flag payout-reliability concerns. | [2026-06-07] crypto re-added (1:30); EAs MT5-only trade-management with pre-approval.",
       "source": "https://alphacapitalgroup.uk/",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -1072,7 +1109,8 @@
           "profitTargetPct": 10,
           "profitSplitPct": 80,
           "payoutDays": null,
-          "note": "6% trailing from high-water-mark, locks at initial once +6%. 4% daily on balance or equity (whichever greater). On-demand payouts, min-days unstated."
+          "note": "6% trailing from high-water-mark, locks at initial once +6%. 4% daily on balance or equity (whichever greater). On-demand payouts, min-days unstated.",
+          "pricing": "$5k $50 · $10k $97 · $25k $197 · $50k $297 · $100k $497 · $200k $997, one-time pay."
         },
         {
           "name": "Alpha Pro (2-Step)",
@@ -1084,7 +1122,8 @@
           "profitTargetPct": 8,
           "profitSplitPct": 80,
           "payoutDays": null,
-          "note": "8% target confirmed. DD specifics not separately published for Pro — same trailing structure assumed but not confirmed."
+          "note": "8% target confirmed. DD specifics not separately published for Pro — same trailing structure assumed but not confirmed.",
+          "pricing": "Current capture exposed the Alpha One ladder only; Alpha Pro/Three/Swing fees require switching the account type in checkout."
         },
         {
           "name": "Alpha Three (3-Step)",
@@ -1096,7 +1135,8 @@
           "profitTargetPct": null,
           "profitSplitPct": 80,
           "payoutDays": null,
-          "note": "Program exists; specific targets/DD not broken out in notes or captures. Trailing DD structure consistent with firm."
+          "note": "Program exists; specific targets/DD not broken out in notes or captures. Trailing DD structure consistent with firm.",
+          "pricing": "Current capture exposed the Alpha One ladder only; Alpha Pro/Three/Swing fees require switching the account type in checkout."
         },
         {
           "name": "Alpha Swing",
@@ -1108,7 +1148,8 @@
           "profitTargetPct": null,
           "profitSplitPct": 80,
           "payoutDays": null,
-          "note": "Swing program listed; no separate rule breakdown in verified sources. Likely no daily DD limit."
+          "note": "Swing program listed; no separate rule breakdown in verified sources. Likely no daily DD limit.",
+          "pricing": "Current capture exposed the Alpha One ladder only; Alpha Pro/Three/Swing fees require switching the account type in checkout."
         }
       ],
       "automation": {
@@ -1157,7 +1198,7 @@
       "cryptoAssets": "BTCUSD, BTCEUR, ETHUSD, ETHBTC",
       "notes": "Pricing page confirms: 1-Step (5% trailing-from-peak, 3% daily), 2-Step flagship (8% static max, 4% daily, 8%/5% targets), 3-Step (3% static, 2% daily), Instant, + new OMO. 80% base split; payout cycle every 10 business days. Pricing page shows Forex only — crypto leverage (field 1:20) and crypto asset list NOT confirmed on own pages; treat crypto support as unverified. UAE-registered (Maven Edu-FZCO). [verify 2026-05-27] Crypto IS offered (BTCEUR/BTCUSD/ETHBTC/ETHUSD) - confirmed on maventrading.com/faqs. OMO corrected to 4% daily / 8% static, target 6%/8%, 80% split. 80% base split, payouts every 10 business days. OPEN: Maven publishes NO crypto leverage; stored 1:20 is the metals/indices figure and likely doesn't apply to crypto => stays medium. [user 2026-05-27] cryptoLeverage set to null (renders '—') — Maven publishes no crypto-specific leverage; the prior 1:20 was the metals/indices figure and should not be presented as crypto leverage. | [2026-06-07] added OMO 2-Step challenge; EAs banned across all platforms.",
       "source": "https://maventrading.com/faqs",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "medium",
       "status": "active",
       "programDetails": [
@@ -1171,7 +1212,8 @@
           "profitTargetPct": null,
           "profitSplitPct": 80,
           "payoutDays": null,
-          "note": "5% trailing-from-peak, 3% daily. Profit target not confirmed in notes. Payout cycle every 10 business days."
+          "note": "5% trailing-from-peak, 3% daily. Profit target not confirmed in notes. Payout cycle every 10 business days.",
+          "pricing": "Selected/default pricing card showed $62 with coupon / $68 list."
         },
         {
           "name": "2-Step",
@@ -1183,7 +1225,8 @@
           "profitTargetPct": "8/5",
           "profitSplitPct": 80,
           "payoutDays": null,
-          "note": "8% static max, 4% daily. Phase 1 target 8%, Phase 2 target 5%. Payout every 10 business days."
+          "note": "8% static max, 4% daily. Phase 1 target 8%, Phase 2 target 5%. Payout every 10 business days.",
+          "pricing": "Selected/default pricing card showed $80 with coupon / $88 list."
         },
         {
           "name": "3-Step",
@@ -1195,7 +1238,8 @@
           "profitTargetPct": null,
           "profitSplitPct": 80,
           "payoutDays": null,
-          "note": "3% static max, 2% daily. Profit target not confirmed in notes."
+          "note": "3% static max, 2% daily. Profit target not confirmed in notes.",
+          "pricing": "Selected/default pricing card showed $69 with coupon / $76 list."
         },
         {
           "name": "Instant Funding",
@@ -1207,7 +1251,8 @@
           "profitTargetPct": "N/A",
           "profitSplitPct": 80,
           "payoutDays": null,
-          "note": "2% daily loss limit confirmed in captures. Max DD limit and payout cycle not confirmed separately."
+          "note": "2% daily loss limit confirmed in captures. Max DD limit and payout cycle not confirmed separately.",
+          "pricing": "Instant pricing tab was present, but exact ladder was not exposed in the capture; verify pricing page."
         },
         {
           "name": "OMO Challenge",
@@ -1219,7 +1264,8 @@
           "profitTargetPct": "6/8",
           "profitSplitPct": 80,
           "payoutDays": null,
-          "note": "Two-step challenge; 10% max trailing DD confirmed in capture. Phase targets, daily DD, and split not confirmed in available captures — FAQ page is accordion-only (no numbers visible)."
+          "note": "Two-step challenge; 10% max trailing DD confirmed in capture. Phase targets, daily DD, and split not confirmed in available captures — FAQ page is accordion-only (no numbers visible).",
+          "pricing": "OMO pricing tab was present and promo messaging showed 40% off; exact ladder was not exposed in the capture."
         }
       ],
       "automation": {
@@ -1271,7 +1317,7 @@
       "cryptoAssets": "BTC, ETH (1:5); other alts (1:2)",
       "notes": "Now both instant + 1/2-phase challenges (was pure instant). Launched dedicated crypto accounts (One-Phase Crypto, IF Micro Crypto) after adding a CFD brokerage arm. Smart Drawdown: starts 10% static, tightens to 5% after 5% gain. Crypto accounts use 3-4% daily / 6% max DD, payout every 7 days after 7 trading days (1.5% net). Base split 80%, up to 90% after 10% gain + 90 days. UK-based since 2021. | [2026-06-07] added IF1 24h live-account product.",
       "source": "https://instantfunding.com/trading-rules/",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -1285,7 +1331,8 @@
           "profitTargetPct": "N/A",
           "profitSplitPct": "80-90%",
           "payoutDays": 14,
-          "note": "Smart Drawdown: starts 10% static, tightens to 5% after 5% gain. 4% daily. Split 80% base, up to 90% after 10% gain + 90 days. Payout every 14 days."
+          "note": "Smart Drawdown: starts 10% static, tightens to 5% after 5% gain. 4% daily. Split 80% base, up to 90% after 10% gain + 90 days. Payout every 14 days.",
+          "pricing": "Instant Funding pricing capture did not complete reliably; verify the live challenges checkout before purchase."
         },
         {
           "name": "IF Micro",
@@ -1297,7 +1344,8 @@
           "profitTargetPct": "N/A",
           "profitSplitPct": "80-90%",
           "payoutDays": 14,
-          "note": "Smaller-size instant account. Same Smart Drawdown structure as Instant Funding assumed; micro size not separately broken out in notes."
+          "note": "Smaller-size instant account. Same Smart Drawdown structure as Instant Funding assumed; micro size not separately broken out in notes.",
+          "pricing": "Instant Funding pricing capture did not complete reliably; verify the live challenges checkout before purchase."
         },
         {
           "name": "One-Phase",
@@ -1309,7 +1357,8 @@
           "profitTargetPct": 5,
           "profitSplitPct": "80-90%",
           "payoutDays": 14,
-          "note": "5% profit target. Smart Drawdown applies. Payout after 14 trading days with 1.5% net minimum."
+          "note": "5% profit target. Smart Drawdown applies. Payout after 14 trading days with 1.5% net minimum.",
+          "pricing": "Instant Funding pricing capture did not complete reliably; verify the live challenges checkout before purchase."
         },
         {
           "name": "One-Phase Crypto",
@@ -1321,7 +1370,8 @@
           "profitTargetPct": null,
           "profitSplitPct": "80-90%",
           "payoutDays": 7,
-          "note": "Dedicated crypto account. 3-4% daily / 6% max DD. Payout every 7 days after 7 trading days (1.5% net). Profit target not confirmed separately."
+          "note": "Dedicated crypto account. 3-4% daily / 6% max DD. Payout every 7 days after 7 trading days (1.5% net). Profit target not confirmed separately.",
+          "pricing": "Instant Funding pricing capture did not complete reliably; verify the live challenges checkout before purchase."
         },
         {
           "name": "IF Micro Crypto",
@@ -1333,7 +1383,8 @@
           "profitTargetPct": "N/A",
           "profitSplitPct": "80-90%",
           "payoutDays": 7,
-          "note": "Dedicated micro crypto instant account. Same crypto DD rules assumed (3-4% daily / 6% max). Payout every 7 days."
+          "note": "Dedicated micro crypto instant account. Same crypto DD rules assumed (3-4% daily / 6% max). Payout every 7 days.",
+          "pricing": "Instant Funding pricing capture did not complete reliably; verify the live challenges checkout before purchase."
         },
         {
           "name": "Two-Phase",
@@ -1345,7 +1396,8 @@
           "profitTargetPct": 5,
           "profitSplitPct": "80-90%",
           "payoutDays": 14,
-          "note": "Two-phase challenge. DD parameters from firm-level fields; specific two-phase targets not broken out separately in notes."
+          "note": "Two-phase challenge. DD parameters from firm-level fields; specific two-phase targets not broken out separately in notes.",
+          "pricing": "Instant Funding pricing capture did not complete reliably; verify the live challenges checkout before purchase."
         }
       ],
       "automation": {
@@ -1398,7 +1450,7 @@
       "cryptoAssets": "BTC, ETH +majors",
       "notes": "Domain/name changed blueguardiancapital.com -> blueguardian.com (dropped 'Capital'). Crypto Challenge is a 1-step eval: 10% target, 3% daily / 6% overall loss limit, min 3 trading days at 0.5% daily profit. Up to 90% split, weekly payouts (first ~7 days). Crypto leverage up to 1:4. Added futures program. Active. | [2026-06-07] added Futures line; VPS + Trade-Copier EAs banned (Mar 2025).",
       "source": "https://www.blueguardian.com/",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -1412,7 +1464,8 @@
           "profitTargetPct": 10,
           "profitSplitPct": 80,
           "payoutDays": 7,
-          "note": "10% target, 3% daily / 6% overall loss limit. Min 3 trading days at 0.5% daily profit. Up to 90% split, weekly payouts (~7 days first payout). Crypto leverage 1:4."
+          "note": "10% target, 3% daily / 6% overall loss limit. Min 3 trading days at 0.5% daily profit. Up to 90% split, weekly payouts (~7 days first payout). Crypto leverage 1:4.",
+          "pricing": "Pricing widget capture showed 100k Instant Standard at $467 promo / $779 list; switch plan/account type in checkout for exact ladder."
         },
         {
           "name": "1 Step",
@@ -1424,7 +1477,8 @@
           "profitTargetPct": 10,
           "profitSplitPct": 80,
           "payoutDays": 7,
-          "note": "Standard forex/indices 1-step. Assumed same DD/split structure as Crypto Challenge; not broken out separately in notes."
+          "note": "Standard forex/indices 1-step. Assumed same DD/split structure as Crypto Challenge; not broken out separately in notes.",
+          "pricing": "Pricing widget capture showed 100k Instant Standard at $467 promo / $779 list; switch plan/account type in checkout for exact ladder."
         },
         {
           "name": "2 Step",
@@ -1436,7 +1490,8 @@
           "profitTargetPct": null,
           "profitSplitPct": 80,
           "payoutDays": null,
-          "note": "2-step program listed. Specific targets and DD rules not broken out in verified notes or captures."
+          "note": "2-step program listed. Specific targets and DD rules not broken out in verified notes or captures.",
+          "pricing": "Pricing widget capture showed 100k Instant Standard at $467 promo / $779 list; switch plan/account type in checkout for exact ladder."
         },
         {
           "name": "3 Step",
@@ -1448,7 +1503,8 @@
           "profitTargetPct": null,
           "profitSplitPct": 80,
           "payoutDays": null,
-          "note": "3-step program listed. Specific targets and DD rules not broken out in verified notes or captures."
+          "note": "3-step program listed. Specific targets and DD rules not broken out in verified notes or captures.",
+          "pricing": "Pricing widget capture showed 100k Instant Standard at $467 promo / $779 list; switch plan/account type in checkout for exact ladder."
         },
         {
           "name": "Instant",
@@ -1460,7 +1516,8 @@
           "profitTargetPct": "N/A",
           "profitSplitPct": 80,
           "payoutDays": null,
-          "note": "Instant program listed. DD parameters not confirmed separately in available captures."
+          "note": "Instant program listed. DD parameters not confirmed separately in available captures.",
+          "pricing": "Selected 100k Instant Standard showed $467 promo / $779 list, one-time fee."
         }
       ],
       "automation": {
@@ -1508,7 +1565,7 @@
       "cryptoAssets": "BTC, ETH, LTC +majors",
       "notes": "Single-step Pro Trader eval: 10% target, 5% daily / 6% trailing max DD (was 8% static). 80% split on $20k/$50k, 90% on $100k+. Sizes restructured to 20k/50k/100k/200k/650k (top raised to $650k). Crypto leverage now 1:3; forex 1:30, indices 1:100. Weekly payouts processed ~24h; consistency rule (no single trade >40% of profit). Active.",
       "source": "https://sabiotrade.com",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -1525,7 +1582,8 @@
           "profitTargetPct": 10,
           "profitSplitPct": 80,
           "payoutDays": null,
-          "note": "Single-step Pro Trader eval. 5% daily / 6% trailing max DD. 80% split at $20k/$50k tier. Weekly payouts ~24h processing."
+          "note": "Single-step Pro Trader eval. 5% daily / 6% trailing max DD. 80% split at $20k/$50k tier. Weekly payouts ~24h processing.",
+          "pricing": "$119 one-time."
         },
         {
           "name": "Plus ($50k)",
@@ -1540,7 +1598,8 @@
           "profitTargetPct": 10,
           "profitSplitPct": 80,
           "payoutDays": null,
-          "note": "Same rules as Essential. 80% split."
+          "note": "Same rules as Essential. 80% split.",
+          "pricing": "$289 one-time."
         },
         {
           "name": "Advanced ($100k)",
@@ -1555,7 +1614,8 @@
           "profitTargetPct": 10,
           "profitSplitPct": 80,
           "payoutDays": null,
-          "note": "90% split at $100k+."
+          "note": "90% split at $100k+.",
+          "pricing": "$479 one-time."
         },
         {
           "name": "Ultimate ($200k)",
@@ -1570,7 +1630,8 @@
           "profitTargetPct": 10,
           "profitSplitPct": 80,
           "payoutDays": null,
-          "note": "90% split. Consistency rule: no single trade >40% of total profit."
+          "note": "90% split. Consistency rule: no single trade >40% of total profit.",
+          "pricing": "$939 one-time."
         },
         {
           "name": "Prime ($650k)",
@@ -1585,7 +1646,8 @@
           "profitTargetPct": 10,
           "profitSplitPct": 80,
           "payoutDays": null,
-          "note": "Top tier raised to $650k. 90% split. Same rules apply."
+          "note": "Top tier raised to $650k. 90% split. Same rules apply.",
+          "pricing": "$2,989 one-time."
         }
       ],
       "automation": {
@@ -1631,7 +1693,7 @@
       "cryptoAssets": "BTC, ETH, LTC, XRP, ADA, SOL, DOT",
       "notes": "2-Step DISCONTINUED early 2026; now 1-Step Career Evaluation (confirmed on help page: 10% target, 5% daily, 7% static max DD, 80% split, crypto 1:2, 3 profitable days to unlock), 3-Step, Instant Funding. Account sizes $10K-$200K. Payouts via Riseworks (~6h avg claimed), requestable every 14 days. HFT/martingale banned; some payout denials reported.",
       "source": "https://larkfunding.com/",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -1645,7 +1707,8 @@
           "profitTargetPct": 10,
           "profitSplitPct": 80,
           "payoutDays": 14,
-          "note": "Confirmed on help page: 10% target, 5% daily (5% of balance at 5pm EST), 7% static max DD. 3 profitable days to unlock. Payouts via Riseworks (~6h avg), requestable every 14 days."
+          "note": "Confirmed on help page: 10% target, 5% daily (5% of balance at 5pm EST), 7% static max DD. 3 profitable days to unlock. Payouts via Riseworks (~6h avg), requestable every 14 days.",
+          "pricing": "Selected 10k 1-Step/Career card showed $200 one-time; funded Lark Base shown at $50/month unlimited."
         },
         {
           "name": "3-Step",
@@ -1657,7 +1720,8 @@
           "profitTargetPct": null,
           "profitSplitPct": 80,
           "payoutDays": 14,
-          "note": "Listed in programs; separate DD/target rules not confirmed in notes or captures. 2-Step was discontinued early 2026."
+          "note": "Listed in programs; separate DD/target rules not confirmed in notes or captures. 2-Step was discontinued early 2026.",
+          "pricing": "3-Step tab present, but exact ladder was not exposed in the capture; 10k 1-Step reference was $200."
         },
         {
           "name": "Instant Funding",
@@ -1669,7 +1733,8 @@
           "profitTargetPct": "N/A",
           "profitSplitPct": 80,
           "payoutDays": 14,
-          "note": "Instant program listed. Specific DD parameters not confirmed in verified sources."
+          "note": "Instant program listed. Specific DD parameters not confirmed in verified sources.",
+          "pricing": "Instant tab present, but exact ladder was not exposed in the capture; 10k 1-Step reference was $200."
         }
       ],
       "automation": {
@@ -1717,7 +1782,7 @@
       "cryptoAssets": "BTC, ETH, XRP +majors",
       "notes": "Active 2026, $255M+ paid. 4 programs incl. instant 'Zero' (95% split) and standard challenges (up to 100% monthly cycle, 90% on-demand). Standard challenges static DD (2-Step: 5% daily/10% max; 1-Step & 2-Step Pro: 3% daily/6% max); Zero uses 5% trailing. Payouts ~24h; on-demand cycle as fast as a few days. Crypto leverage 1:2. | [2026-06-07] own-EA full automation allowed with proof of ownership.",
       "source": "https://fundingpips.com/trading-objectives",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -1731,7 +1796,8 @@
           "profitTargetPct": 8,
           "profitSplitPct": 90,
           "payoutDays": null,
-          "note": "3% daily / 6% max static. Up to 100% split (monthly cycle); 90% on-demand. On-demand payout available in days."
+          "note": "3% daily / 6% max static. Up to 100% split (monthly cycle); 90% on-demand. On-demand payout available in days.",
+          "pricing": "Trading objectives page refreshed but did not expose the fee ladder; current banner showed HELLO for 20% off first purchase."
         },
         {
           "name": "2-Step",
@@ -1743,7 +1809,8 @@
           "profitTargetPct": 8,
           "profitSplitPct": 90,
           "payoutDays": 7,
-          "note": "5% daily / 10% max static. Up to 100% split (monthly), 90% on-demand. ~24h processing."
+          "note": "5% daily / 10% max static. Up to 100% split (monthly), 90% on-demand. ~24h processing.",
+          "pricing": "Trading objectives page refreshed but did not expose the fee ladder; current banner showed HELLO for 20% off first purchase."
         },
         {
           "name": "2-Step Pro",
@@ -1755,7 +1822,8 @@
           "profitTargetPct": null,
           "profitSplitPct": 90,
           "payoutDays": null,
-          "note": "3% daily / 6% max static (same as 1-Step). Profit target not confirmed separately in notes."
+          "note": "3% daily / 6% max static (same as 1-Step). Profit target not confirmed separately in notes.",
+          "pricing": "Trading objectives page refreshed but did not expose the fee ladder; current banner showed HELLO for 20% off first purchase."
         },
         {
           "name": "Zero (Instant)",
@@ -1767,7 +1835,8 @@
           "profitTargetPct": "N/A",
           "profitSplitPct": 90,
           "payoutDays": null,
-          "note": "5% trailing DD. 95% split. No profit target. Max trailing DD limit not confirmed separately."
+          "note": "5% trailing DD. 95% split. No profit target. Max trailing DD limit not confirmed separately.",
+          "pricing": "Trading objectives page refreshed but did not expose the fee ladder; current banner showed HELLO for 20% off first purchase."
         }
       ],
       "automation": {
@@ -1814,7 +1883,7 @@
       "cryptoAssets": "BTC, ETH, XRP, BCH, DASH",
       "notes": "cTrader platform. Own accounts page confirms: programs Standard (Classic/Consistency modes) + Instant (EOD/Payout/Equity trailing modes); account sizes $2.5K-$150K; profit share up to 99% base (109% with loyalty XP). First payout from ~7 days, then every 7 days; progressive payout caps. Scaling to $1.75M over 8 steps; 2% Pip Protector max open risk. Standard challenge daily/max DD (field 3%/9%) and crypto leverage (1:5) NOT confirmed on captured pages — pending. [verify 2026-05-27] DEFAULT split corrected 99%->70% (Rank 0 base; 99% is the Rank-6 ceiling) per help.pipfarm.com/how-payouts-work. One-stage Standard: 12% target, 6% static max (prior 9/9 were two-stage figures). Crypto 1:5->1:2; +DASH. Sourced from PipFarm's own help center via reader proxy (site Cloudflare-blocks direct fetch) => stays medium.",
       "source": "https://help.pipfarm.com/articles/9367703-how-payouts-work",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "medium",
       "status": "active",
       "programDetails": [
@@ -1828,7 +1897,8 @@
           "profitTargetPct": 12,
           "profitSplitPct": 70,
           "payoutDays": 7,
-          "note": "Up to 99% base split (109% with loyalty XP). Progressive payout caps apply. Scaling to $1.75M over 8 steps. Daily/max DD (3%/9%) from firm-level fields — not re-confirmed on own captures; treat as medium confidence."
+          "note": "Up to 99% base split (109% with loyalty XP). Progressive payout caps apply. Scaling to $1.75M over 8 steps. Daily/max DD (3%/9%) from firm-level fields — not re-confirmed on own captures; treat as medium confidence.",
+          "pricing": "Public page showed pay-with-profits and 30% off messaging, but no stable fee ladder in capture; verify the challenge customizer/checkout."
         },
         {
           "name": "Standard (Consistency Mode)",
@@ -1840,7 +1910,8 @@
           "profitTargetPct": 12,
           "profitSplitPct": 70,
           "payoutDays": 7,
-          "note": "Consistency scoring applied; same DD structure as Classic Mode assumed. Specific Consistency Mode DD rules not confirmed in captures."
+          "note": "Consistency scoring applied; same DD structure as Classic Mode assumed. Specific Consistency Mode DD rules not confirmed in captures.",
+          "pricing": "Public page showed pay-with-profits and 30% off messaging, but no stable fee ladder in capture; verify the challenge customizer/checkout."
         },
         {
           "name": "Instant (EOD Trailing)",
@@ -1852,7 +1923,8 @@
           "profitTargetPct": "N/A",
           "profitSplitPct": 70,
           "payoutDays": 7,
-          "note": "EOD trailing max loss. Payout target confirmed in captures. First payout cap applies. DD % limit not confirmed in captures."
+          "note": "EOD trailing max loss. Payout target confirmed in captures. First payout cap applies. DD % limit not confirmed in captures.",
+          "pricing": "Public page showed pay-with-profits and 30% off messaging, but no stable fee ladder in capture; verify the challenge customizer/checkout."
         },
         {
           "name": "Instant (Payout Trailing)",
@@ -1864,7 +1936,8 @@
           "profitTargetPct": "N/A",
           "profitSplitPct": 70,
           "payoutDays": 7,
-          "note": "Trailing resets on payout. First payout cap applies. DD % limit not confirmed in captures."
+          "note": "Trailing resets on payout. First payout cap applies. DD % limit not confirmed in captures.",
+          "pricing": "Public page showed pay-with-profits and 30% off messaging, but no stable fee ladder in capture; verify the challenge customizer/checkout."
         },
         {
           "name": "Instant (Equity Trailing)",
@@ -1876,7 +1949,8 @@
           "profitTargetPct": "N/A",
           "profitSplitPct": 70,
           "payoutDays": 7,
-          "note": "Equity-based trailing. First payout cap applies. DD % limit not confirmed in captures."
+          "note": "Equity-based trailing. First payout cap applies. DD % limit not confirmed in captures.",
+          "pricing": "Public page showed pay-with-profits and 30% off messaging, but no stable fee ladder in capture; verify the challenge customizer/checkout."
         }
       ],
       "automation": {
@@ -1919,7 +1993,7 @@
       "cryptoAssets": "MBT, MET (CME micro crypto futures)",
       "notes": "Futures only. Program rebuilt Mar 2026 ('Apex 4.0'): now two DD flavors — EOD trailing (new default) and Intraday trailing (cheaper). Lineup TRIMMED to $25k/$50k/$100k/$150k ($75k/$250k/$300k retired). $-based trailing DD ($1.5k-$4k+). Split: 100% first $25k then 90%. First payout after 5 qualifying days; 6-payout ladder with caps; 50% consistency rule on payouts (none on eval). Trailing drawdown by size: $25k->$1k, $50k->$2k, $100k->$3k, $150k->$4k (locks at start+$100). Intraday accounts have no daily limit; EOD accounts add a $0.5-2k daily loss limit. No crypto-CFD leverage (trades CME micro-crypto futures). | [2026-06-07] Apex 4.0 — one-time eval fee + lifetime activation; 50% consistency on payout.",
       "source": "https://apextraderfunding.com/",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -1939,7 +2013,8 @@
           "profitTargetPct": 6,
           "profitSplitPct": 90,
           "payoutDays": 8,
-          "note": "EOD trailing: locks at start+$100 once reached. Daily loss limit $0.5-2k by size ($25k→$0.5k=2%, $150k→$2k=1.3%). Max trailing DD $25k→$1k(4%), $50k→$2k(4%), $100k→$3k(3%), $150k→$4k(2.7%). 100% first $25k profits then 90%. 6-payout ladder with caps; 50% consistency rule on payouts."
+          "note": "EOD trailing: locks at start+$100 once reached. Daily loss limit $0.5-2k by size ($25k→$0.5k=2%, $150k→$2k=1.3%). Max trailing DD $25k→$1k(4%), $50k→$2k(4%), $100k→$3k(3%), $150k→$4k(2.7%). 100% first $25k profits then 90%. 6-payout ladder with caps; 50% consistency rule on payouts.",
+          "pricing": "Current page showed one-time fees, no recurring billing, no activation fee, and SAVENOW up to 90% off; exact account fees were not exposed in capture."
         },
         {
           "name": "Evaluation (Intraday Trailing)",
@@ -1957,7 +2032,8 @@
           "profitTargetPct": 6,
           "profitSplitPct": 90,
           "payoutDays": 8,
-          "note": "Intraday trailing variant (cheaper); no daily loss limit. Same max trailing DD as EOD plan. 50% consistency rule on payouts."
+          "note": "Intraday trailing variant (cheaper); no daily loss limit. Same max trailing DD as EOD plan. 50% consistency rule on payouts.",
+          "pricing": "Current page showed one-time fees, no recurring billing, no activation fee, and SAVENOW up to 90% off; exact account fees were not exposed in capture."
         }
       ],
       "automation": {
@@ -1998,7 +2074,7 @@
       "cryptoAssets": "MBT, MET (CME micro crypto futures)",
       "notes": "Futures only. Profit split now 90/10 for accounts opened in 2026 (legacy '100% first $10k then 90%' grandfathered only for pre-12-Jan-2026 joiners). Trailing max-loss-limit ($2k/$3k/$4.5k on 50k/100k/150k) locks once you hit starting balance. First payout = 5 winning days ($150+ net each); per-payout caps apply. Fast processing (Wise/Aeropay, no fee). By size ($50k/$100k/$150k): daily loss $1k/$2k/$3k, trailing max-loss $2k/$3k/$4.5k (EOD-trailing, enforced intraday).",
       "source": "https://help.topstep.com/en/articles/8284233-topstep-payout-policy",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -2017,7 +2093,8 @@
           "profitTargetPct": 6,
           "profitSplitPct": 90,
           "payoutDays": 5,
-          "note": "EOD trailing; locks once you hit starting balance. Daily loss $1k/$2k/$3k on $50k/$100k/$150k (all 2%). Max trailing $2k/$3k/$4.5k = 4%/3%/3%. 90% split for accounts opened 2026+ (legacy 100% first $10k grandfathered). First payout: 5 winning days ($150+ net each)."
+          "note": "EOD trailing; locks once you hit starting balance. Daily loss $1k/$2k/$3k on $50k/$100k/$150k (all 2%). Max trailing $2k/$3k/$4.5k = 4%/3%/3%. 90% split for accounts opened 2026+ (legacy 100% first $10k grandfathered). First payout: 5 winning days ($150+ net each).",
+          "pricing": "Pricing page capture did not expose current Trading Combine fees; verify Topstep checkout."
         }
       ],
       "automation": {
@@ -2062,7 +2139,7 @@
       "cryptoAssets": "MBT, MET (CME micro crypto futures)",
       "notes": "Futures only (CME Group). Plans (confirmed on site): Builder (1-day eval, EOD trailing, 80/20, payout every 48h), Flex (2-day eval, EOD trailing, 80/20, weekly, no consistency rule), Rapid (2-day eval, intraday trailing, 90/10, daily payout, no consistency rule), Pro (2-day eval, EOD trailing, 80/20, bi-weekly). 'Core' plan retired. Dollar-denominated DD only (e.g. $2k on $50k). Crypto = CME Micro Bitcoin (MBT) / Micro Ether (MET) futures; spot/perp crypto prohibited per site legal. Payouts via Rise Works, as fast as ~minutes. Eval target ~6%. Trailing max drawdown $1-4.5k by plan/size; only Builder funded carries a $1k daily limit (Rapid/Pro/Flex: none). | [2026-06-07] active lineup Core / Rapid / Pro / Flex / Builder.",
       "source": "https://myfundedfutures.com",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -2082,7 +2159,8 @@
           "profitTargetPct": 6,
           "profitSplitPct": 80,
           "payoutDays": null,
-          "note": "1-day eval. EOD trailing. 80/20 split. Funded: daily loss limit applies ($1k on $25k=4%, scales; only Builder plan has a daily limit). Max trailing DD ~$1-2k on $25k-$50k (4%), ~$3-4.5k on $100k-$150k (3%). Payout every 48h. 50% consistency rule on funded. Eval target ~6% ($1.5k on $25k, $3k on $50k)."
+          "note": "1-day eval. EOD trailing. 80/20 split. Funded: daily loss limit applies ($1k on $25k=4%, scales; only Builder plan has a daily limit). Max trailing DD ~$1-2k on $25k-$50k (4%), ~$3-4.5k on $100k-$150k (3%). Payout every 48h. 50% consistency rule on funded. Eval target ~6% ($1.5k on $25k, $3k on $50k).",
+          "pricing": "Starting at $63/mo promo / $125 list."
         },
         {
           "name": "Flex",
@@ -2100,7 +2178,8 @@
           "profitTargetPct": 6,
           "profitSplitPct": 80,
           "payoutDays": 7,
-          "note": "2-day eval. EOD trailing (eval + funded). 80/20 split. No daily loss limit. No consistency rule. Weekly payouts. Max trailing DD same range as Builder."
+          "note": "2-day eval. EOD trailing (eval + funded). 80/20 split. No daily loss limit. No consistency rule. Weekly payouts. Max trailing DD same range as Builder.",
+          "pricing": "Flex price was not visible in the refreshed capture; Builder/Rapid/Pro showed from $63/$126/$114 per month."
         },
         {
           "name": "Rapid",
@@ -2118,7 +2197,8 @@
           "profitTargetPct": 6,
           "profitSplitPct": 90,
           "payoutDays": 1,
-          "note": "2-day eval. Intraday trailing on funded (eval uses EOD). 90/10 split — highest split. No daily loss limit. No consistency rule. Daily payouts."
+          "note": "2-day eval. Intraday trailing on funded (eval uses EOD). 90/10 split — highest split. No daily loss limit. No consistency rule. Daily payouts.",
+          "pricing": "Starting at $126/mo promo / $157 list."
         },
         {
           "name": "Pro",
@@ -2136,7 +2216,8 @@
           "profitTargetPct": 6,
           "profitSplitPct": 80,
           "payoutDays": 14,
-          "note": "2-day eval. EOD trailing. 80/20 split. No daily loss limit. No consistency rule. Bi-weekly payouts."
+          "note": "2-day eval. EOD trailing. 80/20 split. No daily loss limit. No consistency rule. Bi-weekly payouts.",
+          "pricing": "Starting at $114/mo promo / $227 list."
         }
       ],
       "automation": {
@@ -2180,7 +2261,7 @@
       "cryptoAssets": "MBT, MET (CME micro crypto futures)",
       "notes": "Futures only. Now both challenge (Growth/Select) and instant (Lightning Funded). EOD trailing drawdown (locks once balance exceeds start + DD + $100); separate soft Daily Loss Limit pauses but doesn't fail account. One-time pricing, no monthly billing. ~4-5 day first payout. 90% on funded sim; Elite Live 80%. By size ($25k-$150k): trailing max $1-4.5k (EOD); Growth daily loss $0.6-3k, Select eval/flex has no daily limit.",
       "source": "https://tradeify.co",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -2200,7 +2281,8 @@
           "profitTargetPct": 5,
           "profitSplitPct": 90,
           "payoutDays": 5,
-          "note": "EOD trailing; soft daily loss limit pauses (doesn't fail) account. Daily loss $0.6-3k by size ($25k→$0.6k=2.4%, $150k→$3k=2%). Max trailing $1-4.5k ($25k→4%, $150k→3%). 90% split. ~4-5 day first payout."
+          "note": "EOD trailing; soft daily loss limit pauses (doesn't fail) account. Daily loss $0.6-3k by size ($25k→$0.6k=2.4%, $150k→$3k=2%). Max trailing $1-4.5k ($25k→4%, $150k→3%). 90% split. ~4-5 day first payout.",
+          "pricing": "Visible ladder: 25k $71 promo/$109 list · 50k $107/$165 · 100k $172/$265 · 150k $240/$369, one-time with code JUNE."
         },
         {
           "name": "Select",
@@ -2218,7 +2300,8 @@
           "profitTargetPct": 5,
           "profitSplitPct": 90,
           "payoutDays": 5,
-          "note": "EOD trailing. No daily loss limit on eval/flex. Same max trailing DD range as Growth. 90% split."
+          "note": "EOD trailing. No daily loss limit on eval/flex. Same max trailing DD range as Growth. 90% split.",
+          "pricing": "Visible account cards used the same 25k-150k promo/list ladder; Select path options switch payout/rule settings."
         },
         {
           "name": "Lightning Funded",
@@ -2236,7 +2319,8 @@
           "profitTargetPct": null,
           "profitSplitPct": 80,
           "payoutDays": null,
-          "note": "Instant funded (no eval). Elite Live account: 80% split. Exact DD % not confirmed in notes — refer to Tradeify site for current Lightning Funded terms."
+          "note": "Instant funded (no eval). Elite Live account: 80% split. Exact DD % not confirmed in notes — refer to Tradeify site for current Lightning Funded terms.",
+          "pricing": "Visible funded cards used 25k $71/$109 · 50k $107/$165 · 100k $172/$265 · 150k $240/$369, one-time with code JUNE."
         }
       ],
       "automation": {
@@ -2281,7 +2365,7 @@
       "cryptoAssets": "MBT, MET (CME micro crypto futures)",
       "notes": "Futures only (CME/CBOT/COMEX/NYMEX). Eval uses EOD trailing DD; PRO switches to intraday trailing; PRO+ uses EOD and 90% split with no buffer/payout wait (PRO standard is 80%). Min 5 trading days to pass. Withdrawals from day one on PRO+ with buffer rules on PRO. Trailing max drawdown by size: $25k->$1.5k ... $150k->$5k (EOD on Test/PRO+, intraday on PRO). No daily loss limit (removed Jan 2025).",
       "source": "https://takeprofittrader.com",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -2302,7 +2386,8 @@
           "profitTargetPct": 6,
           "profitSplitPct": 80,
           "payoutDays": 0,
-          "note": "EOD trailing (eval + PRO+ funded). No daily loss limit (removed Jan 2025). Max trailing DD by size: $25k→$1.5k(6%), $50k→$2k(4%), $75k→$2.5k(3.3%), $100k→$3k(3%), $150k→$5k(3.3%). 90% split. Withdrawals from day one on PRO+; min 5 trading days to pass."
+          "note": "EOD trailing (eval + PRO+ funded). No daily loss limit (removed Jan 2025). Max trailing DD by size: $25k→$1.5k(6%), $50k→$2k(4%), $75k→$2.5k(3.3%), $100k→$3k(3%), $150k→$5k(3.3%). 90% split. Withdrawals from day one on PRO+; min 5 trading days to pass.",
+          "pricing": "25k $150/mo · 50k $170/mo · 75k $245/mo · 100k $330/mo · 150k $360/mo; NOFEE40 promo banner shown."
         },
         {
           "name": "PRO",
@@ -2321,7 +2406,8 @@
           "profitTargetPct": 6,
           "profitSplitPct": 80,
           "payoutDays": 0,
-          "note": "Intraday trailing on funded (vs EOD on Eval/PRO+). 80% split (lower than PRO+). Same DD range. Standard buffer rules on withdrawal vs PRO+'s immediate access."
+          "note": "Intraday trailing on funded (vs EOD on Eval/PRO+). 80% split (lower than PRO+). Same DD range. Standard buffer rules on withdrawal vs PRO+'s immediate access.",
+          "pricing": "Same account ladder shown for subscription purchase; PRO account one-time fee referenced as $130, with NOFEE40 no-activation-fee promo."
         }
       ],
       "automation": {
@@ -2364,7 +2450,7 @@
       "cryptoAssets": "MBT, MET (CME micro crypto futures)",
       "notes": "Futures only (CME via Rithmic). 1-step eval: 6% target, 3.5% trailing DD that stops at initial balance, min 15 trading days, no daily DD. 100% of first $10k then 90%. Weekly payouts, $1k min, processed 1-2 business days; BTC/USDT or wire. Intraday trailing max drawdown by size: $25k->$1.5k, $50k->$2.5k, $100k->$3.5k, $150k->$5k, $250k->$5.5k (locks at starting balance). No daily loss limit.",
       "source": "https://oneuptrader.com",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -2385,7 +2471,8 @@
           "profitTargetPct": 6,
           "profitSplitPct": 90,
           "payoutDays": 15,
-          "note": "Intraday trailing; stops at initial balance. No daily loss limit. Max trailing by size: $25k→$1.5k(6%), $50k→$2.5k(5%), $100k→$3.5k(3.5%), $150k→$5k(3.3%), $250k→$5.5k(2.2%). 100% first $10k then 90%. Min 15 trading days. Weekly payouts, $1k min."
+          "note": "Intraday trailing; stops at initial balance. No daily loss limit. Max trailing by size: $25k→$1.5k(6%), $50k→$2.5k(5%), $100k→$3.5k(3.5%), $150k→$5k(3.3%), $250k→$5.5k(2.2%). 100% first $10k then 90%. Min 15 trading days. Weekly payouts, $1k min.",
+          "pricing": "25k selected account showed $65/mo; full 25k-250k ladder requires account selector."
         }
       ],
       "automation": {
@@ -2428,7 +2515,7 @@
       "cryptoAssets": "None on funded accounts - Bitcoin/Ether (incl. micro) futures disallowed on live accounts since 2019-12-05",
       "notes": "Futures only. Gauntlet Mini: 10-day minimum, 6% target, EOD TRAILING drawdown (dollar-denominated limits, vary by size). 80/20 split, monthly payouts, $100 min. LiveSim until first $5k then live account; $139 one-time activation. Education-heavy. By size: daily loss $0.55-4.4k, trailing max $1.5-6k ($200k stage is a static floor). [verify 2026-05-27] Per earn2trade.com assets help page, BTC/ETH futures are NOT tradable on live/funded accounts (and don't count toward completion) - crypto exposure is effectively nil on funded capital. Payouts weekly (Wed, ~168h), 80% split; GAU50 6% target / 2.2% daily / 4% trailing-max and GAU100 max 3.5% confirmed; larger sizes' DD tables are images (unverified) => stays medium.",
       "source": "https://www.earn2trade.com/gauntlet-mini",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "medium",
       "status": "active",
       "programDetails": [
@@ -2448,7 +2535,8 @@
           "profitTargetPct": 6,
           "profitSplitPct": 80,
           "payoutDays": 0,
-          "note": "EOD trailing eval; intraday trailing on live account stage. Scaling path: $25k→$50k→$100k→$200k. Daily loss consistent at ~2.2% ($25k→$550, $50k→$1.1k, $100k→$2.2k, $200k→$4.4k). Max trailing $1.5k-$3.5k for $25k-$100k stages (6%-3.5%); $200k stage uses static floor at $194k (~3%). Min 10 trading days. 80% split. Monthly payouts, $100 min; LiveSim until first $5k then live account."
+          "note": "EOD trailing eval; intraday trailing on live account stage. Scaling path: $25k→$50k→$100k→$200k. Daily loss consistent at ~2.2% ($25k→$550, $50k→$1.1k, $100k→$2.2k, $200k→$4.4k). Max trailing $1.5k-$3.5k for $25k-$100k stages (6%-3.5%); $200k stage uses static floor at $194k (~3%). Min 10 trading days. 80% split. Monthly payouts, $100 min; LiveSim until first $5k then live account.",
+          "pricing": "TCP current fee not exposed in refreshed capture; verify product checkout."
         },
         {
           "name": "Gauntlet Mini",
@@ -2466,7 +2554,8 @@
           "profitTargetPct": 6,
           "profitSplitPct": 80,
           "payoutDays": 0,
-          "note": "EOD trailing. Min 10 trading days. Daily loss ~2.2% by size ($50k→$1.1k, $150k→$3.3k, $200k→$4.4k). Max trailing $2k-$6k ($50k=4%, $200k=3%). 80% split. Monthly payouts. $139 one-time activation after passing. Education-heavy; LiveSim model."
+          "note": "EOD trailing. Min 10 trading days. Daily loss ~2.2% by size ($50k→$1.1k, $150k→$3.3k, $200k→$4.4k). Max trailing $2k-$6k ($50k=4%, $200k=3%). 80% split. Monthly payouts. $139 one-time activation after passing. Education-heavy; LiveSim model.",
+          "pricing": "GAU50 page showed starting at $170/mo; MULTI60 promo banner shown through July 5."
         }
       ],
       "automation": {
@@ -2512,7 +2601,7 @@
       "cryptoAssets": "MBT (CME micro bitcoin futures)",
       "notes": "Futures only. Live site: leelootrading.com (leeloo.com dead). Performance Account tiers: Standard (LE/LB/LL), Turbo (WK), Elite (Flexible/Intermediate). Dollar-denominated trailing DD; no daily DD. 100% of first $12.5k then 90%. First-payout eligibility: standard LE/LB/LL = 30 traded days (request only last Saturday of month); Turbo = 5 winning days. Processing 1-3 business days via Rise Works. WATCH: official support page (Apr 2026) flags this 'legacy' program as being phased out; scattered payout-denial reviews. Tiers up to $300k. [verify 2026-05-27] Account sizes corrected: dropped $75k, added $50k + $250k -> [25/50/100/150/250/300]k per leelootrading.com/le-trading-products. Split 90%, 6% target, trailing DD (2.5-6%), first payout 30d, processing 24-72h confirmed. PHASE-OUT: Bundle + Investor PA Foundation + Elite ALL flagged 'being phased out' (support page mod 2026-04-14); WK first-payout in flux => stays medium (firm-admitted volatility). | [2026-06-07] NOT closing — Performance-Account restructuring for new purchases; firm active.",
       "source": "https://www.leelootrading.com/le-trading-products",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "medium",
       "status": "active",
       "programDetails": [
@@ -2534,7 +2623,8 @@
           "profitTargetPct": 6,
           "profitSplitPct": 90,
           "payoutDays": 30,
-          "note": "EOD trailing; locks at initial balance+$100. No daily DD. First payout after 30 traded days; requests only on last Saturday of month (2am-5pm EST). 100% first $12.5k then 90%. Max trailing estimated: $25k→~$1.5k(6%), $300k→~$7.5k(2.5%) — exact dollar amounts not confirmed per size on capture. CAUTION: support page (Apr 2026) labels this 'legacy' program being phased out."
+          "note": "EOD trailing; locks at initial balance+$100. No daily DD. First payout after 30 traded days; requests only on last Saturday of month (2am-5pm EST). 100% first $12.5k then 90%. Max trailing estimated: $25k→~$1.5k(6%), $300k→~$7.5k(2.5%) — exact dollar amounts not confirmed per size on capture. CAUTION: support page (Apr 2026) labels this 'legacy' program being phased out.",
+          "pricing": "Leeloo PA article confirms separate monthly PA subscription fees, but the current price ladder was not exposed; verify checkout/support."
         },
         {
           "name": "Turbo (WK)",
@@ -2554,7 +2644,8 @@
           "profitTargetPct": 6,
           "profitSplitPct": 90,
           "payoutDays": null,
-          "note": "Faster payout path: first payout after 5 winning traded days ($200+ net profit each); subsequent every 5 winning days. Requests any day via email. Same trailing DD as Standard. Same legacy-phaseout caution applies. Max 3 active Performance Accounts per trader."
+          "note": "Faster payout path: first payout after 5 winning traded days ($200+ net profit each); subsequent every 5 winning days. Requests any day via email. Same trailing DD as Standard. Same legacy-phaseout caution applies. Max 3 active Performance Accounts per trader.",
+          "pricing": "Leeloo PA article confirms separate monthly PA subscription fees, but the current price ladder was not exposed; verify checkout/support."
         },
         {
           "name": "Elite Flexible",
@@ -2567,7 +2658,8 @@
           "profitTargetPct": null,
           "profitSplitPct": 90,
           "payoutDays": null,
-          "note": "Phase-based structure: 3 phases (7 profitable days of $175/$225/$350 per day). Max total payout $6,500 or 3 payouts. Requests on any day via email. Exact account sizes and DD % not confirmed in captured data."
+          "note": "Phase-based structure: 3 phases (7 profitable days of $175/$225/$350 per day). Max total payout $6,500 or 3 payouts. Requests on any day via email. Exact account sizes and DD % not confirmed in captured data.",
+          "pricing": "Leeloo PA article confirms separate monthly PA subscription fees, but the current price ladder was not exposed; verify checkout/support."
         },
         {
           "name": "Elite Intermediate",
@@ -2580,7 +2672,8 @@
           "profitTargetPct": null,
           "profitSplitPct": 90,
           "payoutDays": null,
-          "note": "7 profitable days of $250+/day within 10-day window. Up to 3 payouts ($500-$2k each); reviewed at $5k total. Requests any day. Exact account sizes and DD % not confirmed in captured data."
+          "note": "7 profitable days of $250+/day within 10-day window. Up to 3 payouts ($500-$2k each); reviewed at $5k total. Requests any day. Exact account sizes and DD % not confirmed in captured data.",
+          "pricing": "Leeloo PA article confirms separate monthly PA subscription fees, but the current price ladder was not exposed; verify checkout/support."
         }
       ],
       "automation": {
@@ -2621,7 +2714,7 @@
       "cryptoAssets": "MBT (CME micro bitcoin futures)",
       "notes": "Futures only. Each size selectable with Intraday trailing, EOD trailing, or Static DD (hence mixed). Tiered split by lifetime withdrawals: 80% first $50k, 90% next $50k, 95% above $100k. Payouts within 24h; daily withdrawals allowed once buffer cleared. Buyer picks drawdown type: intraday/EOD trailing $2-4k, or static $0.5-1k ($50k-$150k). No daily loss limit. | [2026-06-07] rebranded TradeDay 2.0 (Quick Pay / Fast Pass tracks).",
       "source": "https://tradeday.com",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -2640,7 +2733,8 @@
           "profitTargetPct": 3,
           "profitSplitPct": 80,
           "payoutDays": 0,
-          "note": "Buyer selects DD type at purchase. Intraday trailing: $2k/$3k/$4k on $50k/$100k/$150k = 4%/3%/2.7%. No daily loss limit. Tiered split: 80% first $50k lifetime, 90% next $50k, 95% above $100k lifetime withdrawals. Daily payouts once buffer cleared. Target 3% ($1.5k-$4.5k by size)."
+          "note": "Buyer selects DD type at purchase. Intraday trailing: $2k/$3k/$4k on $50k/$100k/$150k = 4%/3%/2.7%. No daily loss limit. Tiered split: 80% first $50k lifetime, 90% next $50k, 95% above $100k lifetime withdrawals. Daily payouts once buffer cleared. Target 3% ($1.5k-$4.5k by size).",
+          "pricing": "50k $62 promo/$125 list · 100k $115/$230 · 150k $175/$350 per month; code TDNEW shown."
         },
         {
           "name": "Evaluation (EOD Trailing)",
@@ -2657,7 +2751,8 @@
           "profitTargetPct": 3,
           "profitSplitPct": 80,
           "payoutDays": 0,
-          "note": "EOD trailing variant. Same DD range as intraday option ($2k/$3k/$4k on $50k/$100k/$150k). No daily loss limit. Same tiered split structure."
+          "note": "EOD trailing variant. Same DD range as intraday option ($2k/$3k/$4k on $50k/$100k/$150k). No daily loss limit. Same tiered split structure.",
+          "pricing": "Pricing section showed the 50k/100k/150k monthly ladder for drawdown choice; EOD-specific fee difference not exposed."
         },
         {
           "name": "Evaluation (Static DD)",
@@ -2674,7 +2769,8 @@
           "profitTargetPct": 3,
           "profitSplitPct": 80,
           "payoutDays": 0,
-          "note": "Static DD variant. $0.5k/$0.75k/$1k on $50k/$100k/$150k = 1%/0.75%/0.67%. Very tight DD — smallest of the three options. No daily loss limit. Same tiered split structure."
+          "note": "Static DD variant. $0.5k/$0.75k/$1k on $50k/$100k/$150k = 1%/0.75%/0.67%. Very tight DD — smallest of the three options. No daily loss limit. Same tiered split structure.",
+          "pricing": "Static DD variant not exposed in refreshed pricing capture; visible monthly ladder starts from $62.50 with code TDNEW."
         }
       ],
       "automation": {
@@ -2721,7 +2817,7 @@
       "cryptoAssets": "BTC, ETH, XRP, LTC, ADA",
       "notes": "Forex/CFD firm with limited crypto (BTC, ETH, XRP, LTC, ADA). Fields reflect 1-Step Challenge (confirmed on funding page): 8% target ($8k/$100k), 5% max DD ($5k), NO daily DD, balance-based static drawdown, first payout after 10 days (min 3 profitable days at 0.5%/day). 2-Step is 5% daily / 10% max (per prior notes). Split 80%->100% by VIP tier. Crypto leverage 1:2 (not re-confirmed on capture). Scales to $4M. Any-time payouts from Silver VIP. [verify 2026-05-27] 2-Step target confirmed P1 10%/P2 5% (10% static max, 5% daily) and 1-Step 'no daily DD' verified TRUE, on CTI's own pages (via reader proxy; site Cloudflare-blocks direct fetch). Crypto leverage 1:2 NOT on any CTI-rendered page (aggregator-only) => stays medium.",
       "source": "https://citytradersimperium.com/2-step-drawdown-mechanics/",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "medium",
       "status": "active",
       "programDetails": [
@@ -2735,7 +2831,8 @@
           "profitTargetPct": 8,
           "profitSplitPct": 80,
           "payoutDays": 10,
-          "note": "8% target, 5% static balance-based max DD, NO daily DD. First payout after 10 days (min 3 profitable days at 0.5%/day). Split 80% → 100% by VIP tier. Scales to $4M."
+          "note": "8% target, 5% static balance-based max DD, NO daily DD. First payout after 10 days (min 3 profitable days at 0.5%/day). Split 80% → 100% by VIP tier. Scales to $4M.",
+          "pricing": "Starts from $27; 100k 1-Step challenge card showed $449."
         },
         {
           "name": "2-Step Challenge",
@@ -2747,7 +2844,8 @@
           "profitTargetPct": "10/5",
           "profitSplitPct": 80,
           "payoutDays": 10,
-          "note": "5% daily / 10% max per prior notes. Profit target not re-confirmed in 2026 capture. Split same VIP-tier structure."
+          "note": "5% daily / 10% max per prior notes. Profit target not re-confirmed in 2026 capture. Split same VIP-tier structure.",
+          "pricing": "Starts from $34."
         },
         {
           "name": "Instant Funding",
@@ -2759,7 +2857,8 @@
           "profitTargetPct": "N/A",
           "profitSplitPct": 80,
           "payoutDays": null,
-          "note": "Instant program listed on funding page. DD parameters not confirmed separately in captures. Any-time payouts from Silver VIP."
+          "note": "Instant program listed on funding page. DD parameters not confirmed separately in captures. Any-time payouts from Silver VIP.",
+          "pricing": "Starts from $62."
         }
       ],
       "automation": {
@@ -2801,7 +2900,7 @@
       "cryptoAssets": "100+ crypto perps on Hyperliquid (+50+ TradFi perps; 150+ all-markets); max 5x all pairs",
       "notes": "On-chain prop on Hyperliquid (rulebook v1.0, versioned on-chain). 1-step, 3 risk tiers ($5K-$200K, all 10% target): Low 3% daily / 6% max, Medium 4%/7%, High 5%/8% (High = restricted users). Drawdown is STATIC from starting balance (never trails) and EQUITY-based incl. floating P&L — any momentary touch = permanent breach, no resets/appeals/grace. 80% split. Payouts on-demand, instant via smart contract (<0.02s), USDC on-chain, no minimum, unlimited requests. Funded acct: no target/time limit/min days/consistency rule; news, weekend holds, EAs, all styles allowed. $200K aggregate funded cap/trader; one active assessment per asset class. PROHIBITED: cross-account hedging, copy-trading/signals/pass-designed strategies, account sharing, latency exploits, and STRATEGY-SWITCHING (funded trading must match the approach used to pass). Early-stage: closed alpha (public alpha ~early June 2026), temporary $10K/day profit cap. You do not own the account or positions.",
       "source": "https://hypernova.xyz/docs/introduction",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -2823,7 +2922,8 @@
           "profitTargetPct": 10,
           "profitSplitPct": 80,
           "payoutDays": 0,
-          "note": "On-chain prop (Hyperliquid). Static equity-based DD — floating P&L counts, momentary touch = permanent breach, no resets/appeals. 3% daily (from prior day's closing balance), 6% max static from starting balance (never moves). On-demand instant payouts via smart contract (~2s), USDC on Arbitrum. No profit target, time limit, min days, or consistency rule on funded. $10k/day profit cap during closed alpha. High risk tier restricted users."
+          "note": "On-chain prop (Hyperliquid). Static equity-based DD — floating P&L counts, momentary touch = permanent breach, no resets/appeals. 3% daily (from prior day's closing balance), 6% max static from starting balance (never moves). On-demand instant payouts via smart contract (~2s), USDC on Arbitrum. No profit target, time limit, min days, or consistency rule on funded. $10k/day profit cap during closed alpha. High risk tier restricted users.",
+          "pricing": "Private alpha / waitlist; current public docs do not list assessment fees yet."
         },
         {
           "name": "Medium Risk Assessment",
@@ -2843,7 +2943,8 @@
           "profitTargetPct": 10,
           "profitSplitPct": 80,
           "payoutDays": 0,
-          "note": "Same on-chain static equity-based structure as Low Risk. 4% daily / 7% max static. Fees TBD (not yet listed on site at verification date)."
+          "note": "Same on-chain static equity-based structure as Low Risk. 4% daily / 7% max static. Fees TBD (not yet listed on site at verification date).",
+          "pricing": "Private alpha / waitlist; current public docs do not list assessment fees yet."
         },
         {
           "name": "High Risk Assessment",
@@ -2863,7 +2964,8 @@
           "profitTargetPct": 10,
           "profitSplitPct": 80,
           "payoutDays": 0,
-          "note": "Restricted to eligible users only. 5% daily / 8% max static. Same permanent-breach, equity-based enforcement. Fees TBD."
+          "note": "Restricted to eligible users only. 5% daily / 8% max static. Same permanent-breach, equity-based enforcement. Fees TBD.",
+          "pricing": "Private alpha / waitlist; current public docs do not list assessment fees yet."
         }
       ],
       "automation": {
@@ -2911,7 +3013,7 @@
       "cryptoAssets": "BTC, ETH, SOL, XRP +more crypto CFDs (1:2 across eval & funded; full pair count unpublished)",
       "notes": "Broker-backed by DNA Markets (ASIC-linked group), but the prop entity is registered in Saint Lucia and itself unregulated. TradeLocker (TradingView) + DXtrade. DD varies by plan (1-Phase 4%/6%, 2-Phase 5%/8%, Rapid 3%/5%, Instant 4% trailing); challenges static, Instant trailing. Headline split 80% default, 90% with add-on. Payout every 14d (7 with add-on); first 3 payouts capped at 5% profit. 30-40% single-day profit-distribution limit. Founded 2024 — young. maxFundedTotal $600k combined. [verify 2026-05-27] Confirmed via canonical Rules & Conditions V2.1 PDF (2026-04-30) + curl of homepage/FAQ. Crypto flat 1:2 across eval+funded (prior '2:1 eval/3:1 funded' was wrong). Default split 80% (90% paid add-on). Payout waiting 14d default (7d add-on); processing 24-48h. 2-Phase (Double Helix) target 8%/5%. Promoted to high.",
       "source": "https://dnafunded.com/wp-content/uploads/2026/04/DNA-Funded-Ltd-Rules-and-Conditions-V2.1.pdf",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -2933,7 +3035,8 @@
           "profitTargetPct": 10,
           "profitSplitPct": 80,
           "payoutDays": 14,
-          "note": "1-phase challenge. 4% daily / 6% max static. 80% default split (90% with add-on). Payout every 14d (7d with add-on). First 3 payouts capped at 5% profit. 30-40% single-day profit-distribution limit. TradeLocker (TradingView) + MT5."
+          "note": "1-phase challenge. 4% daily / 6% max static. 80% default split (90% with add-on). Payout every 14d (7d with add-on). First 3 payouts capped at 5% profit. 30-40% single-day profit-distribution limit. TradeLocker (TradingView) + MT5.",
+          "pricing": "FAQ refreshed but did not expose fee ladders; challenge prices require the Challenges/checkout flow."
         },
         {
           "name": "Double Helix (2-Phase)",
@@ -2953,7 +3056,8 @@
           "profitTargetPct": "8/5",
           "profitSplitPct": 80,
           "payoutDays": 14,
-          "note": "2-phase challenge. 5% daily / 8% max static. Same split/payout/cap structure as Single Helix. Profit target 10% Phase 1 (Phase 2 target not confirmed in captures — assumed lower)."
+          "note": "2-phase challenge. 5% daily / 8% max static. Same split/payout/cap structure as Single Helix. Profit target 10% Phase 1 (Phase 2 target not confirmed in captures — assumed lower).",
+          "pricing": "FAQ refreshed but did not expose fee ladders; challenge prices require the Challenges/checkout flow."
         },
         {
           "name": "Rapid (10-Day)",
@@ -2973,7 +3077,8 @@
           "profitTargetPct": 10,
           "profitSplitPct": 80,
           "payoutDays": 14,
-          "note": "Tighter rules, faster eval concept. 3% daily / 5% max static. Same split and payout cadence. 30-40% single-day distribution limit applies."
+          "note": "Tighter rules, faster eval concept. 3% daily / 5% max static. Same split and payout cadence. 30-40% single-day distribution limit applies.",
+          "pricing": "FAQ refreshed but did not expose fee ladders; challenge prices require the Challenges/checkout flow."
         },
         {
           "name": "Instant Funding",
@@ -2993,7 +3098,8 @@
           "profitTargetPct": null,
           "profitSplitPct": 80,
           "payoutDays": 14,
-          "note": "Instant funding (no eval). 4% trailing DD. Max trailing % not specified in captured data — null. Same split and payout cadence as challenge programs."
+          "note": "Instant funding (no eval). 4% trailing DD. Max trailing % not specified in captured data — null. Same split and payout cadence as challenge programs.",
+          "pricing": "FAQ refreshed but did not expose fee ladders; challenge prices require the Challenges/checkout flow."
         }
       ],
       "automation": {
@@ -3038,7 +3144,7 @@
       "cryptoAssets": "35+ crypto CFDs (BTC, ETH +more) of 100-150+ instruments; crypto leverage 1:5",
       "notes": "Single path: 2-Step challenge only (no 1-step/instant). P1 target 8%, P2 5%. Static 10% max DD (no trail), 5% daily; no consistency rule. 80% base split, scalable to 100% (90% paid add-on). Scaling +30% every ~4 months; max total funded allocation across accounts $400k. Official site: first payout 7d after first funded trade, weekly thereafter, 24h processing (one secondary source claims 30d). Bright Global FZCO (Dubai) + BrightFunded Ltd (St Lucia); offices Amsterdam/Warsaw. Unregulated. Founded Sept 2023 — young.",
       "source": "https://brightfunded.com/",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -3059,7 +3165,8 @@
           "profitTargetPct": 8,
           "profitSplitPct": 80,
           "payoutDays": 7,
-          "note": "P1 target 8%, P2 target 5%. Static (non-trailing) 10% max DD. Base split 80%, scalable to 100% (90% paid add-on). First payout 7d after first funded trade, weekly thereafter. Sizes $5K-$100K."
+          "note": "P1 target 8%, P2 target 5%. Static (non-trailing) 10% max DD. Base split 80%, scalable to 100% (90% paid add-on). First payout 7d after first funded trade, weekly thereafter. Sizes $5K-$100K.",
+          "pricing": "Selected 100k 2-Step Classic showed EUR 497 refundable fee; Revolut 30% off + 15% evaluation reward offer shown."
         },
         {
           "name": "2-Step Evaluation (Jupiter)",
@@ -3074,7 +3181,8 @@
           "profitTargetPct": 8,
           "profitSplitPct": 80,
           "payoutDays": 7,
-          "note": "Same rules as Pluto but $200K account size only. Max total funded allocation $400K across accounts."
+          "note": "Same rules as Pluto but $200K account size only. Max total funded allocation $400K across accounts.",
+          "pricing": "Selected 100k 2-Step Classic showed EUR 497 refundable fee; verify Jupiter-specific settings in checkout."
         }
       ],
       "automation": {
@@ -3123,7 +3231,7 @@
       "cryptoAssets": "~9 crypto pairs (BTCUSD, ETHUSD +more) of 150+ instruments; crypto leverage up to ~1:30",
       "notes": "Regulated: Hola Prime Markets, FSC Mauritius Investment Dealer. Both challenge and Direct/instant. Fields reflect flagship 1-Step Prime: 3% daily / 6% max (static, balance-based), 10% target. Two-Step has higher DD. Splits 80% bi-weekly/on-demand, 95% monthly (field = max). Max combined allocation ~$500k initial; single account scales to $4M. Fastest-payout firm — avg ~33min, within ~1h; first payout after 14d. Crypto leverage ~1:30 (Prime accounts). | [2026-06-07] lineup renamed Pro/Prime/One/Direct + Futures; split tiered up to 95% (monthly).",
       "source": "https://holaprime.com/",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -3137,7 +3245,8 @@
           "profitTargetPct": 10,
           "profitSplitPct": 80,
           "payoutDays": 14,
-          "note": "Confirmed: 3% daily / 6% max (static, balance-based), 10% target. 80% bi-weekly/on-demand, 95% monthly. First payout after 14d. Account scales to $4M."
+          "note": "Confirmed: 3% daily / 6% max (static, balance-based), 10% target. 80% bi-weekly/on-demand, 95% monthly. First payout after 14d. Account scales to $4M.",
+          "pricing": "Selected 100k Prime 1-Step monthly @95% showed $329.40 promo / $549 list with code MS40."
         },
         {
           "name": "Two-Step Challenge",
@@ -3149,7 +3258,8 @@
           "profitTargetPct": null,
           "profitSplitPct": 80,
           "payoutDays": 14,
-          "note": "Notes state 'Two-Step has higher DD' than the 1-Step, but specific target/DD values not confirmed in available captures."
+          "note": "Notes state 'Two-Step has higher DD' than the 1-Step, but specific target/DD values not confirmed in available captures.",
+          "pricing": "Pricing widget refreshed; exact 2-Step ladder requires switching program in checkout."
         },
         {
           "name": "Direct/Instant Funding",
@@ -3161,7 +3271,8 @@
           "profitTargetPct": "N/A",
           "profitSplitPct": 80,
           "payoutDays": null,
-          "note": "Direct Account listed on site. 90% split bi-weekly per capture. No profit target. Specific DD rules not confirmed in captures."
+          "note": "Direct Account listed on site. 90% split bi-weekly per capture. No profit target. Specific DD rules not confirmed in captures.",
+          "pricing": "Pricing widget refreshed; exact Direct/Instant ladder requires switching program in checkout."
         }
       ],
       "automation": {
@@ -3210,7 +3321,7 @@
       "cryptoAssets": "11 crypto instruments: ADA, BCH, BTC, DOGE, DOT, EOS, ETH, LINK, LTC, XLM, XRP (USD); leverage 1:2",
       "notes": "Vaduz, Liechtenstein; simulated funds, no regulator. Challenge-only. Classic DISCONTINUED. Fields reflect CFD Prime 1-phase (crypto-relevant): 10% target, 3% daily DD (balance-based), 6% static max DD. Also 2-phase CFD + Futures Prime ($50k/$100k/$150k, 6% target, ~2% daily pause, $-based max DD, 80% split, first payout after 5 profitable days >=$200/day). 11 crypto CFDs (ADA,BCH,BTC,DOGE,DOT,EOS,ETH,LINK,LTC,XLM,XRP) at 1:2. Trade2Earn loyalty up to 100% split. CFD-Prime payout eligibility not re-confirmed. maxFundedTotal unpublished. Max funded: CFD side capped at $400k combined (shown); Futures side up to ~$750k (5 x $150k earning accounts). No single combined figure is published. [verify 2026-05-27] Payout eligibility confirmed on support.thetradingpit.com: post-2026-03-06 accounts need 3 profitable days (>=0.5% each), first request ~14d; 80% base split, crypto 1:2 + 11 instruments confirmed on cfds-prop-trading. BUT CFD-Prime DD conflicts across TTP's own pages (6% static vs 7% trailing; daily 3% vs 4%) and renders JS-empty => stays medium pending one authoritative DD figure. | [2026-06-07] Classic discontinued; Prime lineup (CFDs / Futures / Stocks Prime); cTrader added.",
       "source": "https://www.thetradingpit.com/cfds-prop-trading",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "medium",
       "status": "active",
       "programDetails": [
@@ -3224,7 +3335,8 @@
           "profitTargetPct": 10,
           "profitSplitPct": "80-100%",
           "payoutDays": null,
-          "note": "10% target, 3% daily DD (balance-based), 6% static max DD. 11 crypto CFDs at 1:2 leverage. Trade2Earn loyalty up to 100% split. Payout eligibility post-funding not re-confirmed in 2026 captures."
+          "note": "10% target, 3% daily DD (balance-based), 6% static max DD. 11 crypto CFDs at 1:2 leverage. Trade2Earn loyalty up to 100% split. Payout eligibility post-funding not re-confirmed in 2026 captures.",
+          "pricing": "Selected 50k 1-Phase CFD account showed $349 total."
         },
         {
           "name": "CFDs Classic (2-Phase)",
@@ -3236,7 +3348,8 @@
           "profitTargetPct": null,
           "profitSplitPct": "80-100%",
           "payoutDays": null,
-          "note": "2-phase CFD program. Capture mentions trailing EOD balance DD for Classic. Specific target/DD % not confirmed in notes — 'Classic DISCONTINUED' refers to a prior product name, not this program."
+          "note": "2-phase CFD program. Capture mentions trailing EOD balance DD for Classic. Specific target/DD % not confirmed in notes — 'Classic DISCONTINUED' refers to a prior product name, not this program.",
+          "pricing": "Current CFD page says Classic has been discontinued; no current fee shown."
         },
         {
           "name": "Futures Prime",
@@ -3253,7 +3366,8 @@
           "profitTargetPct": 6,
           "profitSplitPct": 80,
           "payoutDays": 5,
-          "note": "Sizes $50k/$100k/$150k. 6% profit target. ~2% daily pause (not a hard loss — trading pause). Max DD is $-based trailing EOD balance (% equivalent unstated without account size). First payout: lower of $5k or 50% of profit, after 5 profitable days ≥$200/day. Subsequent: every 7 days with profit >$0 + 5 profitable days ≥$200."
+          "note": "Sizes $50k/$100k/$150k. 6% profit target. ~2% daily pause (not a hard loss — trading pause). Max DD is $-based trailing EOD balance (% equivalent unstated without account size). First payout: lower of $5k or 50% of profit, after 5 profitable days ≥$200/day. Subsequent: every 7 days with profit >$0 + 5 profitable days ≥$200.",
+          "pricing": "Futures Prime fee not exposed in refreshed capture; verify futures checkout."
         }
       ],
       "automation": {
@@ -3300,7 +3414,7 @@
       "cryptoAssets": "14 crypto CFDs across 11 coins (BTC, ETH, ADA, DOGE, LINK, XRP, SOL, XLM; some in JPY+USD); up to 1:2 on BTC, zero commission, 24/5",
       "notes": "Run by the Purple Trading team (established EU broker group; targets Japanese/Asian market). Account sizes/cap are EUR-denominated (max EUR 400,000 per customer at any time) — shown as approx USD. NOTE: some 2026 snippets wrongly claim no crypto — outdated; crypto CFDs are available on all current challenges (confirmed via support docs). ProTrader 2-phase (8%/6% targets), 5% daily / 10% max static, 80-95% split. SwiftTrader has no daily DD. First FX/CFD prop firm to launch one-click Instant Payouts (Aug 2025); standard cycle bi-weekly. Bans Martingale/latency arbitrage; allows news trading. | [2026-06-07] DragonTrader replaced; lineup now StartTrader / SwiftTrader / ProTrader / ProTrader Swing.",
       "source": "https://www.fintokei.com/protrader/",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -3314,7 +3428,8 @@
           "profitTargetPct": 8,
           "profitSplitPct": 80,
           "payoutDays": 14,
-          "note": "2-phase: P1 8% target, P2 6% target. 5% daily / 10% max static DD. Split 80-95%. Bi-weekly standard; instant payouts available (Aug 2025 launch). EUR-denominated accounts shown as approx USD."
+          "note": "2-phase: P1 8% target, P2 6% target. 5% daily / 10% max static DD. Split 80-95%. Bi-weekly standard; instant payouts available (Aug 2025 launch). EUR-denominated accounts shown as approx USD.",
+          "pricing": "Fintokei compare page returned a thin 404 capture; exact ProTrader/SwiftTrader/DragonTrader prices need product checkout."
         },
         {
           "name": "SwiftTrader",
@@ -3326,7 +3441,8 @@
           "profitTargetPct": null,
           "profitSplitPct": 80,
           "payoutDays": 14,
-          "note": "No daily DD per notes. Full target/max DD parameters not captured in raw files; null pending verification. Same split/payout cycle as ProTrader."
+          "note": "No daily DD per notes. Full target/max DD parameters not captured in raw files; null pending verification. Same split/payout cycle as ProTrader.",
+          "pricing": "Fintokei compare page returned a thin 404 capture; exact ProTrader/SwiftTrader/DragonTrader prices need product checkout."
         },
         {
           "name": "DragonTrader",
@@ -3338,7 +3454,8 @@
           "profitTargetPct": null,
           "profitSplitPct": 80,
           "payoutDays": 14,
-          "note": "Program listed on site but per-program rules not captured in raw files. Steps/DD/target parameters unknown; null pending verification."
+          "note": "Program listed on site but per-program rules not captured in raw files. Steps/DD/target parameters unknown; null pending verification.",
+          "pricing": "Fintokei compare page returned a thin 404 capture; exact ProTrader/SwiftTrader/DragonTrader prices need product checkout."
         }
       ],
       "automation": {
@@ -3385,7 +3502,7 @@
       "cryptoAssets": "BTC/ETH 1:2, altcoins 1:1.5 (BEM Ltd MT5 entity)",
       "notes": "Dubai-based crypto-native firm (Bex Software Development LLC-FZ + BEM Ltd, St Lucia MT5 entity). Unregulated. 2-phase eval on most; BEM One is 1-step. Flagship Classic Normal (confirmed on ToU): 9% Phase-1 target, 4.5% daily, 9% static max DD (does NOT trail), 80% split, 3 trading days to first reward. Crypto leverage BTC/ETH 1:2, altcoins 1:1.5 (corrected from 1:5). Other programs vary (Swing/Extended/One). Payouts 1-2 business days; scaling to 90% split. maxFundedTotal ~$200k. Launched 2024 (short track record). | [2026-06-07] now multi-platform (DXtrade / cTrader / MT5); added BEM Ascend.",
       "source": "https://bemfunding.com/",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -3399,7 +3516,8 @@
           "profitTargetPct": 9,
           "profitSplitPct": 80,
           "payoutDays": 3,
-          "note": "P1 target 9%, P2 target 4.5%. Daily DD = higher of equity/balance at 22:00 UTC minus 4.5% of initial balance. Static (non-trailing) 9% max DD. 3 trading days minimum before each reward request. Crypto: BTC/ETH 1:2, altcoins 1:1.5."
+          "note": "P1 target 9%, P2 target 4.5%. Daily DD = higher of equity/balance at 22:00 UTC minus 4.5% of initial balance. Static (non-trailing) 9% max DD. 3 trading days minimum before each reward request. Crypto: BTC/ETH 1:2, altcoins 1:1.5.",
+          "pricing": "Pricing widget refreshed, but selected/default capture exposed BEM One only; BEM Classic/Extended ladders require switching the plan in checkout."
         },
         {
           "name": "BEM Classic Swing",
@@ -3411,7 +3529,8 @@
           "profitTargetPct": null,
           "profitSplitPct": 80,
           "payoutDays": 3,
-          "note": "2-phase swing variant. Per-program DD and target parameters not captured in raw files; null pending verification. Swing-specific rules likely allow weekend holds without news restrictions."
+          "note": "2-phase swing variant. Per-program DD and target parameters not captured in raw files; null pending verification. Swing-specific rules likely allow weekend holds without news restrictions.",
+          "pricing": "Pricing widget refreshed, but selected/default capture exposed BEM One only; BEM Classic/Extended ladders require switching the plan in checkout."
         },
         {
           "name": "BEM Extended",
@@ -3423,7 +3542,8 @@
           "profitTargetPct": null,
           "profitSplitPct": 80,
           "payoutDays": 3,
-          "note": "2-phase extended-duration variant. Per-program DD and target parameters not captured in raw files; null pending verification."
+          "note": "2-phase extended-duration variant. Per-program DD and target parameters not captured in raw files; null pending verification.",
+          "pricing": "Pricing widget refreshed, but selected/default capture exposed BEM One only; BEM Classic/Extended ladders require switching the plan in checkout."
         },
         {
           "name": "BEM One",
@@ -3435,7 +3555,8 @@
           "profitTargetPct": null,
           "profitSplitPct": 80,
           "payoutDays": 3,
-          "note": "1-step single-phase challenge. Per-program DD and target parameters not captured in raw files; null pending verification. Firm notes confirm 1-step structure."
+          "note": "1-step single-phase challenge. Per-program DD and target parameters not captured in raw files; null pending verification. Firm notes confirm 1-step structure.",
+          "pricing": "Selected/default BEM One showed $32.90 limited offer / $47 list; site also says challenges start from $24."
         }
       ],
       "automation": {
@@ -3486,7 +3607,7 @@
       "cryptoAssets": "70+ coins (BTC, ETH, XRP, SOL, ADA, SUI, DOT, TON, LTC, AVAX +more); 24/7, hold over weekend OK",
       "notes": "Crypto-native; both evaluation (Fast Pro 1-step = 6% target, Fast 1-step = 10%, Classic 2-step, Strike 3-step) and Instant. Crypto plan: 6% target, 6% max DD, 4% daily, 1:20 leverage. Rewards ON-DEMAND after a minimum of 4 profitable days; consistency rule applies only on the Master account; weekend holds allowed. Split up to 90%. Avg payout ~14h with a 48h guarantee (else 100% split). Entities: FT Trading Ltd (Saint Lucia) + BLN Tech Club DMCC (Dubai); founded 2023 (formerly Billionsclub); 80K+ customers, $9M+ paid, Trustpilot 4.5. Restricted countries apply. | [2026-06-07] new Instant Pro program; crypto leverage corrected to 1:5 BTC/ETH, 1:2 alts.",
       "source": "https://www.fortraders.com/crypto",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -3500,7 +3621,8 @@
           "profitTargetPct": 6,
           "profitSplitPct": 80,
           "payoutDays": 4,
-          "note": "1-step, cheapest challenge. 6% PT, 6% max DD, 4% daily DD. On-demand rewards after 4 minimum profitable days. Consistency rule applies on Master account only. 1:20 leverage. 48h payout guarantee (100% split if breached)."
+          "note": "1-step, cheapest challenge. 6% PT, 6% max DD, 4% daily DD. On-demand rewards after 4 minimum profitable days. Consistency rule applies on Master account only. 1:20 leverage. 48h payout guarantee (100% split if breached).",
+          "pricing": "Crypto Fast Pro ladder showed 25k $116 · 50k $169 · 100k $245; 100k list appeared as $289 before discount."
         },
         {
           "name": "Fast",
@@ -3512,7 +3634,8 @@
           "profitTargetPct": 10,
           "profitSplitPct": 80,
           "payoutDays": 4,
-          "note": "1-step with 10% profit target. Otherwise same rules as Fast Pro: 6% max DD, 4% daily, on-demand after 4 profitable days."
+          "note": "1-step with 10% profit target. Otherwise same rules as Fast Pro: 6% max DD, 4% daily, on-demand after 4 profitable days.",
+          "pricing": "Pricing customizer refreshed; selected visible ladder was Crypto Fast Pro 25k $116 / 50k $169 / 100k $245. Other programs require switching plan."
         },
         {
           "name": "Classic",
@@ -3524,7 +3647,8 @@
           "profitTargetPct": 6,
           "profitSplitPct": 80,
           "payoutDays": 4,
-          "note": "2-step evaluation. Exact P1/P2 targets and per-phase DD not published in captured pages; 6% target and 4%/6% DD carried from firm-level. Low confidence on per-phase breakdown."
+          "note": "2-step evaluation. Exact P1/P2 targets and per-phase DD not published in captured pages; 6% target and 4%/6% DD carried from firm-level. Low confidence on per-phase breakdown.",
+          "pricing": "Pricing customizer refreshed; selected visible ladder was Crypto Fast Pro 25k $116 / 50k $169 / 100k $245. Other programs require switching plan."
         },
         {
           "name": "Strike",
@@ -3536,7 +3660,8 @@
           "profitTargetPct": null,
           "profitSplitPct": 80,
           "payoutDays": 4,
-          "note": "3-step evaluation. Per-phase targets not captured in raw files; null pending verification. DD inherited from firm-level (4% daily / 6% max)."
+          "note": "3-step evaluation. Per-phase targets not captured in raw files; null pending verification. DD inherited from firm-level (4% daily / 6% max).",
+          "pricing": "Pricing customizer refreshed; selected visible ladder was Crypto Fast Pro 25k $116 / 50k $169 / 100k $245. Other programs require switching plan."
         },
         {
           "name": "Instant",
@@ -3548,7 +3673,8 @@
           "profitTargetPct": "N/A",
           "profitSplitPct": 80,
           "payoutDays": 4,
-          "note": "No challenge needed. On-demand rewards from day 1. DD rules apply. Split up to 90%."
+          "note": "No challenge needed. On-demand rewards from day 1. DD rules apply. Split up to 90%.",
+          "pricing": "Pricing customizer refreshed; selected visible ladder was Crypto Fast Pro 25k $116 / 50k $169 / 100k $245. Other programs require switching plan."
         },
         {
           "name": "Instant Pro",
@@ -3560,7 +3686,8 @@
           "profitTargetPct": "N/A",
           "profitSplitPct": 80,
           "payoutDays": 4,
-          "note": "Upgraded instant tier. Exact DD parameters not captured in raw files; null pending verification."
+          "note": "Upgraded instant tier. Exact DD parameters not captured in raw files; null pending verification.",
+          "pricing": "Pricing customizer refreshed; selected visible ladder was Crypto Fast Pro 25k $116 / 50k $169 / 100k $245. Other programs require switching plan."
         },
         {
           "name": "Instant Master PRO",
@@ -3572,7 +3699,8 @@
           "profitTargetPct": "N/A",
           "profitSplitPct": 80,
           "payoutDays": 4,
-          "note": "Top-tier instant plan. Exact DD parameters not captured in raw files; null pending verification."
+          "note": "Top-tier instant plan. Exact DD parameters not captured in raw files; null pending verification.",
+          "pricing": "Pricing customizer refreshed; selected visible ladder was Crypto Fast Pro 25k $116 / 50k $169 / 100k $245. Other programs require switching plan."
         },
         {
           "name": "Labs",
@@ -3584,7 +3712,8 @@
           "profitTargetPct": null,
           "profitSplitPct": 80,
           "payoutDays": null,
-          "note": "Experimental/Labs program. No parameters captured in raw files; all null pending verification."
+          "note": "Experimental/Labs program. No parameters captured in raw files; all null pending verification.",
+          "pricing": "Pricing customizer refreshed; selected visible ladder was Crypto Fast Pro 25k $116 / 50k $169 / 100k $245. Other programs require switching plan."
         }
       ],
       "automation": {
@@ -3632,7 +3761,7 @@
       "cryptoAssets": "CFD crypto via ThinkMarkets; limited — primarily BTC and ETH; leverage 1:2; crypto withdrawals in USDT/USDC",
       "notes": "Broker-backed prop firm 'powered by' multi-regulated ThinkMarkets (Think Capital Services UK Ltd, London). Forex/CFD-focused with limited crypto. Lightning 1-step (3% daily / 6% trailing), Dual Step 2-step (4% daily / 7% static), Nexus 3-step (4% / 8% static); Bolt additional. Split 80-90%. Bi-weekly payouts (weekly add-on). Sizes $5K-$200K; max allocation $600k, scaling to $1.5M. DD shown is the 2-step Dual Step (4%/7%); Nexus max is 8%.",
       "source": "https://www.thinkcapital.com/crypto-prop-firm/",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -3646,7 +3775,8 @@
           "profitTargetPct": 8,
           "profitSplitPct": 80,
           "payoutDays": 14,
-          "note": "1-step: 3% daily DD, 6% trailing max DD. Split 80-90%. Bi-weekly payouts (weekly add-on). Per firm notes."
+          "note": "1-step: 3% daily DD, 6% trailing max DD. Split 80-90%. Bi-weekly payouts (weekly add-on). Per firm notes.",
+          "pricing": "ThinkCapital pages refreshed, but exact challenge fees were not exposed in the public captures; verify challenge checkout."
         },
         {
           "name": "Dual Step",
@@ -3658,7 +3788,8 @@
           "profitTargetPct": 8,
           "profitSplitPct": 80,
           "payoutDays": 14,
-          "note": "2-step: 4% daily DD, 7% static max DD. Per firm notes. Sizes $5K-$200K."
+          "note": "2-step: 4% daily DD, 7% static max DD. Per firm notes. Sizes $5K-$200K.",
+          "pricing": "ThinkCapital pages refreshed, but exact challenge fees were not exposed in the public captures; verify challenge checkout."
         },
         {
           "name": "Nexus",
@@ -3670,7 +3801,8 @@
           "profitTargetPct": 8,
           "profitSplitPct": 80,
           "payoutDays": 14,
-          "note": "3-step: 4% daily DD, 8% static max DD. Per firm notes."
+          "note": "3-step: 4% daily DD, 8% static max DD. Per firm notes.",
+          "pricing": "ThinkCapital pages refreshed, but exact challenge fees were not exposed in the public captures; verify challenge checkout."
         },
         {
           "name": "Bolt",
@@ -3682,7 +3814,8 @@
           "profitTargetPct": null,
           "profitSplitPct": 80,
           "payoutDays": 14,
-          "note": "Additional program listed in firm notes. Steps/DD/target parameters not captured in raw files; null pending verification."
+          "note": "Additional program listed in firm notes. Steps/DD/target parameters not captured in raw files; null pending verification.",
+          "pricing": "ThinkCapital pages refreshed, but exact challenge fees were not exposed in the public captures; verify challenge checkout."
         }
       ],
       "automation": {
@@ -3732,7 +3865,7 @@
       "cryptoAssets": "CFD crypto within 70+ assets; specific coins not published; crypto leverage 1:2.5 (no weekend crypto)",
       "notes": "Slovakia (RIFM s.r.o., Bratislava); markets 'since 2008'. No-time-limit evals on RF-Trader + TradingView. Tiered Copper/Bronze/Silver/Gold/Diamond (4 to 1 step). DD by tier: Copper/Bronze/Silver 5% daily / 10% static; Gold no daily, 6% max; Diamond no daily, 5% max. Split 75-90% (scales to 90%); fee refunds 100-200%. First payout >=14d from first trade ($50 min); ~12h cadence advertised. Up to $320k base, scaling to $640k. True crypto leverage 1:2.5 (stored as 2). DD shown is Copper/Bronze/Silver tier.",
       "source": "https://www.rebelsfunding.com/all-the-rules/",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -3746,7 +3879,8 @@
           "profitTargetPct": 8,
           "profitSplitPct": 75,
           "payoutDays": 14,
-          "note": "4-step evaluation. 5% daily / 10% static max DD. Split scales to 90%. First payout >=14d from first trade ($50 min)."
+          "note": "4-step evaluation. 5% daily / 10% static max DD. Split scales to 90%. First payout >=14d from first trade ($50 min).",
+          "pricing": "Current page showed 30% off first challenge and up to 200% refund; exact fee list requires checkout."
         },
         {
           "name": "Bronze",
@@ -3758,7 +3892,8 @@
           "profitTargetPct": 8,
           "profitSplitPct": 75,
           "payoutDays": 14,
-          "note": "3-step evaluation. Same 5% daily / 10% static max DD as Copper/Silver."
+          "note": "3-step evaluation. Same 5% daily / 10% static max DD as Copper/Silver.",
+          "pricing": "Current page showed 30% off first challenge and up to 200% refund; exact fee list requires checkout."
         },
         {
           "name": "Silver",
@@ -3770,7 +3905,8 @@
           "profitTargetPct": 8,
           "profitSplitPct": 75,
           "payoutDays": 14,
-          "note": "2-step evaluation. Same 5% daily / 10% static max DD as Copper/Bronze."
+          "note": "2-step evaluation. Same 5% daily / 10% static max DD as Copper/Bronze.",
+          "pricing": "Current page showed 30% off first challenge and up to 200% refund; exact fee list requires checkout."
         },
         {
           "name": "Gold",
@@ -3782,7 +3918,8 @@
           "profitTargetPct": 8,
           "profitSplitPct": 75,
           "payoutDays": 14,
-          "note": "1-step: no daily DD limit; 6% static max DD only. Per firm notes."
+          "note": "1-step: no daily DD limit; 6% static max DD only. Per firm notes.",
+          "pricing": "Current page showed 30% off first challenge and 100% refund terms in rules; exact fee list requires checkout."
         },
         {
           "name": "Diamond",
@@ -3794,7 +3931,8 @@
           "profitTargetPct": "N/A",
           "profitSplitPct": 75,
           "payoutDays": 14,
-          "note": "Instant-style: no challenge, no daily DD, 5% static max DD. Per firm notes. No weekend crypto trading."
+          "note": "Instant-style: no challenge, no daily DD, 5% static max DD. Per firm notes. No weekend crypto trading.",
+          "pricing": "Rules show 100% refund after passing Level 0; exact fee list requires checkout."
         }
       ],
       "automation": {
@@ -3841,7 +3979,7 @@
       "cryptoAssets": "Crypto CFDs confirmed tradable at 1:2 (eval) / 2:1 (Instant); specific coins not published by FX2",
       "notes": "US-based; regulatory status UNVERIFIED (no license/regulator listed) — red flag. Sizes $10K-$200K; aggregate cap published as $400k. Four programs: One-Step (6% trailing equity DD, 4% daily), One-Step Pro (6% fixed DD, 4% daily), Two-Step (8% Phase-1 target / 5% Phase-2, 10% max DD, 4% daily), Instant Funding (6% trailing). Split 80% default / 85% standard, up to 95% via add-on. Payouts every 5 days (add-on) or bi-weekly; avg ~8h, <=48h guaranteed via Rise/crypto. Restricts HFT/latency/arbitrage; unavailable in 19+ countries. (Crypto leverage/assets not stated on captured page.) [verify 2026-05-27] fx2funding.com/faqs body now fetchable: crypto IS tradable at 1:2 (eval) / 2:1 (Instant); DD/target/split confirmed. Default first-payout window 14d (the 5-day was a paid faster cycle). Coin list still unpublished. Promoted to high.",
       "source": "https://fx2funding.com/faqs/",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -3855,7 +3993,8 @@
           "profitTargetPct": 8,
           "profitSplitPct": 80,
           "payoutDays": 14,
-          "note": "1-step with 6% trailing equity DD and 4% daily DD. 8% profit target. Split 80% default, up to 95% via add-on. Payouts every 5 days (add-on) or bi-weekly. Avg ~8h processing. US/Canada excluded."
+          "note": "1-step with 6% trailing equity DD and 4% daily DD. 8% profit target. Split 80% default, up to 95% via add-on. Payouts every 5 days (add-on) or bi-weekly. Avg ~8h processing. US/Canada excluded.",
+          "pricing": "Pricing widget refreshed; selected visible reference was 50k 2-Step at $465. Switch program/account size for exact ladder."
         },
         {
           "name": "One-Step Pro (Fixed)",
@@ -3867,7 +4006,8 @@
           "profitTargetPct": 8,
           "profitSplitPct": 80,
           "payoutDays": 14,
-          "note": "1-step with 6% fixed (static) DD instead of trailing. 4% daily DD. Otherwise same as One-Step."
+          "note": "1-step with 6% fixed (static) DD instead of trailing. 4% daily DD. Otherwise same as One-Step.",
+          "pricing": "Pricing widget refreshed; selected visible reference was 50k 2-Step at $465. Switch program/account size for exact ladder."
         },
         {
           "name": "Two-Step",
@@ -3879,7 +4019,8 @@
           "profitTargetPct": 8,
           "profitSplitPct": 80,
           "payoutDays": 14,
-          "note": "2-step: P1 8% target, P2 5% target. 10% static max DD, 4% daily. Per firm notes."
+          "note": "2-step: P1 8% target, P2 5% target. 10% static max DD, 4% daily. Per firm notes.",
+          "pricing": "Selected 50k 2-Step evaluation fee showed $465; add-ons: 5-day payout $69.75, 95% split $116.25."
         },
         {
           "name": "Instant Funding",
@@ -3891,7 +4032,8 @@
           "profitTargetPct": "N/A",
           "profitSplitPct": 80,
           "payoutDays": 0,
-          "note": "No challenge. 6% trailing equity DD, 4% daily. Per firm notes. Split and payout same as challenge programs."
+          "note": "No challenge. 6% trailing equity DD, 4% daily. Per firm notes. Split and payout same as challenge programs.",
+          "pricing": "Pricing widget refreshed; selected visible reference was 50k 2-Step at $465. Switch program/account size for exact ladder."
         }
       ],
       "automation": {
@@ -3938,7 +4080,7 @@
       "cryptoAssets": "35+ crypto pairs (BTC, ETH, LTC, XRP +more per secondary sources); crypto leverage 1:2 (forex up to 1:100)",
       "notes": "Offers Instant Funding (5% daily / 6% trailing max, no target), One-Step (Flex), and Two-Step. Fields reflect One-Step (confirmed on FAQ): 10% target, 4% daily, 8% relative/trailing max DD (balance-or-equity high at 22:00 UTC), 10 min trading days to first payout, 80% split, bi-weekly. Account sizes $5K-$150K. Firm-claimed ~60-min avg payout (Instant on-demand). Doubling scale through Funded 1-7. UK brand; not a regulated broker. Crypto leverage (1:2) & asset list not on captured pages — pending. Max funded $6.4M = top of the single-account 7-level scaling ladder; a multi-account aggregate cap is not published. [verify 2026-05-27] One-Step rules confirmed on FTUK's own FAQ: 10% target, 4% daily, 8% relative max (22:00 UTC), first payout 10 trading days, 80% split. Crypto 1:2 stated on FTUK leverage FAQ but page JS-gates (search-index only); '35+ crypto pairs' still secondary-source => stays medium. | [2026-06-07] added One-Step Evaluation + Futures (FTUK XT); EAs encouraged.",
       "source": "https://faq.ftuk.com/en/articles/12310193-one-step-program-rules-forex",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "medium",
       "status": "active",
       "programDetails": [
@@ -3952,7 +4094,8 @@
           "profitTargetPct": "N/A",
           "profitSplitPct": 80,
           "payoutDays": null,
-          "note": "No challenge needed. 5% daily DD, 6% trailing max DD. On-demand payouts; avg ~60min. Split 80%. Sizes $5K-$150K."
+          "note": "No challenge needed. 5% daily DD, 6% trailing max DD. On-demand payouts; avg ~60min. Split 80%. Sizes $5K-$150K.",
+          "pricing": "Instant tab present, but exact fee ladder not exposed in capture; verify checkout."
         },
         {
           "name": "Flex Challenge (One-Step)",
@@ -3964,7 +4107,8 @@
           "profitTargetPct": 10,
           "profitSplitPct": 80,
           "payoutDays": 10,
-          "note": "1-step: 10% target, 4% daily DD, 8% relative/trailing max DD (higher of equity or balance at 22:00 UTC). 10 min trading days to first payout, bi-weekly thereafter. 0.5% min daily profit per trading day. Scales through Funded 1-7 levels (doubling). Crypto leverage 1:2 (unconfirmed on captured pages)."
+          "note": "1-step: 10% target, 4% daily DD, 8% relative/trailing max DD (higher of equity or balance at 22:00 UTC). 10 min trading days to first payout, bi-weekly thereafter. 0.5% min daily profit per trading day. Scales through Funded 1-7 levels (doubling). Crypto leverage 1:2 (unconfirmed on captured pages).",
+          "pricing": "Selected 50k Flex Challenge showed start for $9 plus $374 activation fee after passing."
         },
         {
           "name": "Two-Step Evaluation",
@@ -3976,7 +4120,8 @@
           "profitTargetPct": null,
           "profitSplitPct": 80,
           "payoutDays": 10,
-          "note": "2-step evaluation. Per-phase DD and target parameters not captured in raw files (only One-Step rules confirmed); null pending verification. Same split/payout structure expected."
+          "note": "2-step evaluation. Per-phase DD and target parameters not captured in raw files (only One-Step rules confirmed); null pending verification. Same split/payout structure expected.",
+          "pricing": "Two Step tab present, but exact fee ladder not exposed in capture; verify checkout."
         }
       ],
       "automation": {
@@ -4020,7 +4165,7 @@
       "cryptoAssets": "BTC, ETH, XRP, SOL, BNB, ADA, DOGE (7 crypto CFDs; separate ~€50/mo account)",
       "notes": "ALLOCATION/subscription track-record model (not a challenge). Pay monthly membership (~EUR 45/mo, or ~$50/mo; separate Crypto-CFD account same price) on EUR 100k virtual balance to build a verified DARWIN track record. Performance earns capital: DarwinIA monthly SILVER (rating >=75) EUR 30k-375k; GOLD (top 50) EUR 50k-500k; plus permanent EUR 100k allocations + Boosters (stackable to EUR 500k). Trader keeps 85% (15% perf fee, high-water-mark). FCA-regulated (Tradeslide Trading Tech Ltd, FRN 586466). 7 crypto CFDs confirmed: BTC, ETH, XRP, SOL, BNB, ADA, DOGE — per-instrument crypto leverage (field 1:1) NOT rendered on assets page; pending. No hard DD (risk scored into rating). No hard daily/max drawdown — the Darwinex Risk Engine targets ~6.5% monthly VaR by resizing positions (shown 'None'); allocation model has no challenge target or first-payout window ('N/A'). [verify 2026-05-27] Crypto leverage confirmed flat 1:1 across all 7 crypto CFDs (BTC,ETH,XRP,SOL,BNB,ADA,DOGE) on darwinexzero.com/docs. 85% trader share (15% perf fee), no DD gate (Risk Engine ~6.5% monthly VaR). Promoted to high. | [2026-06-07] first-party programmatic trade API (DWX Connect / REST / FIX) on own MT4/MT5.",
       "source": "https://www.darwinexzero.com/docs/darwinex-zero-leverage",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -4034,7 +4179,8 @@
           "profitTargetPct": "N/A",
           "profitSplitPct": 85,
           "payoutDays": null,
-          "note": "Track-record allocation model. Monthly membership ~$50/mo (Forex/Crypto CFD). Earn DarwinIA SILVER allocation (Edge rating >=75): EUR 30K-375K. No hard DD — Darwinex Risk Engine targets ~6.5% monthly VaR by resizing positions. 85% split (15% perf fee, high-water-mark). No challenge-style profit target or first-payout window. FCA-regulated entity (Tradeslide Trading Tech Ltd, FRN 586466). 7 crypto CFDs: BTC, ETH, XRP, SOL, BNB, ADA, DOGE."
+          "note": "Track-record allocation model. Monthly membership ~$50/mo (Forex/Crypto CFD). Earn DarwinIA SILVER allocation (Edge rating >=75): EUR 30K-375K. No hard DD — Darwinex Risk Engine targets ~6.5% monthly VaR by resizing positions. 85% split (15% perf fee, high-water-mark). No challenge-style profit target or first-payout window. FCA-regulated entity (Tradeslide Trading Tech Ltd, FRN 586466). 7 crypto CFDs: BTC, ETH, XRP, SOL, BNB, ADA, DOGE.",
+          "pricing": "Darwinex Zero membership starts from EUR 45/month; boosters are optional allocations up to EUR 500k."
         },
         {
           "name": "DarwinIA Gold Allocation",
@@ -4046,7 +4192,8 @@
           "profitTargetPct": "N/A",
           "profitSplitPct": 85,
           "payoutDays": null,
-          "note": "Top-50 monthly DarwinIA competition winners. Allocation EUR 50K-500K. Same membership, rules, and split as Silver; higher allocation for top-ranked DARWINs."
+          "note": "Top-50 monthly DarwinIA competition winners. Allocation EUR 50K-500K. Same membership, rules, and split as Silver; higher allocation for top-ranked DARWINs.",
+          "pricing": "Darwinex Zero membership starts from EUR 45/month; boosters are optional allocations up to EUR 500k."
         },
         {
           "name": "Permanent Allocation",
@@ -4058,7 +4205,8 @@
           "profitTargetPct": "N/A",
           "profitSplitPct": 85,
           "payoutDays": null,
-          "note": "EUR 100K permanent allocation for qualifying DARWINs. Stackable with DarwinIA. Additional Boosters also stackable up to EUR 500K total."
+          "note": "EUR 100K permanent allocation for qualifying DARWINs. Stackable with DarwinIA. Additional Boosters also stackable up to EUR 500K total.",
+          "pricing": "Darwinex Zero membership starts from EUR 45/month; boosters are optional allocations up to EUR 500k."
         }
       ],
       "automation": {
@@ -4105,7 +4253,7 @@
       "cryptoAssets": "Crypto CFDs incl. BTC, ETH +more (count not published); $0 crypto commission; dedicated crypto-only challenge on 2026 roadmap",
       "notes": "Prop-challenge arm of regulated multi-asset broker Eightcap, launched 2025. Challenge entity Eightcap Services FZ LLC (Dubai); the broker group is ASIC/FCA/CySEC-regulated, giving more credibility than typical prop startups. One Phase: 10% target, 4% daily / 8% max DD. Two Phase: 10%/8% targets, 5% daily / 10% max DD. Static (balance-based) DD. Split up to 90%. Payouts bi-weekly standard (weekly add-on). Crypto leverage 1:3. Max total funded $600k across accounts. Entry from $5 (Day Trader). DD shown is One Phase. | [2026-06-07] Rules V2.3 — Two-Phase target 9%/5% for accounts opened on/after 2026-02-23.",
       "source": "https://challenges.eightcap.com/",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -4119,7 +4267,8 @@
           "profitTargetPct": 10,
           "profitSplitPct": 80,
           "payoutDays": 14,
-          "note": "1-step: 10% target, 4% daily / 8% max static (balance-based) DD. Split up to 90%. Bi-weekly standard (weekly add-on). Crypto leverage 1:3. Sizes $5K-$200K; max total funded $600K. Prop-challenge arm of ASIC/FCA/CySEC-regulated Eightcap broker."
+          "note": "1-step: 10% target, 4% daily / 8% max static (balance-based) DD. Split up to 90%. Bi-weekly standard (weekly add-on). Crypto leverage 1:3. Sizes $5K-$200K; max total funded $600K. Prop-challenge arm of ASIC/FCA/CySEC-regulated Eightcap broker.",
+          "pricing": "Eightcap challenge page refreshed; One/Two Phase fee ladder was not exposed in capture, verify checkout."
         },
         {
           "name": "Two Phase Challenge",
@@ -4131,7 +4280,8 @@
           "profitTargetPct": 10,
           "profitSplitPct": 80,
           "payoutDays": 14,
-          "note": "2-step: P1 10% target, P2 8% target. 5% daily / 10% max static DD. Same split and sizes as One Phase."
+          "note": "2-step: P1 10% target, P2 8% target. 5% daily / 10% max static DD. Same split and sizes as One Phase.",
+          "pricing": "Eightcap challenge page refreshed; One/Two Phase fee ladder was not exposed in capture, verify checkout."
         },
         {
           "name": "Day Trader Challenge",
@@ -4143,7 +4293,8 @@
           "profitTargetPct": null,
           "profitSplitPct": 80,
           "payoutDays": 0,
-          "note": "Entry-level from $5; same-day payout. Full DD and target parameters not published in captured pages; null pending verification."
+          "note": "Entry-level from $5; same-day payout. Full DD and target parameters not published in captured pages; null pending verification.",
+          "pricing": "Day Trader showed stake range $5-$500 on a simulated 10k account, with 1-8h sessions and 2x/5x/10x multipliers."
         }
       ],
       "automation": {
@@ -4193,7 +4344,7 @@
       "cryptoAssets": "Trades ~11 Axi crypto CFDs (BTC, ETH, LTC, XRP, BCH, ADA, LINK, DOGE, EOS, DOT, XLM); only BTCUSD + ETHUSD mirror into the Allocation Account",
       "notes": "NOT a classic challenge firm — a no-fee ALLOCATION model run by regulated broker Axi. Free to join (no fees); trader funds their own live account (min $500) and closes 20+ trades to build an 'Edge Score' (skill, consistency, risk mgmt, experience). Hit thresholds and Axi allocates parallel capital mirroring your trades, advancing 6 stages up to $1M (Pro M). Split by stage (official): Seed 0%, Incubation 40%, Acceleration 50%, Pro 60%, Pro 500 70%, Pro M 80% (some sites cite up to 90% — discrepancy flagged). Max loss -7%/stage, -10% at Pro M (breach = quarantine, not instant fail). Runs under AxiTrader LLC (St Vincent, offshore) though the wider group is ASIC/FCA-regulated. On-demand payouts. No daily loss limit; -7%/stage max loss (-10% at Pro M), breach = quarantine not fail. Allocation model: no profit target or challenge-style first-payout window ('N/A'). [verify 2026-05-27] Stage/split/max-loss table fully confirmed on axi.com/int/axi-select (6 stages, splits 0/40/50/60/70/80, -7% max loss / -10% Pro M, no daily limit, base split 80% not 90%). Only BTC+ETH copy to the allocation acct. OPEN: Axi help articles (JS-gated, search-index only) say Select uses a FIXED account leverage (~1:100), which would make the stored crypto 1:2 wrong - left unchanged pending a directly-fetchable Axi page => stays medium. [user 2026-05-27] cryptoLeverage set to 1:100 — Axi Select uses a single FIXED account leverage (~1:100) that also applies to its crypto CFDs (per Axi help articles, search-index sourced; not on a directly-fetchable page).",
       "source": "https://www.axi.com/int/axi-select",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "medium",
       "status": "active",
       "programDetails": [
@@ -4210,7 +4361,8 @@
           "profitTargetPct": 7,
           "profitSplitPct": 0,
           "payoutDays": null,
-          "note": "Allocation model stage 1. No fees to join; trader funds own live account (min $500) and builds Edge Score (>=50). Max funding $5K. 7% profit target to advance, 7% max loss (-7% triggers quarantine). 0% profit share at Seed. Min 30 days / 20 trades per stage. Seed can be restarted without penalty."
+          "note": "Allocation model stage 1. No fees to join; trader funds own live account (min $500) and builds Edge Score (>=50). Max funding $5K. 7% profit target to advance, 7% max loss (-7% triggers quarantine). 0% profit share at Seed. Min 30 days / 20 trades per stage. Seed can be restarted without penalty.",
+          "pricing": "Free to join; no registration/monthly fees. Minimum equity/deposit to enter program starts at $500."
         },
         {
           "name": "Incubation",
@@ -4225,7 +4377,8 @@
           "profitTargetPct": 7,
           "profitSplitPct": 40,
           "payoutDays": null,
-          "note": "Stage 2. Edge Score >=60. Max funding $20K. 7% target to advance, 7% max loss. 40% profit share. Min 60 days / 40 trades."
+          "note": "Stage 2. Edge Score >=60. Max funding $20K. 7% target to advance, 7% max loss. 40% profit share. Min 60 days / 40 trades.",
+          "pricing": "Free program stage; minimum equity requirement increases to $1k."
         },
         {
           "name": "Acceleration",
@@ -4240,7 +4393,8 @@
           "profitTargetPct": 7,
           "profitSplitPct": 50,
           "payoutDays": null,
-          "note": "Stage 3. Edge Score >=70. Max funding $100K. 7% target to advance, 7% max loss. 50% profit share. Min 60 days / 50 trades."
+          "note": "Stage 3. Edge Score >=70. Max funding $100K. 7% target to advance, 7% max loss. 50% profit share. Min 60 days / 50 trades.",
+          "pricing": "Free program stage; minimum equity requirement increases to $2k."
         },
         {
           "name": "Pro",
@@ -4255,7 +4409,8 @@
           "profitTargetPct": 7,
           "profitSplitPct": 60,
           "payoutDays": null,
-          "note": "Stage 4. Edge Score >=90. Max funding $200K. 7% target to advance, 7% max loss. 60% profit share. Min 60 days / 50 trades."
+          "note": "Stage 4. Edge Score >=90. Max funding $200K. 7% target to advance, 7% max loss. 60% profit share. Min 60 days / 50 trades.",
+          "pricing": "Free program stage; minimum equity requirement increases to $5k."
         },
         {
           "name": "Pro 500",
@@ -4270,7 +4425,8 @@
           "profitTargetPct": 7,
           "profitSplitPct": 70,
           "payoutDays": null,
-          "note": "Stage 5. Edge Score >=90. Max funding $500K. 7% target to advance, 7% max loss. 70% profit share. Min 60 days / 50 trades."
+          "note": "Stage 5. Edge Score >=90. Max funding $500K. 7% target to advance, 7% max loss. 70% profit share. Min 60 days / 50 trades.",
+          "pricing": "Free program stage; minimum equity requirement increases to $10k."
         },
         {
           "name": "Pro M",
@@ -4285,7 +4441,8 @@
           "profitTargetPct": "N/A",
           "profitSplitPct": 80,
           "payoutDays": null,
-          "note": "Stage 6 (top). Edge Score >=90. Max funding $1M. No profit target to advance (final stage). 10% max loss (higher than earlier stages). 80% profit share. On-demand payouts. Some sources cite up to 90% split — unconfirmed. Runs under AxiTrader LLC (St Vincent, offshore entity)."
+          "note": "Stage 6 (top). Edge Score >=90. Max funding $1M. No profit target to advance (final stage). 10% max loss (higher than earlier stages). 80% profit share. On-demand payouts. Some sources cite up to 90% split — unconfirmed. Runs under AxiTrader LLC (St Vincent, offshore entity).",
+          "pricing": "Free program stage; minimum equity requirement increases to $20k."
         }
       ],
       "automation": {
@@ -4331,7 +4488,7 @@
       "cryptoAssets": "Crypto-native: 100+ assets from stablecoins to alts; max leverage 1:5 BTC/ETH, 1:2 alts",
       "notes": "Crypto-native, launched March 2026 by Maven Trading. Pricing page confirms flagship Single Pass (1-step: 9% target, 3% daily, 5% max static DD, 80% split, BTC/ETH 1:5, alts 1:2) and Double Pass (2-step: 10%/6% targets, 5% daily, 8% max static). Genesis (withdraw-any-day) still 'coming soon'/placeholder. Match Trader; 100+ crypto assets; payout cycle every 10 business days. Fields reflect Single Pass flagship. Max funded $300k (combined; $100k/account). Payout processing time is not published (cadence: every 10 business days; Genesis daily) — shown as 'unstated'.",
       "source": "https://wencrypto.com/",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "high",
       "status": "active",
       "programDetails": [
@@ -4345,7 +4502,8 @@
           "profitTargetPct": 9,
           "profitSplitPct": 80,
           "payoutDays": 0,
-          "note": "1-step flagship. 9% target, 3% daily DD (equity/balance method), 5% static max DD. BTC/ETH 1:5 leverage, alts 1:2. 80% split. Payout every 10 business days (on-demand cadence). Refundable fee. Max $100K per account / $300K combined. Launched March 2026 by Maven Trading."
+          "note": "1-step flagship. 9% target, 3% daily DD (equity/balance method), 5% static max DD. BTC/ETH 1:5 leverage, alts 1:2. 80% split. Payout every 10 business days (on-demand cadence). Refundable fee. Max $100K per account / $300K combined. Launched March 2026 by Maven Trading.",
+          "pricing": "$360 coupon price / $479 list; refundable."
         },
         {
           "name": "Double Pass",
@@ -4357,7 +4515,8 @@
           "profitTargetPct": 10,
           "profitSplitPct": 80,
           "payoutDays": 0,
-          "note": "2-step: P1 10% target, P2 6% target. 5% daily DD, 8% static max DD. BTC/ETH 1:5, alts 1:2. 80% split. Same payout cadence (every 10 business days). Cheaper entry price than Single Pass."
+          "note": "2-step: P1 10% target, P2 6% target. 5% daily DD, 8% static max DD. BTC/ETH 1:5, alts 1:2. 80% split. Same payout cadence (every 10 business days). Cheaper entry price than Single Pass.",
+          "pricing": "$288 coupon price / $383 list; refundable."
         },
         {
           "name": "Genesis",
@@ -4369,7 +4528,8 @@
           "profitTargetPct": null,
           "profitSplitPct": null,
           "payoutDays": 0,
-          "note": "Withdraw-any-day challenge with scaling reward splits. Listed as 'Coming Soon' / placeholder as of 2026-05-27. All parameters null; no rules published yet. FAQ lists 12 articles for Genesis (exists in FAQ structure but pricing page shows placeholder data only)."
+          "note": "Withdraw-any-day challenge with scaling reward splits. Listed as 'Coming Soon' / placeholder as of 2026-05-27. All parameters null; no rules published yet. FAQ lists 12 articles for Genesis (exists in FAQ structure but pricing page shows placeholder data only).",
+          "pricing": "Coming soon; pricing hidden in capture."
         },
         {
           "name": "Instant Funding",
@@ -4381,7 +4541,8 @@
           "profitTargetPct": "N/A",
           "profitSplitPct": null,
           "payoutDays": 0,
-          "note": "Instant funded account (no challenge). Listed in programs array and referenced on pricing page. Per-program DD and split parameters not published in captured pages; null pending verification."
+          "note": "Instant funded account (no challenge). Listed in programs array and referenced on pricing page. Per-program DD and split parameters not published in captured pages; null pending verification.",
+          "pricing": "Instant Funding tab/page not exposed in refreshed capture; verify checkout."
         }
       ],
       "automation": {
@@ -4391,6 +4552,115 @@
         "copy": "EAs not permitted; copy/mirror = breach; simulated accounts",
         "feasibility": "none",
         "note": "EAs banned, copy = breach, manual-only Match-Trader."
+      }
+    },
+    {
+      "id": "doji-funded",
+      "name": "DojiFunded",
+      "website": "https://dojifunded.com",
+      "fundingModel": "both",
+      "assetClasses": [
+        "crypto",
+        "forex"
+      ],
+      "programs": [
+        "Instant Funding (coming soon)",
+        "1-Step",
+        "2-Step Classic",
+        "2-Step Elite"
+      ],
+      "accountSizes": [
+        1000,
+        5000,
+        10000,
+        25000,
+        50000,
+        100000
+      ],
+      "dailyDrawdownPct": 3,
+      "maxDrawdownPct": 6,
+      "drawdownType": "mixed",
+      "profitTargetPct": 10,
+      "profitSplitPct": 80,
+      "maxFundedTotal": 400000,
+      "payoutDays": 0,
+      "payoutSpeed": "0h",
+      "payoutSpeedHours": 0,
+      "cryptoLeverage": "1:5",
+      "cryptoAssets": "GMX + Ostium on-chain execution. GMX: 50+ crypto perps plus commodities. Ostium: BTC/ETH/SOL/XRP/BNB/ADA/LINK/TRX/HYPE plus stocks, ETFs, commodities, forex, and indices. Max position sizes vary by symbol, commonly $50k-$2M.",
+      "notes": "Private alpha / waitlist on-chain funded trading protocol powered by Arbitrum. Docs say all drawdown is equity-based and include floating PnL in the rulebook/dashboard; FAQ has a conflicting realised-balance/daily-loss table, so this row uses the dedicated Rules and Doji Accounts tables. Flagship row uses 1-Step rules: 3% daily DD, 6% smart max DD, 10% target. Instant: 5% trailing max DD, no daily limit, no profit target, first withdrawal after 5% profit. 2-Step Elite: 3% daily / 6% static max, 10% + 5% targets. 2-Step Classic: 5% daily / 8% static max, 10% + 5% targets. Leverage by asset: crypto 1:5, FX 1:25, ETFs 1:20, stocks/indices/commodities 1:10. No consistency rule, no daily profit cap, no minimum trading days, no time limit, and evaluations can pass in one trade if rules are respected. At least one trade every 30 days is required. Minimum trade duration 60s; HFT is not permitted. Max risk per trade 1% unless the risk-limit add-on is enabled. Purchases are one-time fees, no recurring evaluation fee, paid in USDC on Arbitrum; direct crypto payments must use USDC on Arbitrum, with card payments marked coming soon and cross-chain swaps supported. Trading uses a virtual allocation that is not withdrawable; off-platform trading is not permitted. Challenge accounts are capped at $400k combined starting balance; Instant Funding is capped at $100k combined. Payout table set to 0d/0h per instant on-chain payout docs; FAQ also contains a 1-6h processing line, so verify live checkout/dashboard. Platform-level round-trip fees: crypto 0.040%, stocks/ETFs 0.020%, commodities 0.012%, indices 0.014%, forex 0.010%; GMX funding and Ostium rollover costs may vary. Add-ons shown: 80%/90% profit split and remove 1% risk-per-trade limit, each +20%. Pricing source: https://docs.dojifunded.com/account-pricing",
+      "source": "https://docs.dojifunded.com/resources/rules-risk-parameters",
+      "lastVerified": "2026-06-29",
+      "confidence": "medium",
+      "status": "active",
+      "programDetails": [
+        {
+          "name": "Instant Funding (coming soon)",
+          "steps": "instant",
+          "model": "instant",
+          "accountSizes": [
+            1000,
+            5000,
+            10000,
+            25000,
+            50000
+          ],
+          "dailyDrawdownPct": "None",
+          "maxDrawdownPct": 5,
+          "drawdownType": "trailing",
+          "profitTargetPct": "N/A",
+          "profitSplitPct": "80/90",
+          "pricing": "$1k $30 · $5k $146 · $10k $284 · $25k $719 · $50k $1,439; $100k not listed.",
+          "payoutDays": 0,
+          "note": "Coming soon. Equity-based trailing max drawdown, no daily limit, no evaluation target. First withdrawal after 5% profit."
+        },
+        {
+          "name": "1-Step",
+          "steps": "1-step",
+          "model": "challenge",
+          "dailyDrawdownPct": 3,
+          "maxDrawdownPct": 6,
+          "drawdownType": "mixed",
+          "profitTargetPct": 10,
+          "profitSplitPct": "80/90",
+          "pricing": "$1k $12 · $5k $51 · $10k $93 · $25k $231 · $50k $416 · $100k $840.",
+          "payoutDays": 0,
+          "note": "Smart drawdown: trails until a defined profit level, then locks. No consistency rule, no min trading days; 60s minimum trade duration; 1% max risk/trade unless add-on enabled."
+        },
+        {
+          "name": "2-Step Classic",
+          "steps": "2-step",
+          "model": "challenge",
+          "dailyDrawdownPct": 5,
+          "maxDrawdownPct": 8,
+          "drawdownType": "static",
+          "profitTargetPct": "10/5",
+          "profitSplitPct": "80/90",
+          "pricing": "$1k $10 · $5k $42 · $10k $84 · $25k $210 · $50k $380 · $100k $752.",
+          "payoutDays": 0,
+          "note": "Static max drawdown. Phase 1 target 10%, Phase 2 target 5%. No consistency rule, no min trading days; 60s minimum trade duration; 1% max risk/trade unless add-on enabled."
+        },
+        {
+          "name": "2-Step Elite",
+          "steps": "2-step",
+          "model": "challenge",
+          "dailyDrawdownPct": 3,
+          "maxDrawdownPct": 6,
+          "drawdownType": "static",
+          "profitTargetPct": "10/5",
+          "profitSplitPct": "80/90",
+          "pricing": "$1k $12 · $5k $50 · $10k $100 · $25k $250 · $50k $450 · $100k $900.",
+          "payoutDays": 0,
+          "note": "Static max drawdown. Phase 1 target 10%, Phase 2 target 5%. No consistency rule, no min trading days; 60s minimum trade duration; 1% max risk/trade unless add-on enabled."
+        }
+      ],
+      "automation": {
+        "platform": "DojiFunded on-chain terminal/API",
+        "ea": "allowed",
+        "apiKeys": "trade",
+        "copy": "Own-account copying is allowed only from accounts owned by the same trader; cross-user copying, group copying, reverse trading, account management, shared EA settings, and cross-account hedging are prohibited.",
+        "feasibility": "high",
+        "note": "Customer-facing REST trading API at https://engine.dojifunded.com/v1. API keys support READ_ONLY, TRADE, and MANAGE_ORDERS scopes, with optional IP whitelist and HTTPS webhook URL. Order endpoints support market, limit, stop, take-profit, cancel, and close-position flows across GMX/Ostium; public market data needs no auth; per-key limit is 1,200 requests/min. Webhooks cover order ack/fill/cancel, position close, and account breach events. Custom bots/EAs are allowed, but public third-party EAs, exploitative tactics, latency arbitrage, and HFT are prohibited."
       }
     },
     {
@@ -4423,7 +4693,7 @@
       "cryptoAssets": "33 Hyperliquid perps (BTC, ETH, SOL, XRP, BNB, DOGE, HYPE, SUI, kPEPE +24) + 22 HIP-3 synthetics (NVDA, TSLA, GOLD, OIL, SP500)",
       "notes": "Crypto-native prop on Hyperliquid + a proprietary app (very new, ~2026). Evaluation $9/$99/$169 (30d) + Instant Funds $49/$499/$999; sizes $1k/$10k/$20k. MLL trailing max-loss starts 6% below start (EOD-balance based, never trails down). Up to 90% split. Payout: 5 winning days (3 if paid in MEME); a winning day = >=$100 closed PnL; processed end-of-month then <=3 business days; min 100 USDC; 50% consistency rule. Execution is UI-only via app.acetrader.com — trader does NOT own the account/positions (evaluation/sim). Legal entity/country not disclosed.",
       "source": "https://acetrader.com + docs.acetrader.com (llms-full.txt)",
-      "lastVerified": "2026-06-07",
+      "lastVerified": "2026-06-29",
       "confidence": "high",
       "status": "active",
       "automation": {
@@ -4433,7 +4703,105 @@
         "copy": "Not addressed; UI-only execution",
         "feasibility": "low",
         "note": "Hyperliquid underneath but execution is UI-only, no trader keys, and the trader does not own positions."
-      }
+      },
+      "programDetails": [
+        {
+          "name": "Evaluation Starter",
+          "steps": "1-step",
+          "model": "challenge",
+          "accountSizes": [
+            1000
+          ],
+          "dailyDrawdownPct": "None",
+          "maxDrawdownPct": 6,
+          "drawdownType": "trailing",
+          "profitTargetPct": null,
+          "profitSplitPct": 90,
+          "pricing": "$9 / 30 days.",
+          "payoutDays": 5,
+          "note": "Starter 1k evaluation; MLL trailing max-loss starts 6% below start."
+        },
+        {
+          "name": "Evaluation Standard",
+          "steps": "1-step",
+          "model": "challenge",
+          "accountSizes": [
+            10000
+          ],
+          "dailyDrawdownPct": "None",
+          "maxDrawdownPct": 6,
+          "drawdownType": "trailing",
+          "profitTargetPct": null,
+          "profitSplitPct": 90,
+          "pricing": "$99 / 30 days.",
+          "payoutDays": 5,
+          "note": "Standard 10k evaluation; MLL trailing max-loss starts 6% below start."
+        },
+        {
+          "name": "Evaluation Pro",
+          "steps": "1-step",
+          "model": "challenge",
+          "accountSizes": [
+            20000
+          ],
+          "dailyDrawdownPct": "None",
+          "maxDrawdownPct": 6,
+          "drawdownType": "trailing",
+          "profitTargetPct": null,
+          "profitSplitPct": 90,
+          "pricing": "$169 / 30 days.",
+          "payoutDays": 5,
+          "note": "Pro 20k evaluation; MLL trailing max-loss starts 6% below start."
+        },
+        {
+          "name": "Instant Funds Starter",
+          "steps": "instant",
+          "model": "instant",
+          "accountSizes": [
+            1000
+          ],
+          "dailyDrawdownPct": "None",
+          "maxDrawdownPct": 6,
+          "drawdownType": "trailing",
+          "profitTargetPct": null,
+          "profitSplitPct": 90,
+          "pricing": "$49 one-time.",
+          "payoutDays": 5,
+          "note": "Instant 1k simulated capital account."
+        },
+        {
+          "name": "Instant Funds Standard",
+          "steps": "instant",
+          "model": "instant",
+          "accountSizes": [
+            10000
+          ],
+          "dailyDrawdownPct": "None",
+          "maxDrawdownPct": 6,
+          "drawdownType": "trailing",
+          "profitTargetPct": null,
+          "profitSplitPct": 90,
+          "pricing": "$499 one-time.",
+          "payoutDays": 5,
+          "note": "Instant 10k simulated capital account."
+        },
+        {
+          "name": "Instant Funds Pro",
+          "steps": "instant",
+          "model": "instant",
+          "accountSizes": [
+            20000
+          ],
+          "dailyDrawdownPct": "None",
+          "maxDrawdownPct": 6,
+          "drawdownType": "trailing",
+          "profitTargetPct": null,
+          "profitSplitPct": 90,
+          "pricing": "$999 one-time.",
+          "payoutDays": 5,
+          "note": "Instant 20k simulated capital account."
+        }
+      ]
     }
   ]
 }

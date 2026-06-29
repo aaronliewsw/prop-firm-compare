@@ -207,6 +207,7 @@ export default async function FirmDetailPage({
               <thead className="bg-bg/40 border-b border-border text-xs uppercase tracking-wide text-muted">
                 <tr>
                   <th scope="col" className="px-3 py-2 text-left font-medium">Program</th>
+                  <th scope="col" className="px-3 py-2 text-left font-medium whitespace-nowrap">Price / fee</th>
                   <th scope="col" className="px-3 py-2 text-right font-medium whitespace-nowrap">Daily DD</th>
                   <th scope="col" className="px-3 py-2 text-right font-medium whitespace-nowrap">Max DD</th>
                   <th scope="col" className="px-3 py-2 text-left font-medium">DD Type</th>
@@ -228,6 +229,9 @@ export default async function FirmDetailPage({
                           {p.note}
                         </div>
                       )}
+                    </td>
+                    <td className="px-3 py-2 text-muted text-xs leading-snug max-w-[260px]">
+                      {p.pricing ?? "—"}
                     </td>
                     <td className="px-3 py-2 text-right font-mono whitespace-nowrap">{formatPct(p.dailyDrawdownPct)}</td>
                     <td className="px-3 py-2 text-right font-mono whitespace-nowrap">{formatPct(p.maxDrawdownPct)}</td>

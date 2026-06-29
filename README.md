@@ -1,6 +1,6 @@
 # Prop Firm Compare
 
-Sortable, filterable Next.js dashboard comparing 45 crypto-focused prop
+Sortable, filterable Next.js dashboard comparing 47 crypto-focused prop
 trading firms — drawdown, profit split, payout speed, leverage, and
 per-program rules. Pin firms to a shortlist and compare them side by side;
 each firm has a detail subpage with its full per-program rule breakdown.

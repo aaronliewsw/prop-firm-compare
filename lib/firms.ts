@@ -35,6 +35,7 @@ export interface ProgramDetail {
   drawdownType: DrawdownType;
   profitTargetPct: number | string | null;
   profitSplitPct: number | string | null;
+  pricing?: string;                           // account/evaluation fee text; currencies and subscriptions vary by firm
   payoutDays?: number | string | null;
   note?: string;                             // short qualifier (e.g. "EOD trailing; pauses, doesn't fail")
 }
@@ -108,6 +109,16 @@ export function formatLeverage(n: number | string | null): string {
 /** Sort key for fields that may hold a string ($/None/N/A) — strings sort last. */
 export function numOrNull(v: number | string | null): number | null {
   return typeof v === "number" ? v : null;
+}
+
+/** Sort/filter key for leverage strings such as "Crypto 1:5 / FX 1:25". */
+export function leverageOrNull(v: number | string | null): number | null {
+  if (typeof v === "number") return v;
+  if (typeof v !== "string") return null;
+
+  const matches = [...v.matchAll(/(?:1:(\d+(?:\.\d+)?)|(\d+(?:\.\d+)?)x)\b/gi)];
+  if (!matches.length) return null;
+  return Math.max(...matches.map((match) => Number(match[1] ?? match[2])));
 }
 
 /** Short label for the "Bots / API" column — the primary way a trader could automate. */
