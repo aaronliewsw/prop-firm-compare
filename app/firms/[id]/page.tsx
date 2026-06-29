@@ -61,21 +61,31 @@ function SectionHeader({ children }: { children: ReactNode }) {
   );
 }
 
+type MetricTone = "reward" | "risk" | "neutral";
+
+function metricValueClass(tone: MetricTone): string {
+  if (tone === "reward") return "text-positive font-medium";
+  if (tone === "risk") return "text-muted";
+  return "text-text";
+}
+
 function KpiCell({
   label,
   value,
   caption,
+  tone = "neutral",
 }: {
   label: string;
   value: ReactNode;
   caption?: string;
+  tone?: MetricTone;
 }) {
   return (
-    <div className="min-w-[156px] px-4 py-4">
+    <div className="px-4 py-4">
       <div className="text-[11px] font-medium uppercase tracking-[0.06em] text-muted">
         {label}
       </div>
-      <div className="mt-2 font-mono tnum text-lg leading-none text-text">
+      <div className={`mt-2 font-mono tnum text-lg leading-none ${metricValueClass(tone)}`}>
         {value}
       </div>
       {caption && (
@@ -90,11 +100,13 @@ function RuleRow({
   value,
   detail,
   numeric,
+  tone = "neutral",
 }: {
   label: string;
   value: ReactNode;
   detail?: ReactNode;
   numeric?: boolean;
+  tone?: MetricTone;
 }) {
   return (
     <tr>
@@ -105,9 +117,9 @@ function RuleRow({
         {label}
       </th>
       <td
-        className={`border-l border-border px-4 py-3 text-right align-top text-[13px] text-text ${
+        className={`border-l border-border px-4 py-3 text-right align-top text-[13px] ${
           numeric ? "font-mono tnum" : ""
-        }`}
+        } ${metricValueClass(tone)}`}
       >
         {value}
       </td>
@@ -132,7 +144,7 @@ export default async function FirmDetailPage({
       <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 md:py-12">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-[13px] text-muted transition-colors hover:text-text"
+          className="focus-ring inline-flex items-center gap-2 text-[13px] text-muted transition-colors hover:text-text"
         >
           <ArrowLeft size={14} strokeWidth={1.5} aria-hidden="true" />
           <span>All firms</span>
@@ -165,7 +177,7 @@ export default async function FirmDetailPage({
               href={f.website}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-[13px] font-medium text-accent transition-colors hover:text-accent-hover"
+              className="focus-ring inline-flex items-center gap-1 text-[13px] font-medium text-accent transition-colors hover:text-accent-hover"
             >
               Visit site
               <ExternalLink size={14} strokeWidth={1.5} aria-hidden="true" />
@@ -175,15 +187,13 @@ export default async function FirmDetailPage({
 
         <section className="py-8">
           <div className="overflow-hidden rounded-lg border border-border bg-panel">
-            <div className="overflow-x-auto">
-              <div className="grid min-w-[920px] grid-cols-6 divide-x divide-border">
-                <KpiCell label="Daily Drawdown" value={formatPct(f.dailyDrawdownPct)} />
-                <KpiCell label="Max Drawdown" value={formatPct(f.maxDrawdownPct)} />
-                <KpiCell label="Profit Target" value={formatPct(f.profitTargetPct)} />
-                <KpiCell label="Profit Split" value={`${f.profitSplitPct}%`} />
-                <KpiCell label="Leverage" value={formatLeverage(f.cryptoLeverage)} />
-                <KpiCell label="1st Payout" value={formatDays(f.payoutDays)} />
-              </div>
+            <div className="grid grid-cols-2 divide-x divide-y divide-border sm:grid-cols-3 lg:grid-cols-6 lg:divide-y-0">
+              <KpiCell label="Daily Drawdown" value={formatPct(f.dailyDrawdownPct)} tone="risk" />
+              <KpiCell label="Max Drawdown" value={formatPct(f.maxDrawdownPct)} tone="risk" />
+              <KpiCell label="Profit Target" value={formatPct(f.profitTargetPct)} tone="risk" />
+              <KpiCell label="Profit Split" value={`${f.profitSplitPct}%`} tone="reward" />
+              <KpiCell label="Leverage" value={formatLeverage(f.cryptoLeverage)} tone="reward" />
+              <KpiCell label="1st Payout" value={formatDays(f.payoutDays)} tone="neutral" />
             </div>
           </div>
         </section>
@@ -235,33 +245,39 @@ export default async function FirmDetailPage({
                     label="Daily Drawdown"
                     value={formatPct(f.dailyDrawdownPct)}
                     numeric
+                    tone="risk"
                   />
                   <RuleRow
                     label="Max Drawdown"
                     value={formatPct(f.maxDrawdownPct)}
                     numeric
+                    tone="risk"
                   />
-                  <RuleRow label="Drawdown Type" value={f.drawdownType} />
+                  <RuleRow label="Drawdown Type" value={f.drawdownType} tone="neutral" />
                   <RuleRow
                     label="Profit Target"
                     value={formatPct(f.profitTargetPct)}
                     numeric
+                    tone="risk"
                   />
                   <RuleRow
                     label="Profit Split"
                     value={`${f.profitSplitPct}%`}
                     numeric
+                    tone="reward"
                   />
                   <RuleRow
                     label="1st Payout"
                     value={formatDays(f.payoutDays)}
                     detail="min days on funded acct before first withdrawal"
                     numeric
+                    tone="neutral"
                   />
                   <RuleRow
                     label="Payout Speed"
                     value={f.payoutSpeed ?? "—"}
                     detail="processing time after request"
+                    tone="neutral"
                   />
                   <RuleRow
                     label="Account Sizes"
@@ -272,22 +288,26 @@ export default async function FirmDetailPage({
                       </span>
                     }
                     numeric
+                    tone="neutral"
                   />
                   <RuleRow
                     label="Max Funded"
                     value={f.maxFundedTotal == null ? "—" : formatMoney(f.maxFundedTotal)}
                     numeric
+                    tone="reward"
                   />
-                  <RuleRow label="Funding Model" value={f.fundingModel} />
+                  <RuleRow label="Funding Model" value={f.fundingModel} tone="neutral" />
                   <RuleRow
                     label="Leverage"
                     value={formatLeverage(f.cryptoLeverage)}
                     numeric
+                    tone="reward"
                   />
-                  <RuleRow label="Crypto Assets" value={f.cryptoAssets} />
+                  <RuleRow label="Crypto Assets" value={f.cryptoAssets} tone="neutral" />
                   <RuleRow
                     label="Asset Classes"
                     value={f.assetClasses.join(", ")}
+                    tone="neutral"
                   />
                 </tbody>
               </table>
@@ -368,11 +388,11 @@ export default async function FirmDetailPage({
                         <td className="border-l border-border px-3 py-3 text-right font-mono tnum text-[12px] leading-relaxed text-muted">
                           {p.pricing ?? "—"}
                         </td>
-                        <td className="border-l border-border px-3 py-3 text-right font-mono tnum whitespace-nowrap text-text">{formatPct(p.dailyDrawdownPct)}</td>
-                        <td className="border-l border-border px-3 py-3 text-right font-mono tnum whitespace-nowrap text-text">{formatPct(p.maxDrawdownPct)}</td>
+                        <td className="border-l border-border px-3 py-3 text-right font-mono tnum whitespace-nowrap text-muted">{formatPct(p.dailyDrawdownPct)}</td>
+                        <td className="border-l border-border px-3 py-3 text-right font-mono tnum whitespace-nowrap text-muted">{formatPct(p.maxDrawdownPct)}</td>
                         <td className="border-l border-border px-3 py-3 text-muted">{p.drawdownType}</td>
-                        <td className="border-l border-border px-3 py-3 text-right font-mono tnum whitespace-nowrap text-text">{formatPct(p.profitTargetPct)}</td>
-                        <td className="border-l border-border px-3 py-3 text-right font-mono tnum whitespace-nowrap text-text">{formatPct(p.profitSplitPct)}</td>
+                        <td className="border-l border-border px-3 py-3 text-right font-mono tnum whitespace-nowrap text-muted">{formatPct(p.profitTargetPct)}</td>
+                        <td className="border-l border-border px-3 py-3 text-right font-mono tnum whitespace-nowrap text-positive font-medium">{formatPct(p.profitSplitPct)}</td>
                         <td className="border-l border-border px-3 py-3 text-right font-mono tnum text-[12px] whitespace-nowrap text-muted">
                           {formatSizes(p.accountSizes ?? f.accountSizes)}
                         </td>
@@ -412,7 +432,7 @@ export default async function FirmDetailPage({
               href={f.source}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 font-medium text-accent transition-colors hover:text-accent-hover"
+              className="focus-ring inline-flex items-center gap-1 font-medium text-accent transition-colors hover:text-accent-hover"
             >
               Source
               <ExternalLink size={14} strokeWidth={1.5} aria-hidden="true" />
