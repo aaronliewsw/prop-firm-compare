@@ -12,3 +12,4 @@ data/*.backup-*.json
 
 # research scaffolding (scrapers, raw captures, patch scripts, handover) — kept local
 research/
+package-lock.json
