@@ -13,7 +13,7 @@ type BadgeTone = "neutral" | "positive" | "negative" | "accent" | "amber";
 const toneClasses: Record<BadgeTone, string> = {
   neutral:  "bg-panel text-muted",
   positive: "bg-positive-soft text-positive",
-  negative: "bg-accent-soft text-danger",
+  negative: "bg-accent-soft text-danger ring-1 ring-danger/40",
   accent:   "bg-accent-soft text-accent",
   amber:    "bg-[#FBF0D8] text-warn",
 };
@@ -32,6 +32,7 @@ export function Badge({
         toneClasses[tone],
       )}
     >
+      {tone === "negative" && <span aria-hidden="true">•</span>}
       {children}
     </span>
   );
@@ -66,7 +67,7 @@ export function SegButton({
   return (
     <button
       className={cx(
-        "px-3 py-1.5 text-[13px] rounded-md border transition-colors",
+        "px-3 py-1.5 text-[13px] rounded-md border transition-colors focus-ring",
         active
           ? "bg-text text-bg border-text"
           : "bg-bg text-muted border-border hover:text-text",

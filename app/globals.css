@@ -27,3 +27,18 @@ html, body {
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #E5E5E5; border-radius: 6px; }
 ::-webkit-scrollbar-thumb:hover { background: #d4d4d4; }
+
+/* Ensure accent CSS var is available app-wide */
+:root {
+  --accent: #F95837;
+}
+
+/* Keyboard focus ring — apply .focus-ring to any interactive element */
+.focus-ring {
+  outline: none;
+}
+.focus-ring:focus-visible {
+  outline: 2px solid var(--accent, #F95837);
+  outline-offset: 2px;
+  border-radius: 4px;
+}

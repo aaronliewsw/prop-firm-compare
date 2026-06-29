@@ -135,3 +135,29 @@ export function automationLabel(a?: Automation): string {
 export function feasibilityRank(f?: MiraFeasibility): number {
   return f === "high" ? 0 : f === "medium" ? 1 : f === "low" ? 2 : f === "none" ? 3 : 4;
 }
+
+// ---------------------------------------------------------------------------
+// Directional-emphasis helpers (used by comparison columns)
+// ---------------------------------------------------------------------------
+
+/** Direction of "better": higher wins or lower wins */
+export type Better = "higher" | "lower";
+
+/**
+ * Returns the most favorable value among the list, ignoring nulls.
+ * Returns null if the list is empty or all values are null.
+ */
+export function bestValue(values: Array<number | null>, better: Better): number | null {
+  const valid = values.filter((v): v is number => v !== null);
+  if (valid.length === 0) return null;
+  return better === "higher" ? Math.max(...valid) : Math.min(...valid);
+}
+
+/**
+ * Returns Tailwind classes to emphasize the leading/favorable cell.
+ * Returns "text-positive font-medium" when value equals best (and best is non-null); else "".
+ */
+export function leaderClass(value: number | null, best: number | null): string {
+  if (value === null || best === null) return "";
+  return value === best ? "text-positive font-medium" : "";
+}
