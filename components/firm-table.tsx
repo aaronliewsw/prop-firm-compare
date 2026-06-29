@@ -1,8 +1,10 @@
 "use client";
 
-import { Fragment, useMemo, useState } from "react";
+import { Fragment, useCallback, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
+import { useMemo } from "react";
 import Link from "next/link";
-import { ChevronDown, ChevronUp, ExternalLink, Pin, SearchX } from "lucide-react";
+import { ChevronDown, ChevronUp, ExternalLink, Info, Pin, SearchX } from "lucide-react";
 import type { AssetClass, Automation, DrawdownType, Firm } from "@/lib/firms";
 import {
   automationLabel,
@@ -161,6 +163,129 @@ function PinButton({
   );
 }
 
+// ---------------------------------------------------------------------------
+// HeaderInfo — tappable ⓘ button + portal popover for column definitions.
+// ---------------------------------------------------------------------------
+
+interface PopoverPos { top: number; left: number }
+
+interface HeaderInfoProps {
+  definition: string;
+  colId: string;
+  openColId: string | null;
+  setOpenColId: (id: string | null) => void;
+  popoverPos: PopoverPos | null;
+  setPopoverPos: (pos: PopoverPos | null) => void;
+  isMounted: boolean;
+}
+
+function HeaderInfo({
+  definition,
+  colId,
+  openColId,
+  setOpenColId,
+  popoverPos,
+  setPopoverPos,
+  isMounted,
+}: HeaderInfoProps) {
+  const btnRef = useRef<HTMLButtonElement>(null);
+  const popoverId = `col-def-${colId}`;
+  const isOpen = openColId === colId;
+
+  const open = useCallback(() => {
+    if (!btnRef.current) return;
+    const rect = btnRef.current.getBoundingClientRect();
+    const POPOVER_WIDTH = 260;
+    const MARGIN = 8;
+    let left = rect.left;
+    if (left + POPOVER_WIDTH + MARGIN > window.innerWidth) {
+      left = window.innerWidth - POPOVER_WIDTH - MARGIN;
+    }
+    setPopoverPos({ top: rect.bottom + 6, left });
+    setOpenColId(colId);
+  }, [colId, setOpenColId, setPopoverPos]);
+
+  const close = useCallback(() => {
+    setOpenColId(null);
+    setPopoverPos(null);
+    btnRef.current?.focus();
+  }, [setOpenColId, setPopoverPos]);
+
+  function handleToggle(e: React.MouseEvent | React.KeyboardEvent) {
+    e.stopPropagation();
+    if (isOpen) {
+      close();
+    } else {
+      open();
+    }
+  }
+
+  function handleKeyDown(e: React.KeyboardEvent) {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      handleToggle(e);
+    }
+  }
+
+  // Close this popover on Escape (when open).
+  useEffect(() => {
+    if (!isOpen) return;
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") {
+        close();
+      }
+    }
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [isOpen, close]);
+
+  // Outside-click handler lives on the popover portal element (see below).
+
+  return (
+    <>
+      <button
+        ref={btnRef}
+        type="button"
+        aria-label="Column definition"
+        aria-expanded={isOpen}
+        aria-controls={isOpen ? popoverId : undefined}
+        onClick={handleToggle}
+        onKeyDown={handleKeyDown}
+        className="focus-ring inline-flex items-center justify-center rounded text-muted hover:text-text focus-visible:outline-none"
+        style={{ lineHeight: 0 }}
+      >
+        <Info aria-hidden="true" size={12} strokeWidth={1.5} />
+      </button>
+
+      {/* Portal popover — SSR-safe: only rendered after mount and when open */}
+      {isMounted && isOpen && popoverPos &&
+        createPortal(
+          <div
+            role="dialog"
+            id={popoverId}
+            aria-label="Column definition"
+            style={{
+              position: "fixed",
+              top: popoverPos.top,
+              left: popoverPos.left,
+              zIndex: 200,
+            }}
+            className="max-w-[260px] rounded-lg border border-border bg-bg p-3 text-[13px] text-text shadow-modal"
+            onClick={(e) => e.stopPropagation()}
+            onPointerDown={(e) => e.stopPropagation()}
+          >
+            {definition}
+          </div>,
+          document.body
+        )
+      }
+    </>
+  );
+}
+
+// Outside-click: close the popover when clicking anywhere outside it.
+// Attached at the document level inside FirmTable when a popover is open.
+
 export default function FirmTable({
   firms,
   fundingModel,
@@ -176,6 +301,28 @@ export default function FirmTable({
   const [sortKey, setSortKey] = useState<SortKey>("profitSplitPct");
   const [sortDir, setSortDir] = useState<SortDir>("desc");
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
+
+  // Popover state — keyed by column id so only one is open at a time.
+  const [openColId, setOpenColId] = useState<string | null>(null);
+  const [popoverPos, setPopoverPos] = useState<PopoverPos | null>(null);
+  // SSR-safety: only render portal after mount.
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => { setIsMounted(true); }, []);
+
+  // Outside-click: close when clicking outside the popover.
+  useEffect(() => {
+    if (!openColId) return;
+    function onPointerDown(e: PointerEvent) {
+      const target = e.target as Node;
+      // Check if click is inside a portal popover div.
+      const popover = document.getElementById(`col-def-${openColId}`);
+      if (popover && popover.contains(target)) return;
+      setOpenColId(null);
+      setPopoverPos(null);
+    }
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => document.removeEventListener("pointerdown", onPointerDown);
+  }, [openColId]);
 
   function toggleExpand(id: string) {
     setExpanded((prev) => {
@@ -278,6 +425,15 @@ export default function FirmTable({
     return <Icon aria-hidden="true" className="text-accent" size={14} strokeWidth={1.5} />;
   };
 
+  // Shared props threaded into every HeaderInfo instance.
+  const infoProps = {
+    openColId,
+    setOpenColId,
+    popoverPos,
+    setPopoverPos,
+    isMounted,
+  };
+
   const Th = ({ k, label, align = "left", title }: { k: SortKey; label: string; align?: "left" | "right"; title?: string }) => {
     const isActive = sortKey === k;
     const alignClass = align === "right" ? "text-right" : "text-left";
@@ -289,19 +445,28 @@ export default function FirmTable({
         aria-sort={isActive ? (sortDir === "asc" ? "ascending" : "descending") : "none"}
         className={`p-0 font-medium whitespace-nowrap ${alignClass}`}
       >
-        <button
-          type="button"
-          onClick={() => toggleSort(k)}
-          title={title}
-          className={`focus-ring flex w-full items-center gap-1 px-3 py-2 ${justifyClass} ${alignClass} select-none transition-colors hover:bg-panel ${
-            isActive
-              ? "text-text border-b-2 border-accent"
-              : "text-muted hover:text-text"
-          } focus-visible:outline-none`}
-        >
-          <span>{label}</span>
-          {sortIcon(k)}
-        </button>
+        <div className={`flex items-center gap-1 px-3 py-2 ${justifyClass}`}>
+          <button
+            type="button"
+            onClick={() => toggleSort(k)}
+            title={title}
+            className={`focus-ring flex items-center gap-1 ${alignClass} select-none transition-colors hover:bg-panel ${
+              isActive
+                ? "text-text border-b-2 border-accent"
+                : "text-muted hover:text-text"
+            } focus-visible:outline-none`}
+          >
+            <span>{label}</span>
+            {sortIcon(k)}
+          </button>
+          {title && (
+            <HeaderInfo
+              definition={title}
+              colId={k}
+              {...infoProps}
+            />
+          )}
+        </div>
       </th>
     );
   };
@@ -333,26 +498,53 @@ export default function FirmTable({
           <thead className="sticky top-0 z-10 border-b-[1.5px] border-text bg-bg text-[11px] uppercase tracking-[0.06em] text-muted">
             <tr>
               {/* Pin col — not sticky, narrow */}
-              <th scope="col" className="w-[44px] px-2 py-2 text-left font-medium whitespace-nowrap" title="Pin a firm to your shortlist to compare side by side."><span className="sr-only">Pin</span></th>
+              <th scope="col" className="w-[44px] px-2 py-2 text-left font-medium whitespace-nowrap" title="Pin a firm to your shortlist to compare side by side.">
+                <span className="sr-only">Pin</span>
+              </th>
               {/* Firm name col — sticky left (#1) */}
               <th scope="col" className="sticky left-0 z-20 bg-bg px-3 py-2 text-left font-medium whitespace-nowrap border-r border-border">
-                <button
-                  type="button"
-                  onClick={() => toggleSort("name")}
-                  title="Prop firm name — click a row’s name to open the firm’s site."
-                  className={`focus-ring flex items-center gap-1 select-none transition-colors hover:bg-panel ${
-                    sortKey === "name"
-                      ? "text-text border-b-2 border-accent"
-                      : "text-muted hover:text-text"
-                  } focus-visible:outline-none`}
-                >
-                  <span>Firm</span>
-                  {sortIcon("name")}
-                </button>
+                <div className="flex items-center gap-1">
+                  <button
+                    type="button"
+                    onClick={() => toggleSort("name")}
+                    title="Prop firm name — click a row's name to open the firm's site."
+                    className={`focus-ring flex items-center gap-1 select-none transition-colors hover:bg-panel ${
+                      sortKey === "name"
+                        ? "text-text border-b-2 border-accent"
+                        : "text-muted hover:text-text"
+                    } focus-visible:outline-none`}
+                  >
+                    <span>Firm</span>
+                    {sortIcon("name")}
+                  </button>
+                  <HeaderInfo
+                    definition="Prop firm name — click a row's name to open the firm's site."
+                    colId="name"
+                    {...infoProps}
+                  />
+                </div>
               </th>
               <Th k="fundingModel" label="Model" title="Funding model — Challenge (pass an evaluation first), Instant (funded immediately), or Both." />
-              <th scope="col" className="px-3 py-2 text-left font-medium whitespace-nowrap" title="Challenge program tiers offered by this firm (e.g. 1-step, 2-step, instant).">Programs</th>
-              <th scope="col" className="px-3 py-2 text-right font-medium whitespace-nowrap" title="Account sizes available (in USD).">Sizes</th>
+              <th scope="col" className="px-3 py-2 text-left font-medium whitespace-nowrap" title="Challenge program tiers offered by this firm (e.g. 1-step, 2-step, instant).">
+                <div className="flex items-center gap-1">
+                  <span>Programs</span>
+                  <HeaderInfo
+                    definition="Challenge program tiers offered by this firm (e.g. 1-step, 2-step, instant)."
+                    colId="programs"
+                    {...infoProps}
+                  />
+                </div>
+              </th>
+              <th scope="col" className="px-3 py-2 text-right font-medium whitespace-nowrap" title="Account sizes available (in USD).">
+                <div className="flex items-center justify-end gap-1">
+                  <HeaderInfo
+                    definition="Account sizes available (in USD)."
+                    colId="sizes"
+                    {...infoProps}
+                  />
+                  <span>Sizes</span>
+                </div>
+              </th>
               <Th k="dailyDrawdownPct" label="Daily DD" align="right" title="Daily drawdown limit — the most you can lose in a single day before breaching." />
               <Th k="maxDrawdownPct" label="Max DD" align="right" title="Maximum overall drawdown — total loss allowed before the account fails." />
               <Th k="drawdownType" label="DD Type" title="Drawdown type — Static (fixed floor), Trailing (follows your peak balance), or Mixed." />
@@ -377,8 +569,26 @@ export default function FirmTable({
                 label="Bots / API"
                 title="Automation fit — can you connect a 3rd-party bot/EA or trade-scope API keys to your own account? Green = high fit, amber = medium/low, red = none."
               />
-              <th scope="col" className="px-3 py-2 text-left font-medium whitespace-nowrap" title="Cryptocurrency pairs or assets available to trade on this firm.">Crypto Assets</th>
-              <th scope="col" className="px-3 py-2 text-right font-medium whitespace-nowrap" title="When this firm's terms were last verified.">Verified</th>
+              <th scope="col" className="px-3 py-2 text-left font-medium whitespace-nowrap" title="Cryptocurrency pairs or assets available to trade on this firm.">
+                <div className="flex items-center gap-1">
+                  <span>Crypto Assets</span>
+                  <HeaderInfo
+                    definition="Cryptocurrency pairs or assets available to trade on this firm."
+                    colId="cryptoAssets"
+                    {...infoProps}
+                  />
+                </div>
+              </th>
+              <th scope="col" className="px-3 py-2 text-right font-medium whitespace-nowrap" title="When this firm's terms were last verified.">
+                <div className="flex items-center justify-end gap-1">
+                  <HeaderInfo
+                    definition="When this firm's terms were last verified."
+                    colId="verified"
+                    {...infoProps}
+                  />
+                  <span>Verified</span>
+                </div>
+              </th>
             </tr>
           </thead>
           <tbody className="divide-y divide-border">
