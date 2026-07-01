@@ -1,6 +1,6 @@
 {
   "$schema": "../lib/firms.ts#Firm[]",
-  "generatedAt": "2026-06-29",
+  "generatedAt": "2026-07-02",
   "disclaimer": "Prop firm terms change frequently. All values reflect publicly stated terms at lastVerified date. Firms marked status=closed are retained for reference only — they no longer operate. Always confirm on the firm's site before purchasing.",
   "firms": [
     {
@@ -4821,6 +4821,93 @@
           "note": "Instant 20k simulated capital account."
         }
       ]
+    },
+    {
+      "id": "propr",
+      "name": "Propr",
+      "website": "https://www.propr.xyz",
+      "fundingModel": "challenge",
+      "assetClasses": [
+        "crypto",
+        "forex"
+      ],
+      "programs": [
+        "Classic 1-Step",
+        "Turbo 1-Step",
+        "Classic 2-Step"
+      ],
+      "accountSizes": [
+        5000,
+        10000,
+        25000,
+        50000,
+        100000
+      ],
+      "maxFundedTotal": 300000,
+      "dailyDrawdownPct": 3,
+      "maxDrawdownPct": 6,
+      "drawdownType": "mixed",
+      "profitTargetPct": 10,
+      "profitSplitPct": 80,
+      "payoutDays": "On-demand",
+      "payoutSpeed": "~5h avg (24h max)",
+      "payoutSpeedHours": 5,
+      "cryptoLeverage": "BTC/ETH 5x · alts 2x · equities/commodities 4x",
+      "cryptoAssets": "150-200+ Hyperliquid perps (crypto, equity, commodity & FX) + Polymarket prediction markets + Solana memecoins; USDC-settled onchain",
+      "notes": "Onchain crypto-native prop firm built on Hyperliquid (perps) + Polymarket (prediction markets). Company: Propr Limited (British Virgin Islands) — NOT regulated by the BVI FSC or any financial authority. Built by XBorg (startup studio, founder Louis Regis; ~25k community, prior $9M community raise); paper-trading launched 2026-03-20, full platform Q2 2026, so track record is SHORT (~3-4 months as of this verification). THREE evaluations, all keep a flat 80% split with NO scaling: Classic 1-Step (10% target, 3% daily loss, 6% STATIC max DD), Turbo 1-Step (9% target, 3% daily, 3% STATIC — cheapest but tightest), Classic 2-Step (5%→10% target, 5% daily, 8% TRAILING DD off equity high-water-mark). Fees NON-refundable once activated. Very few soft rules: NO time limit, NO minimum trading days (can pass in one trade), NO consistency rule, NO profit cap, NO mandatory stop-loss. Bots/EAs/AI-agents AND copy trading (incl. between your own accounts) are EXPLICITLY allowed on both eval and funded — API-first design, 1,000+ AI agents reportedly trade on it; REST API + Python + JS SDKs connect in ~2 min. TRAP: both risk limits are EQUITY-based (include floating P&L) while the profit target is BALANCE-based — a momentary wick into unrealized loss can breach even if the trade would've recovered; daily loss resets 00:00 UTC. Breaches are PERMANENT — positions force-closed, account disabled, no resets/appeals (but liability capped at the eval fee). Same two risk limits carry to the funded account (no target). Leverage: BTC/ETH 5x, other crypto 2x, equities & commodities 4x. Payouts on-demand in USDC onchain, $20 min, unlimited requests, ~5h avg (24h SLA); every payout + trade published on the /transparency dashboard with tx hashes (A-book trades routed to Hyperliquid & verifiable onchain, B-book recorded internally). Prohibited: bug/latency exploits, account sharing/selling, opposite cross-account hedging, collusion, eval cycling, wash/simulated trades. KYC not needed for eval but required before funded activation + payouts. Restricted jurisdictions: US, UK, Russia, OFAC-sanctioned countries, certain Ukrainian regions (Malaysia is NOT restricted). Max aggregate funded balance $300k/trader (single account caps at $100k). Trustpilot ~4.8/5 (~47 reviews): praise for minutes-fast payouts + transparency; complaints of early-stage platform glitches (logouts, trades not showing in terminal). | [2026-07-02] bots/AI-agents/API fully allowed — highest-feasibility automation fit in the dataset alongside Hyrotrader.",
+      "source": "https://www.propr.xyz/rules",
+      "lastVerified": "2026-07-02",
+      "confidence": "high",
+      "status": "active",
+      "programDetails": [
+        {
+          "name": "Classic 1-Step",
+          "steps": "1-step",
+          "model": "challenge",
+          "dailyDrawdownPct": 3,
+          "maxDrawdownPct": 6,
+          "drawdownType": "static",
+          "profitTargetPct": 10,
+          "profitSplitPct": 80,
+          "payoutDays": "On-demand",
+          "pricing": "$5K=$60 · $10K=$110 · $25K=$275 · $50K=$495 · $100K=$999 (non-refundable)",
+          "note": "Flagship. 6% static max DD (Starting Balance × 0.94, never moves); 3% daily loss off starting balance, resets 00:00 UTC. Both equity-based. No min days/time limit."
+        },
+        {
+          "name": "Turbo 1-Step",
+          "steps": "1-step",
+          "model": "challenge",
+          "dailyDrawdownPct": 3,
+          "maxDrawdownPct": 3,
+          "drawdownType": "static",
+          "profitTargetPct": 9,
+          "profitSplitPct": 80,
+          "payoutDays": "On-demand",
+          "pricing": "$5K=$25 · $10K=$50 · $25K=$125 · $50K=$245 · $100K=$450 (non-refundable)",
+          "note": "Cheapest entry but tightest: only 3% static max DD (Starting Balance × 0.97) and 3% daily — one bad trade ends it. 9% target."
+        },
+        {
+          "name": "Classic 2-Step",
+          "steps": "2-step",
+          "model": "challenge",
+          "dailyDrawdownPct": 5,
+          "maxDrawdownPct": 8,
+          "drawdownType": "trailing",
+          "profitTargetPct": "5% then 10%",
+          "profitSplitPct": 80,
+          "payoutDays": "On-demand",
+          "pricing": "$5K=$50 · $10K=$100 · $25K=$250 · $50K=$450 · $100K=$749 (non-refundable)",
+          "note": "Roomier daily loss (5%) but 8% TRAILING max DD = HWM − 8% of starting balance; HWM is equity-based (floating P&L pushes it up), stops trailing once it reaches starting balance; payouts reduce HWM. Step1 5% then Step2 10%."
+        }
+      ],
+      "automation": {
+        "platform": "Hyperliquid + Polymarket (via Propr terminal / API)",
+        "ea": "allowed",
+        "apiKeys": "trade",
+        "copy": "Copy trading explicitly allowed, including between your own Propr accounts; bans opposite cross-account hedging + collusion",
+        "feasibility": "high",
+        "note": "API-first by design: REST API + official Python & JS SDKs, autonomous AI agents can take challenges, get funded, and execute (1,000+ agents reportedly live). Trade-scope automation on both eval and funded accounts — top-tier fit for a SaaS/bot integration."
+      }
     }
   ]
 }
