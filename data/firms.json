@@ -5424,7 +5424,7 @@
       ],
       "dailyDrawdownPct": "$500-$3,750 daily loss limit (varies by plan/size; no daily limit on Elite Access/Ignite/Instant funded)",
       "maxDrawdownPct": "$1,000-$6,000 (varies by plan/size)",
-      "drawdownType": "mixed",
+      "drawdownType": "trailing",
       "profitTargetPct": "6% first payout / 5% second / 4% thereafter (eval targets ~$1,500-$9,000 by size)",
       "profitSplitPct": 90,
       "maxFundedTotal": 1500000,
@@ -5522,7 +5522,7 @@
           ],
           "dailyDrawdownPct": "Yes (by size)",
           "maxDrawdownPct": "$1,000-$5,000 intraday",
-          "drawdownType": "static",
+          "drawdownType": "trailing",
           "profitTargetPct": "6/5/4% after passing ESS",
           "profitSplitPct": 90,
           "pricing": "$154-$436 one-time",
@@ -7638,6 +7638,7 @@
         2500,
         5000,
         10000,
+        20000,
         25000,
         50000,
         100000
@@ -8626,6 +8627,11 @@
           "model": "instant",
           "accountSizes": [
             1250,
+            5000,
+            10000,
+            20000,
+            40000,
+            80000,
             100000
           ],
           "dailyDrawdownPct": "None",
@@ -8643,6 +8649,12 @@
           "model": "challenge",
           "accountSizes": [
             5000,
+            10000,
+            20000,
+            40000,
+            80000,
+            100000,
+            160000,
             200000
           ],
           "dailyDrawdownPct": 4,
@@ -8660,6 +8672,12 @@
           "model": "challenge",
           "accountSizes": [
             5000,
+            10000,
+            20000,
+            40000,
+            80000,
+            100000,
+            160000,
             200000
           ],
           "dailyDrawdownPct": 5,
