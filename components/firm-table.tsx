@@ -46,6 +46,9 @@ interface Props {
   minLeverage: number;
   drawdownType: "all" | DrawdownType;
   payoutSpeed: "any" | "24" | "48";
+  minSplit: 0 | 80 | 90;
+  minMaxDdBuffer: 0 | 6 | 8 | 10;
+  automation: "any" | "high" | "ea" | "none";
   pinnedOnly: boolean;
   search: string;
   pinned: Set<string>;
@@ -296,6 +299,9 @@ export default function FirmTable({
   minLeverage,
   drawdownType,
   payoutSpeed,
+  minSplit,
+  minMaxDdBuffer,
+  automation,
   pinnedOnly,
   search,
   pinned,
@@ -412,12 +418,39 @@ export default function FirmTable({
         const lev = leverageOrNull(f.cryptoLeverage);
         if (lev == null || lev < minLeverage) return false;
       }
+      if (minSplit > 0 && f.profitSplitPct < minSplit) return false;
+      if (minMaxDdBuffer > 0) {
+        const maxDd = numOrNull(f.maxDrawdownPct);
+        if (maxDd == null || maxDd < minMaxDdBuffer) return false;
+      }
+      if (automation === "high" && f.automation?.feasibility !== "high") return false;
+      if (automation === "ea" && f.automation?.ea !== "allowed") return false;
+      if (
+        automation === "none" &&
+        f.automation?.ea !== "banned" &&
+        f.automation?.feasibility !== "none"
+      ) {
+        return false;
+      }
       if (q && !f.name.toLowerCase().includes(q) && !f.cryptoAssets.toLowerCase().includes(q)) {
         return false;
       }
       return true;
     });
-  }, [firms, fundingModel, assetClass, minLeverage, drawdownType, payoutSpeed, pinnedOnly, pinned, search]);
+  }, [
+    firms,
+    fundingModel,
+    assetClass,
+    minLeverage,
+    drawdownType,
+    payoutSpeed,
+    minSplit,
+    minMaxDdBuffer,
+    automation,
+    pinnedOnly,
+    pinned,
+    search,
+  ]);
 
   const sorted = useMemo(() => {
     const arr = [...filtered];

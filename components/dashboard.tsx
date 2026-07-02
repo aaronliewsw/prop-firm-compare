@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import type { AssetClass, DrawdownType, Firm } from "@/lib/firms";
+import { leverageOrNull, numOrNull } from "@/lib/firms";
 import { usePinned } from "@/lib/use-pinned";
 import FirmTable from "./firm-table";
 import FilterBar from "./filter-bar";
@@ -13,6 +14,9 @@ export default function Dashboard({ firms, generatedAt }: { firms: Firm[]; gener
   const [minLeverage, setMinLeverage] = useState<number>(0);
   const [drawdownType, setDrawdownType] = useState<"all" | DrawdownType>("all");
   const [payoutSpeed, setPayoutSpeed] = useState<"any" | "24" | "48">("any");
+  const [minSplit, setMinSplit] = useState<0 | 80 | 90>(0);
+  const [minMaxDdBuffer, setMinMaxDdBuffer] = useState<0 | 6 | 8 | 10>(0);
+  const [automation, setAutomation] = useState<"any" | "high" | "ea" | "none">("any");
   const [pinnedOnly, setPinnedOnly] = useState<boolean>(false);
   const [search, setSearch] = useState<string>("");
   const [showCompare, setShowCompare] = useState<boolean>(false);
@@ -24,6 +28,57 @@ export default function Dashboard({ firms, generatedAt }: { firms: Firm[]; gener
     () => firms.filter((f) => pinned.has(f.id)),
     [firms, pinned]
   );
+
+  const matchCount = useMemo(() => {
+    const q = search.trim().toLowerCase();
+
+    return firms.filter((f) => {
+      if (fundingModel !== "all" && f.fundingModel !== fundingModel) return false;
+      if (assetClass !== "all" && !f.assetClasses.includes(assetClass)) return false;
+      if (drawdownType !== "all" && f.drawdownType !== drawdownType) return false;
+      if (payoutSpeed !== "any") {
+        const hours = numOrNull(f.payoutSpeedHours);
+        const cap = payoutSpeed === "24" ? 24 : 48;
+        if (hours == null || hours > cap) return false;
+      }
+      if (pinnedOnly && !pinned.has(f.id)) return false;
+      if (minLeverage > 0) {
+        const lev = leverageOrNull(f.cryptoLeverage);
+        if (lev == null || lev < minLeverage) return false;
+      }
+      if (minSplit > 0 && f.profitSplitPct < minSplit) return false;
+      if (minMaxDdBuffer > 0) {
+        const maxDd = numOrNull(f.maxDrawdownPct);
+        if (maxDd == null || maxDd < minMaxDdBuffer) return false;
+      }
+      if (automation === "high" && f.automation?.feasibility !== "high") return false;
+      if (automation === "ea" && f.automation?.ea !== "allowed") return false;
+      if (
+        automation === "none" &&
+        f.automation?.ea !== "banned" &&
+        f.automation?.feasibility !== "none"
+      ) {
+        return false;
+      }
+      if (q && !f.name.toLowerCase().includes(q) && !f.cryptoAssets.toLowerCase().includes(q)) {
+        return false;
+      }
+      return true;
+    }).length;
+  }, [
+    firms,
+    fundingModel,
+    assetClass,
+    minLeverage,
+    drawdownType,
+    payoutSpeed,
+    minSplit,
+    minMaxDdBuffer,
+    automation,
+    pinnedOnly,
+    pinned,
+    search,
+  ]);
 
   return (
     <main className="min-h-screen bg-bg text-text">
@@ -45,9 +100,10 @@ export default function Dashboard({ firms, generatedAt }: { firms: Firm[]; gener
           starting point — confirm every number on the firm's site before purchasing a challenge.
         </div>
 
-        <section className="flex flex-col gap-4">
-          <p className="text-[13px] uppercase tracking-[0.06em] text-muted">Filters</p>
+        <section className="grid gap-4 lg:grid-cols-[18rem_minmax(0,1fr)] lg:items-start">
           <FilterBar
+            firms={firms}
+            matchCount={matchCount}
             fundingModel={fundingModel}
             setFundingModel={setFundingModel}
             assetClass={assetClass}
@@ -58,53 +114,64 @@ export default function Dashboard({ firms, generatedAt }: { firms: Firm[]; gener
             setDrawdownType={setDrawdownType}
             payoutSpeed={payoutSpeed}
             setPayoutSpeed={setPayoutSpeed}
+            minSplit={minSplit}
+            setMinSplit={setMinSplit}
+            minMaxDdBuffer={minMaxDdBuffer}
+            setMinMaxDdBuffer={setMinMaxDdBuffer}
+            automation={automation}
+            setAutomation={setAutomation}
             pinnedOnly={pinnedOnly}
             setPinnedOnly={setPinnedOnly}
             pinnedCount={pinned.size}
             search={search}
             setSearch={setSearch}
           />
-        </section>
 
-        {/* CHANGE 1: discoverable compare CTA.
-            - 0 pinned: nothing rendered (unchanged).
-            - 1 pinned: muted hint chip to teach the feature (non-interactive).
-            - >=2 pinned: existing live Compare button with focus-ring (CHANGE 3). */}
-        <div className="flex items-center justify-end gap-3">
-          {pinnedFirms.length === 1 && (
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-panel px-3 py-1.5 text-[13px] text-muted select-none">
-              1 pinned — pin 1 more to compare
-            </span>
-          )}
-          {pinnedFirms.length >= 2 && (
-            <button
-              onClick={() => setShowCompare((v) => !v)}
-              aria-pressed={showCompare}
-              className="focus-ring rounded-md border border-accent-hover bg-accent-hover px-3 py-2 text-sm font-semibold text-bg transition-colors hover:bg-accent"
-            >
-              {showCompare ? "Hide comparison" : `Compare pinned (${pinnedFirms.length})`}
-            </button>
-          )}
-        </div>
+          <div className="flex min-w-0 flex-col gap-4">
+            {/* CHANGE 1: discoverable compare CTA.
+                - 0 pinned: nothing rendered (unchanged).
+                - 1 pinned: muted hint chip to teach the feature (non-interactive).
+                - >=2 pinned: existing live Compare button with focus-ring (CHANGE 3). */}
+            <div className="flex items-center justify-end gap-3">
+              {pinnedFirms.length === 1 && (
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-panel px-3 py-1.5 text-[13px] text-muted select-none">
+                  1 pinned — pin 1 more to compare
+                </span>
+              )}
+              {pinnedFirms.length >= 2 && (
+                <button
+                  onClick={() => setShowCompare((v) => !v)}
+                  aria-pressed={showCompare}
+                  className="focus-ring rounded-md border border-accent-hover bg-accent-hover px-3 py-2 text-sm font-semibold text-bg transition-colors hover:bg-accent"
+                >
+                  {showCompare ? "Hide comparison" : `Compare pinned (${pinnedFirms.length})`}
+                </button>
+              )}
+            </div>
 
-        {showCompare && pinnedFirms.length >= 2 && (
-          <ComparePanel firms={pinnedFirms} onClose={() => setShowCompare(false)} />
-        )}
+            {showCompare && pinnedFirms.length >= 2 && (
+              <ComparePanel firms={pinnedFirms} onClose={() => setShowCompare(false)} />
+            )}
 
-        <section className="flex flex-col gap-4">
-          <p className="text-[13px] uppercase tracking-[0.06em] text-muted">Firm Rules</p>
-          <FirmTable
-            firms={firms}
-            fundingModel={fundingModel}
-            assetClass={assetClass}
-            minLeverage={minLeverage}
-            drawdownType={drawdownType}
-            payoutSpeed={payoutSpeed}
-            pinnedOnly={pinnedOnly}
-            search={search}
-            pinned={pinned}
-            togglePin={togglePin}
-          />
+            <section className="flex min-w-0 flex-col gap-4">
+              <p className="text-[13px] uppercase tracking-[0.06em] text-muted">Firm Rules</p>
+              <FirmTable
+                firms={firms}
+                fundingModel={fundingModel}
+                assetClass={assetClass}
+                minLeverage={minLeverage}
+                drawdownType={drawdownType}
+                payoutSpeed={payoutSpeed}
+                minSplit={minSplit}
+                minMaxDdBuffer={minMaxDdBuffer}
+                automation={automation}
+                pinnedOnly={pinnedOnly}
+                search={search}
+                pinned={pinned}
+                togglePin={togglePin}
+              />
+            </section>
+          </div>
         </section>
 
         <footer className="border-t border-border pt-4 text-[13px] text-muted">

@@ -70,7 +70,7 @@ export function SegButton({
       className={cx(
         "rounded px-3 py-1.5 text-[13px] transition-colors focus-ring",
         active
-          ? "bg-bg text-text font-medium ring-1 ring-inset ring-border"
+          ? "bg-accent-soft text-accent font-medium ring-1 ring-inset ring-accent/30"
           : "bg-transparent text-muted hover:text-text",
         className,
       )}
