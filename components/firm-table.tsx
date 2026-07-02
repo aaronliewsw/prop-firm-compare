@@ -18,6 +18,7 @@ import {
   formatSizes,
   leaderClass,
   leverageOrNull,
+  matchesFilters,
   numOrNull,
 } from "@/lib/firms";
 import { Badge } from "./ui/primitives";
@@ -403,40 +404,24 @@ export default function FirmTable({
   }
 
   const filtered = useMemo(() => {
-    const q = search.trim().toLowerCase();
-    return firms.filter((f) => {
-      if (fundingModel !== "all" && f.fundingModel !== fundingModel) return false;
-      if (assetClass !== "all" && !f.assetClasses.includes(assetClass)) return false;
-      if (drawdownType !== "all" && f.drawdownType !== drawdownType) return false;
-      if (payoutSpeed !== "any") {
-        const hours = numOrNull(f.payoutSpeedHours);
-        const cap = payoutSpeed === "24" ? 24 : 48;
-        if (hours == null || hours > cap) return false;
-      }
-      if (pinnedOnly && !pinned.has(f.id)) return false;
-      if (minLeverage > 0) {
-        const lev = leverageOrNull(f.cryptoLeverage);
-        if (lev == null || lev < minLeverage) return false;
-      }
-      if (minSplit > 0 && f.profitSplitPct < minSplit) return false;
-      if (minMaxDdBuffer > 0) {
-        const maxDd = numOrNull(f.maxDrawdownPct);
-        if (maxDd == null || maxDd < minMaxDdBuffer) return false;
-      }
-      if (automation === "high" && f.automation?.feasibility !== "high") return false;
-      if (automation === "ea" && f.automation?.ea !== "allowed") return false;
-      if (
-        automation === "none" &&
-        f.automation?.ea !== "banned" &&
-        f.automation?.feasibility !== "none"
-      ) {
-        return false;
-      }
-      if (q && !f.name.toLowerCase().includes(q) && !f.cryptoAssets.toLowerCase().includes(q)) {
-        return false;
-      }
-      return true;
-    });
+    return firms.filter((f) =>
+      matchesFilters(
+        f,
+        {
+          fundingModel,
+          assetClass,
+          minLeverage,
+          drawdownType,
+          payoutSpeed,
+          minSplit,
+          minMaxDdBuffer,
+          automation,
+          pinnedOnly,
+          search,
+        },
+        pinned
+      )
+    );
   }, [
     firms,
     fundingModel,

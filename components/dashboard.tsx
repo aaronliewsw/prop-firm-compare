@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import type { AssetClass, DrawdownType, Firm } from "@/lib/firms";
-import { leverageOrNull, numOrNull } from "@/lib/firms";
+import { matchesFilters } from "@/lib/firms";
 import { usePinned } from "@/lib/use-pinned";
 import FirmTable from "./firm-table";
 import FilterBar from "./filter-bar";
@@ -30,41 +30,24 @@ export default function Dashboard({ firms, generatedAt }: { firms: Firm[]; gener
   );
 
   const matchCount = useMemo(() => {
-    const q = search.trim().toLowerCase();
-
-    return firms.filter((f) => {
-      if (fundingModel !== "all" && f.fundingModel !== fundingModel) return false;
-      if (assetClass !== "all" && !f.assetClasses.includes(assetClass)) return false;
-      if (drawdownType !== "all" && f.drawdownType !== drawdownType) return false;
-      if (payoutSpeed !== "any") {
-        const hours = numOrNull(f.payoutSpeedHours);
-        const cap = payoutSpeed === "24" ? 24 : 48;
-        if (hours == null || hours > cap) return false;
-      }
-      if (pinnedOnly && !pinned.has(f.id)) return false;
-      if (minLeverage > 0) {
-        const lev = leverageOrNull(f.cryptoLeverage);
-        if (lev == null || lev < minLeverage) return false;
-      }
-      if (minSplit > 0 && f.profitSplitPct < minSplit) return false;
-      if (minMaxDdBuffer > 0) {
-        const maxDd = numOrNull(f.maxDrawdownPct);
-        if (maxDd == null || maxDd < minMaxDdBuffer) return false;
-      }
-      if (automation === "high" && f.automation?.feasibility !== "high") return false;
-      if (automation === "ea" && f.automation?.ea !== "allowed") return false;
-      if (
-        automation === "none" &&
-        f.automation?.ea !== "banned" &&
-        f.automation?.feasibility !== "none"
-      ) {
-        return false;
-      }
-      if (q && !f.name.toLowerCase().includes(q) && !f.cryptoAssets.toLowerCase().includes(q)) {
-        return false;
-      }
-      return true;
-    }).length;
+    return firms.filter((f) =>
+      matchesFilters(
+        f,
+        {
+          fundingModel,
+          assetClass,
+          minLeverage,
+          drawdownType,
+          payoutSpeed,
+          minSplit,
+          minMaxDdBuffer,
+          automation,
+          pinnedOnly,
+          search,
+        },
+        pinned
+      )
+    ).length;
   }, [
     firms,
     fundingModel,

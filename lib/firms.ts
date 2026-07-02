@@ -74,6 +74,19 @@ export interface Firm {
   automation?: Automation;
 }
 
+export interface FilterState {
+  fundingModel: "all" | FundingModel;
+  assetClass: "all" | AssetClass;
+  minLeverage: number;
+  drawdownType: "all" | DrawdownType;
+  payoutSpeed: "any" | "24" | "48";
+  minSplit: 0 | 80 | 90;
+  minMaxDdBuffer: 0 | 6 | 8 | 10;
+  automation: "any" | "high" | "ea" | "none";
+  pinnedOnly: boolean;
+  search: string;
+}
+
 export function formatMoney(n: number): string {
   if (n >= 1_000_000) return `$${(n / 1_000_000).toFixed(1)}M`;
   if (n >= 1_000) {
@@ -119,6 +132,41 @@ export function leverageOrNull(v: number | string | null): number | null {
   const matches = [...v.matchAll(/(?:1:(\d+(?:\.\d+)?)|(\d+(?:\.\d+)?)x)\b/gi)];
   if (!matches.length) return null;
   return Math.max(...matches.map((match) => Number(match[1] ?? match[2])));
+}
+
+export function matchesFilters(f: Firm, s: FilterState, pinned: Set<string>): boolean {
+  const q = s.search.trim().toLowerCase();
+  if (s.fundingModel !== "all" && f.fundingModel !== s.fundingModel) return false;
+  if (s.assetClass !== "all" && !f.assetClasses.includes(s.assetClass)) return false;
+  if (s.drawdownType !== "all" && f.drawdownType !== s.drawdownType) return false;
+  if (s.payoutSpeed !== "any") {
+    const hours = numOrNull(f.payoutSpeedHours);
+    const cap = s.payoutSpeed === "24" ? 24 : 48;
+    if (hours == null || hours > cap) return false;
+  }
+  if (s.pinnedOnly && !pinned.has(f.id)) return false;
+  if (s.minLeverage > 0) {
+    const lev = leverageOrNull(f.cryptoLeverage);
+    if (lev == null || lev < s.minLeverage) return false;
+  }
+  if (s.minSplit > 0 && f.profitSplitPct < s.minSplit) return false;
+  if (s.minMaxDdBuffer > 0) {
+    const maxDd = numOrNull(f.maxDrawdownPct);
+    if (maxDd == null || maxDd < s.minMaxDdBuffer) return false;
+  }
+  if (s.automation === "high" && f.automation?.feasibility !== "high") return false;
+  if (s.automation === "ea" && f.automation?.ea !== "allowed") return false;
+  if (
+    s.automation === "none" &&
+    f.automation?.ea !== "banned" &&
+    f.automation?.feasibility !== "none"
+  ) {
+    return false;
+  }
+  if (q && !f.name.toLowerCase().includes(q) && !f.cryptoAssets.toLowerCase().includes(q)) {
+    return false;
+  }
+  return true;
 }
 
 /** Short label for the "Bots / API" column — the primary way a trader could automate. */
