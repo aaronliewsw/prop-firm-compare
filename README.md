@@ -1,9 +1,9 @@
 # Prop Firm Compare
 
-A sortable, filterable dashboard for comparing **48 proprietary trading firms**
+A sortable, filterable dashboard for comparing **76 proprietary trading firms**
 side by side — drawdown, profit split, payout speed, leverage, automation/API
 policy, and full per-program rules — so you can find the right firm without
-opening 48 browser tabs.
+opening 76 browser tabs.
 
 🔗 **Live:** https://prop-firm-compare-two.vercel.app
 
@@ -31,7 +31,7 @@ details on the firm's own site before you pay.
 
 - **Next.js 15 + React 19 + TypeScript**, styled with **Tailwind** — a fully
   static site (no backend, no login, no tracking).
-- **48 firms** hand-curated into a typed dataset (`data/firms.json`), each with a
+- **76 firms** hand-curated into a typed dataset (`data/firms.json`), each with a
   flagship summary row **and** a per-program rule breakdown.
 - Filtering, sorting, and side-by-side comparison all happen **client-side** —
   it's fast and works without a server.
@@ -63,7 +63,7 @@ details on the firm's own site before you pay.
   - 🟢 **high** — verified recently against a known source.
   - 🟠 **medium** — matches my last reading, but worth re-checking.
   - 🔴 **low** — older or thinly sourced; verify thoroughly.
-  *(Current dataset: 37 high, 11 medium.)*
+  *(Current dataset: 49 high, 27 medium.)*
 - **Mind the `lastVerified` date.** Prop-firm rules change frequently. Every row
   shows when it was last checked — older dates are likelier to be stale.
 - **Always confirm on the firm's own site before purchasing.** This dashboard is

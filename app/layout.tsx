@@ -19,18 +19,18 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Prop Firm Compare",
   description:
-    "Sortable dashboard comparing 48 crypto-focused proprietary trading firms — drawdown, profit split, payout speed, leverage, and per-program rules.",
+    "Sortable dashboard comparing 76 crypto-focused proprietary trading firms — drawdown, profit split, payout speed, leverage, and per-program rules.",
   openGraph: {
     title: "Prop Firm Compare",
     description:
-      "Compare 48 crypto prop firms: drawdown, profit split, payout speed, and leverage.",
+      "Compare 76 crypto prop firms: drawdown, profit split, payout speed, and leverage.",
     type: "website",
   },
   twitter: {
     card: "summary",
     title: "Prop Firm Compare",
     description:
-      "Compare 48 crypto prop firms: drawdown, profit split, payout speed, and leverage.",
+      "Compare 76 crypto prop firms: drawdown, profit split, payout speed, and leverage.",
   },
 };
 
